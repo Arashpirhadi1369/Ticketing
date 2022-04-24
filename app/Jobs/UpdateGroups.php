@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Adldap\Laravel\Facades\Adldap;
+use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -36,13 +37,34 @@ class UpdateGroups implements ShouldQueue
         $users = [];
 
         foreach ($adUsers as $user) {
-            $users[] = $user->objectguid;
-            // $users[] = $user->samaccountname;
-            // $users[] = $user->memberof;
-            // dump($user->samaccountname);
-            // dd($user->objectguid);
-            // dump($user->memberof);
+            $users[] = $user->samaccountname[0];
         }
-        dd($users);
+
+        $details = [];
+
+        foreach ($adUsers as $user) {
+            $details[] = $user->memberof;
+        }
+
+        $usersWithDetails = array_combine($users, $details);
+
+        $clean = [];
+
+        foreach ($usersWithDetails as $key => $value) {
+            if (!empty($value)) {
+                foreach ($value as $detail) {
+                    $x = strstr($detail, 'OU=');
+                    $y = strstr($x, ',', true);
+                    $ou = ltrim($y, "OU=");
+
+                    $clean[$key] = $ou;
+
+                    break;
+                }
+            }
+        }
+        foreach ($clean as $key => $value) {
+            User::where('username', $key)->update(['ou' => $value]);
+        }
     }
 }
