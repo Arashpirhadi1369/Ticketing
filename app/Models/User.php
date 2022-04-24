@@ -33,4 +33,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'user_groups', 'user_id', 'group_id');
+    }
 }
