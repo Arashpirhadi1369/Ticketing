@@ -5,7 +5,13 @@
 <div class="col-md-4 vh-100">
     <div class="card ">
         <div class="card-body">
-            <form>
+
+            <!-- Validation -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            <!--End Validation  -->
+
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <!-- Username  -->
                 <div class="form-group  d-flex flex-column">
@@ -31,7 +37,7 @@
                                 </svg>
                             </span>
                         </div>
-                        <input type="text" class="form-control x-input border border-right-0  " name="password" id="password"
+                        <input type="password" class="form-control x-input border border-right-0 text-right " name="password" id="password"
                          placeholder="کلمه عبور">
                     </div>
                 </div>
