@@ -63,9 +63,9 @@
                         </div>
                         @endif
 
-                        <div class="form-group mr-3">
+                        {{-- <div class="form-group mr-3">
                             <a href="{{route('password.request')}}" class="text-bold mt-4 text-small text-primary">کلمه عبور خود را فراموش کرده ام ؟</a>
-                        </div>
+                        </div> --}}
                         <div class="form-group mx-3 ">
                             <button type="submit" class="btn btn-lg my-3 btn-block btn-primary">ورود به سامانه</button>
                         </div>
