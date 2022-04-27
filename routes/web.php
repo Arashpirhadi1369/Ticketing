@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::group(['middleware' => 'firewall.all'], function () {
-
-    Route::get('/', function () {
-        return view('dashboard');
-    })->middleware(['auth'])->name('dashboard');
+Route::get('/', function () {
+    return view('dashboard');
 });
+
+//Route::group(['middleware' => 'firewall.all'], function () {
+//
+//    Route::get('/', function () {
+//        return view('dashboard');
+//    })->middleware(['auth'])->name('dashboard');
+//});
 
 
 require __DIR__ . '/auth.php';

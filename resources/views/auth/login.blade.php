@@ -12,7 +12,7 @@
         </div>
     </a>ّ
 </div>
-<div class="card bg-light border-0  ">
+<div class="card bg-light border-0  " >
     <div class="row no-gutters">
         <div class="card-body col-md-4 align-self-center">
 
@@ -56,7 +56,7 @@
 
                         <!-- Validation Errors -->
                         @if($errors->any())
-                        <div class="card border-danger mx-3 mb-3">
+                        <div class="card border-danger mt-4 mx-3 mb-3">
                             <div class="card-body text-danger" style="background-color:#ffe7e9">
                                 <x-auth-validation-errors class="mb-4 " :errors="$errors" />
                             </div>
@@ -67,7 +67,7 @@
                             <a href="{{route('password.request')}}" class="text-bold mt-4 text-small text-primary">کلمه عبور خود را فراموش کرده ام ؟</a>
                         </div> --}}
                         <div class="form-group mx-3 ">
-                            <button type="submit" class="btn btn-lg my-3 btn-block btn-primary">ورود به سامانه</button>
+                            <button type="submit" class="btn mt-5 btn-lg my-3 btn-block btn-primary">ورود به سامانه</button>
                         </div>
                     </form>
                 </div>
