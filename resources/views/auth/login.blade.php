@@ -12,7 +12,7 @@
         </div>
     </a>ّ
 </div>
-<div class="card bg-light border-0  " >
+<div class="card bg-light border-0" >
     <div class="row no-gutters">
         <div class="card-body col-md-4 align-self-center">
 

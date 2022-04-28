@@ -18,11 +18,11 @@
 
 
 </head>
-<body class="" style="background-color: #1D2D50">
+<body class="" style="background-color: #DDDDDD">
 <div class="">
     <!-- Page Content -->
     <main class="">
-        @yield('dashboard-content')
+        @yield('dashboard')
     </main>
 </div>
 </body>
