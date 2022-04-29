@@ -8,7 +8,7 @@
    </div>
 
    <div class="card text-center bg-light  mt-4 border-0 shadow " style="    border-radius: 10px">
-       <div class="card-header bg-light" style="    border-radius: 10px">
+       <div class="card-header bg-light" style="    border-radius: 10px 10px 0px 0px">
            <ul class="nav nav-tabs card-header-tabs">
                <li class="nav-item">
                    <a class="nav-link active text-dark text-bold" href="#">درخواستهای من</a>

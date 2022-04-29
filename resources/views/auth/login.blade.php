@@ -5,14 +5,14 @@
 {{--Company Logo and Name--}}
 <div class="mx-5 mt-5">
     <a class="d-flex flex-row align-content-center text-decoration-none text-dark">
-        <img src="https://s6.uupload.ir/files/logo_o307.png">
-        <div class="mr-2">
+        <img src="https://s6.uupload.ir/files/logo_o307.png" style="width: 60px;height: 60px">
+        <div class="mr-3">
             <h3 class="text-demibold">شرکت ایران اینترنشنال</h3>
             <h5 class="text-small">ارائه دهنده راهکارهای اقتصادی</h5>
         </div>
     </a>ّ
 </div>
-<div class="card bg-light border-0" >
+<div class="card bg-light border-0">
     <div class="row no-gutters">
         <div class="card-body col-md-4 align-self-center">
 
