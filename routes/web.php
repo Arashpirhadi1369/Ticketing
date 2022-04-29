@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard');
 });
-Route::get('/adminpanel', function () {
-    return view('adminpanel.adminpanel');
-});
+
+//Route::get('/admindashboard', function () {
+//    return view('admindashboard.adminpanel');
+//});
+
 //Route::group(['middleware' => 'firewall.all'], function () {
 //
 //    Route::get('/', function () {

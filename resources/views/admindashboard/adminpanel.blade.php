@@ -1,4 +1,4 @@
-@extends('dashboard')
+@extends('dashboardlayouts.masterdashboard')
 @section('dashboard-contents')
 
    <div class="card border-0 bg-light  shadow " style="height: 70px;border-radius: 10px">
@@ -36,8 +36,7 @@
            </ul>
        </div>
        <div class="card-body">
-           <h5 class="card-title">مجموعه درخواست های من</h5>
-           <p class="card-text">درخواست های شما در این مکان نصب می شود </p>
+            @yield('data-content')
        </div>
    </div>
 
