@@ -18,13 +18,12 @@
 
 
 </head>
-<body class="" style="background-color: #DDDDDD">
-<div class="">
-    <!-- Page Content -->
-    <main class="">
-        @yield('dashboard')
-    </main>
-</div>
+<body  style="background-color: #DDDDDD;">
+<!-- Page Content -->
+<main class="max-height">
+    @yield('dashboard')
+</main>
+
 </body>
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>

@@ -10,7 +10,16 @@
 
 #navbar-dashboard
 {
-    height: 750px  !important;
+    height: calc(100vh - 48px ) !important;
     border-radius: 10px
 
+}
+
+.max-height
+{
+    height: calc( 100vh - 21px );
+}
+
+#dashboard-content {
+    height: calc(100vh - 140px ) !important;
 }
