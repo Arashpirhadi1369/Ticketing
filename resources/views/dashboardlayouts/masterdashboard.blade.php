@@ -6,10 +6,10 @@
             <div class=" bg-light shadow  mr-2 " id="navbar-dashboard"  >
                 <div class="mx-4 pt-4 d-flex flex-row align-items-center">
                     <a class="d-flex flex-row align-items-center text-decoration-none text-dark">
-                        <img class="" src="https://s6.uupload.ir/files/logo_o307.png" style="width: 40px ; height: 40px">
+                        <img class="" src="{{url('images/logo.png')}}" style="width: 4rem ; height: 2rem">
                         <div class="mr-2 mt-2">
-                            <h5 class="text-demibold">شرکت ایران اینترنشنال</h5>
-                            <h6 class="text-small">ارائه دهنده راهکارهای اقتصادی</h6>
+                            <h5 class="text-demibold company-text" >شرکت محافظان بهبود آب</h5>
+                            <h6 class="text-small company-text">MBA Water Treatment Chemicals</h6>
                         </div>
                     </a>ّ
                 </div>

@@ -1,6 +1,6 @@
 <div class="table-responsive">
 
-    <table class="table table-bordered  mt-2">
+    <table class="table table-bordered  mt-2" id="myTable">
         <thead >
         <tr class="">
             <th class="">امکانات</th>

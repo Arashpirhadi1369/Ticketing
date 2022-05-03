@@ -26,3 +26,7 @@
 #dashboard-content {
     height: calc(100vh - 140px ) !important;
 }
+
+.company-text{
+color: #0098c7;
+}

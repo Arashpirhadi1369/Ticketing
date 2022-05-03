@@ -5,10 +5,11 @@
 {{--Company Logo and Name--}}
 <div class="mx-5 mt-5">
     <a class="d-flex flex-row align-content-center text-decoration-none text-dark">
-        <img src="https://s6.uupload.ir/files/logo_o307.png" style="width: 60px;height: 60px">
+        <img src="{{url('images/logo.png')}}"  style="width: 5rem ; height: 3rem"/>
+
         <div class="mr-3">
-            <h3 class="text-demibold">شرکت ایران اینترنشنال</h3>
-            <h5 class="text-small">ارائه دهنده راهکارهای اقتصادی</h5>
+            <h4 class="text-demibold company-text">شرکت محافظان بهبود آب</h4>
+            <h5 class="text-small company-text">MBA Water Treatment Chemicals</h5>
         </div>
     </a>ّ
 </div>
