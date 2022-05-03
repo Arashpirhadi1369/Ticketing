@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-//Route::get('/admindashboard', function () {
-//    return view('admindashboard.adminpanel');
+//Route::get('/ticketdashboard', function () {
+//    return view('ticketdashboard.adminpanel');
 //});
 
 //Route::group(['middleware' => 'firewall.all'], function () {

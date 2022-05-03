@@ -6,7 +6,10 @@
     border: hidden;
     height: 70px;
 }
-
+.search-input{
+    border: hidden;
+    height: 50px;
+}
 
 #navbar-dashboard
 {

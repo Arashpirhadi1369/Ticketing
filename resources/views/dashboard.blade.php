@@ -1,8 +1,8 @@
 @extends('dashboardlayouts.masterdashboard')
 @section('dashboard-contents')
 
-        @include('admindashboard.adminpanel')
+    @include('dashboardlayouts.ticketdashboard.ticketdashboard')
 
-{{--        @include('userdashboard.userdashboard')--}}
+    {{--        @include('userdashboard.userdashboard')--}}
 
 @endsection
