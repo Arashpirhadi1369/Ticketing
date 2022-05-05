@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Todo extends Controller
+class RejectedDemands extends Controller
 {
     /**
      * Display a listing of the resource.

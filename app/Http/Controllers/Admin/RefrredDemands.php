@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Ticket;
+use App\Models\TicketStatus;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class Done extends Controller
+class RefrredDemands extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,13 @@ class Done extends Controller
      */
     public function index()
     {
-        //
+        $user_id = auth()->user()->id;
+
+        $statusId = TicketStatus::getId('todo');
+
+        $RefrredDemands = Ticket::where([['status_id', $statusId], ['refrred_id', $user_id]])->get();
+
+        return view('RefrredDemands', compact('RefrredDemands'));
     }
 
     /**

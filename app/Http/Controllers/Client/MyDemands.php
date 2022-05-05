@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RefrredTickets extends Controller
+class MyDemands extends Controller
 {
     /**
      * Display a listing of the resource.

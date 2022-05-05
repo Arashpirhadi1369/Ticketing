@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ticket;
+use App\Models\TicketStatus;
 use Illuminate\Http\Request;
 
 class AllDemands extends Controller
@@ -14,7 +16,11 @@ class AllDemands extends Controller
      */
     public function index()
     {
-        //
+        $statusId = TicketStatus::getId('open');
+
+        $allDemands = Ticket::where('status_id', $statusId)->get();
+
+        return view('allDemands', compact('allDemands'));
     }
 
     /**
