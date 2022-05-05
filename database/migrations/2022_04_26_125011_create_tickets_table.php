@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('type_id')->nullable();
             $table->string('reply');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');

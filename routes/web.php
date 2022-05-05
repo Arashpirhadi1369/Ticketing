@@ -19,17 +19,7 @@ use App\Http\Controllers\Client\InprogressDemands;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
-
-
-
-//Route::get('/ticketdashboard', function () {
-//    return view('ticketdashboard.adminpanel');
-//});
-
-Route::group(['middleware' => 'firewall.all', 'middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');

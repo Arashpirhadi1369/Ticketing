@@ -14,7 +14,7 @@
                     همه درخواست ها
                     <span class="badge badge-pill badge-primary">50</span>
                 </a>
-                @if(auth()->user() == 1)
+                @if(!empty(auth()->user()->ou) && auth()->user()->ou == 'IT')
                     <a class="nav-link text-info" id="nav-my-demand-tab" data-toggle="tab"
                        href="#nav-my-demand" role="tab" aria-controls="nav-my-demand" aria-selected="true">
                         تیکت های من

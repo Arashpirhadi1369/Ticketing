@@ -21,6 +21,19 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \Akaunting\Firewall\Middleware\Agent::class,
+        \Akaunting\Firewall\Middleware\Bot::class,
+        \Akaunting\Firewall\Middleware\Ip::class,
+        \Akaunting\Firewall\Middleware\Geo::class,
+        \Akaunting\Firewall\Middleware\Lfi::class,
+        \Akaunting\Firewall\Middleware\Php::class,
+        \Akaunting\Firewall\Middleware\Referrer::class,
+        \Akaunting\Firewall\Middleware\Rfi::class,
+        \Akaunting\Firewall\Middleware\Session::class,
+        \Akaunting\Firewall\Middleware\Sqli::class,
+        \Akaunting\Firewall\Middleware\Swear::class,
+        \Akaunting\Firewall\Middleware\Url::class,
+        \Akaunting\Firewall\Middleware\Xss::class,
     ];
 
     /**

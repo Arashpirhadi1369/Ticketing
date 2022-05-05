@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('ou')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
