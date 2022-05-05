@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\AllDemands;
-use App\Http\Controllers\Admin\RefrredTickets;
-use App\Http\Controllers\Client\Done;
-use App\Http\Controllers\Client\Open;
-use App\Http\Controllers\Client\Rejected;
-use App\Http\Controllers\Client\Todo;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AllDemands;
+use App\Http\Controllers\Client\MyDemands;
+use App\Http\Controllers\Client\DoneDemands;
+use App\Http\Controllers\Admin\ReferredDemands;
+use App\Http\Controllers\Client\RejectedDemands;
+use App\Http\Controllers\Client\InprogressDemands;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,23 +23,24 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::resource('alldemands', AllDemands::class);
-Route::resource('refrredtickets', RefrredTickets::class);
-Route::resource('open', Open::class);
-Route::resource('todo', Todo::class);
-Route::resource('done', Done::class);
-Route::resource('rejected', Rejected::class);
+
 
 //Route::get('/ticketdashboard', function () {
 //    return view('ticketdashboard.adminpanel');
 //});
 
-//Route::group(['middleware' => 'firewall.all'], function () {
-//
-//    Route::get('/', function () {
-//        return view('dashboard');
-//    })->middleware(['auth'])->name('dashboard');
-//});
+Route::group(['middleware' => 'firewall.all', 'middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::resource('alldemands', AllDemands::class);
+    Route::resource('referreddemands', ReferredDemands::class);
+    Route::resource('mydemands', MyDemands::class);
+    Route::resource('inprogressdemands', InprogressDemands::class);
+    Route::resource('donedemands', DoneDemands::class);
+    Route::resource('rejecteddemands', RejectedDemands::class);
+});
 
 
 require __DIR__ . '/auth.php';

@@ -7,7 +7,7 @@ use App\Models\TicketStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class RefrredDemands extends Controller
+class ReferredDemands extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +20,9 @@ class RefrredDemands extends Controller
 
         $statusId = TicketStatus::getId('todo');
 
-        $RefrredDemands = Ticket::where([['status_id', $statusId], ['refrred_id', $user_id]])->get();
+        $referredDemands = Ticket::where([['status_id', $statusId], ['referred_id', $user_id]])->get();
 
-        return view('RefrredDemands', compact('RefrredDemands'));
+        return view('referredDemands', compact('referredDemands'));
     }
 
     /**

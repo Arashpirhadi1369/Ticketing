@@ -11,7 +11,7 @@
                             <h5 class="text-demibold company-text" >شرکت محافظان بهبود آب</h5>
                             <h6 class="text-small company-text">MBA Water Treatment Chemicals</h6>
                         </div>
-                    </a>ّ
+                    </a>
                 </div>
                 <div class="dropdown-divider mt-4"></div>
                 <nav class="navbar navbar-expand-lg" >
