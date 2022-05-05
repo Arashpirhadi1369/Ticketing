@@ -39,9 +39,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ticket::class, 'user_id', 'id');
     }
-
-    public function groups()
-    {
-        return $this->belongsToMany(Group::class, 'user_groups', 'user_id', 'group_id');
-    }
 }

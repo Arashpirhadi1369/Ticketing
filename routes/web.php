@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Tickets;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard');
 });
+
+Route::resource('tickets', Tickets::class);
 
 //Route::get('/ticketdashboard', function () {
 //    return view('ticketdashboard.adminpanel');

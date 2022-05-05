@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('content');
             $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('refrred_id')->nullable();
+            $table->string('reply');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

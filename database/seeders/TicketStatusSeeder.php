@@ -15,7 +15,7 @@ class TicketStatusSeeder extends Seeder
      */
     public function run()
     {
-        $statuses = ['open', 'close'];
+        $statuses = ['open', 'todo', 'done', 'rejected'];
 
         foreach ($statuses as $status) {
             TicketStatus::updateOrCreate(['status' => $status]);
