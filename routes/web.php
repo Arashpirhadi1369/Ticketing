@@ -1,6 +1,11 @@
 <?php
 
-use App\Http\Controllers\Tickets;
+use App\Http\Controllers\Admin\AllDemands;
+use App\Http\Controllers\Admin\RefrredTickets;
+use App\Http\Controllers\Client\Done;
+use App\Http\Controllers\Client\Open;
+use App\Http\Controllers\Client\Rejected;
+use App\Http\Controllers\Client\Todo;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +23,12 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::resource('tickets', Tickets::class);
+Route::resource('alldemands', AllDemands::class);
+Route::resource('refrredtickets', RefrredTickets::class);
+Route::resource('open', Open::class);
+Route::resource('todo', Todo::class);
+Route::resource('done', Done::class);
+Route::resource('rejected', Rejected::class);
 
 //Route::get('/ticketdashboard', function () {
 //    return view('ticketdashboard.adminpanel');

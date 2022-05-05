@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('subject');
             $table->string('content');
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('refrred_id')->nullable();
+            $table->unsignedBigInteger('type_id')->nullable();
             $table->string('reply');
             $table->timestamps();
 
