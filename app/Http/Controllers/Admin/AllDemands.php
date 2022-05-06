@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
-use App\Models\TicketStatus;
 use Illuminate\Http\Request;
 
 class AllDemands extends Controller
@@ -16,7 +15,7 @@ class AllDemands extends Controller
      */
     public function index()
     {
-        $statusId = TicketStatus::getId('open');
+        $statusId = getStatusId('open');
 
         $allDemands = Ticket::where('status_id', $statusId)->get();
 
@@ -75,7 +74,18 @@ class AllDemands extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $userId = getUserId();
+
+        $statusId = getStatusId('todo');
+
+        $ticket = Ticket::find($id);
+
+        $ticket->status_id = $statusId;
+        $ticket->referred_id = $userId;
+        $ticket->type_id = $request->type_id;
+        $ticket->reply = $request->reply;
+
+        $ticket->save();
     }
 
     /**

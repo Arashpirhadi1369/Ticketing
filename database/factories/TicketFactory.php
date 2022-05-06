@@ -20,7 +20,6 @@ class TicketFactory extends Factory
             'user_id' => $this->faker->numberBetween(31, 35),
             'subject' => $this->faker->realText(20),
             'content' => $this->faker->realText(),
-            'status_id' => $this->faker->numberBetween(1, 1),
         ];
     }
 }

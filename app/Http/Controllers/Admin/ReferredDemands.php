@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Ticket;
-use App\Models\TicketStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,11 +15,11 @@ class ReferredDemands extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
+        $userId = getUserId();
 
-        $statusId = TicketStatus::getId('todo');
+        $statusId = getStatusId('todo');
 
-        $referredDemands = Ticket::where([['status_id', $statusId], ['referred_id', $user_id]])->get();
+        $referredDemands = Ticket::where([['status_id', $statusId], ['referred_id', $userId]])->get();
 
         return view('referredDemands', compact('referredDemands'));
     }

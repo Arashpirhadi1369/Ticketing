@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DoneDemands extends Controller
 {
@@ -14,7 +15,13 @@ class DoneDemands extends Controller
      */
     public function index()
     {
-        //
+        $userId = getUserId();
+
+        $statusId = getStatusId('done');
+
+        $doneDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->get();
+
+        return view('doneDemands', compact('doneDemands'));
     }
 
     /**

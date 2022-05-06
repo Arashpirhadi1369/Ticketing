@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('subject');
             $table->string('content');
-            $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('status_id')->default(1);
             $table->unsignedBigInteger('referred_id')->nullable();
             $table->unsignedBigInteger('type_id')->nullable();
             $table->string('reply')->nullable();

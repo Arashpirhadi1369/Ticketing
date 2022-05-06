@@ -9,12 +9,12 @@
     <div class="card text-center bg-light mt-4 border-0 shadow " id="dashboard-content" style="border-radius: 10px">
         <nav class="d-flex flex-row d-flex justify-content-between align-items-center">
             <div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
+                @if(isAdmin())
                 <a class="nav-link active" id="nav-all-demand-tab" data-toggle="tab"
                    href="#nav-all-demand" role="tab" aria-controls="nav-all-demand" aria-selected="true">
                     همه درخواست ها
                     <span class="badge badge-pill badge-primary">50</span>
                 </a>
-                @if(!empty(auth()->user()->ou) && auth()->user()->ou == 'IT')
                     <a class="nav-link text-info" id="nav-my-demand-tab" data-toggle="tab"
                        href="#nav-my-demand" role="tab" aria-controls="nav-my-demand" aria-selected="true">
                         تیکت های من

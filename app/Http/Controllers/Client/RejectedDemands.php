@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RejectedDemands extends Controller
 {
@@ -14,7 +15,13 @@ class RejectedDemands extends Controller
      */
     public function index()
     {
-        //
+        $userId = getUserId();
+
+        $statusId = getStatusId('rejected');
+
+        $rejectedDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->get();
+
+        return view('rejectedDemands', compact('rejectedDemands'));
     }
 
     /**

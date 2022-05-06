@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MyDemands extends Controller
 {
@@ -14,7 +15,13 @@ class MyDemands extends Controller
      */
     public function index()
     {
-        //
+        $userId = getUserId();
+
+        $statusId = getStatusId('open');
+
+        $myDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->get();
+
+        return view('myDemands', compact('myDemands'));
     }
 
     /**
@@ -35,7 +42,15 @@ class MyDemands extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userId = getUserId();
+
+        $ticket = new Ticket;
+
+        $ticket->user_id = $userId;
+        $ticket->subject = $request->subject;
+        $ticket->content = $request->content;
+
+        $ticket->save();
     }
 
     /**
@@ -69,7 +84,16 @@ class MyDemands extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $userId = getUserId();
+
+        $statusId = getStatusId('open');
+
+        $ticket = Ticket::where([['id', $id], ['user_id', $userId], ['status_id', $statusId]]);
+
+        $ticket->subject = $request->subject;
+        $ticket->content = $request->content;
+
+        $ticket->save();
     }
 
     /**
