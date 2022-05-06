@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AllDemands extends Controller
@@ -11,15 +12,18 @@ class AllDemands extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         $statusId = getStatusId('open');
 
-        $allDemands = Ticket::where('status_id', $statusId)->get();
+        $allDemands = Ticket::with('user' , 'status')
+            ->where('status_id', $statusId)
+            ->paginate(10);
 
-        return view('allDemands', compact('allDemands'));
+
+        return view('dashboard', compact('allDemands'));
     }
 
     /**

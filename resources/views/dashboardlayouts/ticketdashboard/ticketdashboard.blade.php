@@ -10,10 +10,10 @@
         <nav class="d-flex flex-row d-flex justify-content-between align-items-center">
             <div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
                 @if(isAdmin())
-                <a class="nav-link active" id="nav-all-demand-tab" data-toggle="tab"
+                <a class="nav-link active"  id="nav-all-demand-tab" data-toggle="tab"
                    href="#nav-all-demand" role="tab" aria-controls="nav-all-demand" aria-selected="true">
                     همه درخواست ها
-                    <span class="badge badge-pill badge-primary">50</span>
+                    <span class="badge badge-pill badge-primary">30</span>
                 </a>
                     <a class="nav-link text-info" id="nav-my-demand-tab" data-toggle="tab"
                        href="#nav-my-demand" role="tab" aria-controls="nav-my-demand" aria-selected="true">
@@ -72,20 +72,23 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-all-demand" role="tabpanel"
                  aria-labelledby="nav-all-demand-tab">
-                @include('dashboardlayouts.demandtypelayouts.alldemand')
+                <livewire:dashboardlayouts.demandtypelayouts.alldemand />
             </div>
-            <div class="tab-pane fade  " id="nav-my-demand" role="tabpanel" aria-labelledby="nav-my-demand-tab">
-                @include('dashboardlayouts.demandtypelayouts.mydemand')
+            <div class="tab-pane fade  " id="nav-my-demand" role="tabpanel"
+                 aria-labelledby="nav-my-demand-tab">
+                <livewire:dashboardlayouts.demandtypelayouts.mydemand />
             </div>
             <div class="tab-pane fade" id="nav-demand-inprogress" role="tabpanel"
                  aria-labelledby="nav-demand-inprogress-tab">
-                @include('dashboardlayouts.demandtypelayouts.inprogressdemand')
+                <livewire:dashboardlayouts.demandtypelayouts.inprogressdemand />
             </div>
-            <div class="tab-pane fade" id="nav-demand-done" role="tabpanel" aria-labelledby="nav-demand-done-tab">
-                @include('dashboardlayouts.demandtypelayouts.donedemand')
+            <div class="tab-pane fade" id="nav-demand-done" role="tabpanel"
+                 aria-labelledby="nav-demand-done-tab">
+                <livewire:dashboardlayouts.demandtypelayouts.donedemand />
             </div>
-            <div class="tab-pane fade" id="nav-demand-reject" role="tabpanel" aria-labelledby="nav-demand-reject-tab">
-                @include('dashboardlayouts.demandtypelayouts.rejectdemand')
+            <div class="tab-pane fade" id="nav-demand-reject" role="tabpanel"
+                 aria-labelledby="nav-demand-reject-tab">
+                <livewire:dashboardlayouts.demandtypelayouts.rejectdemand />
             </div>
         </div>
     </div>

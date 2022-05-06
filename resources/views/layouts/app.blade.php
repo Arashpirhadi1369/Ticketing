@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{asset('/css/fontiranstyle.css') }}" >
     <link rel="stylesheet" href="{{asset('/css/customstyle.css') }}" >
 
-
+    <livewire:styles />
 </head>
 
 <body  style="background-color: #DDDDDD;">
@@ -42,5 +42,5 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/jquery.slim.min.js')}}"></script>
-
+<livewire:scripts/>
 </html>

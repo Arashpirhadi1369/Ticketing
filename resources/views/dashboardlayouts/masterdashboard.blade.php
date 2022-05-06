@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('dashboard')
+
     <div class="d-flex ">
 
         <div class="col-3 my-4" id="navbar-dashboard" >
@@ -24,7 +25,7 @@
                     <div class="collapse navbar-collapse align-self-start mt-5 " id="navbarSupportedContent">
                         <ul class="navbar-nav d-flex flex-column">
                             <li class="nav-item  active">
-                                <a class="nav-link d-flex text-dark align-items-center " href="#">
+                                <a class="nav-link d-flex text-dark align-items-center" href={{route('dashboard')}}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="ml-3 bi bi-card-text" viewBox="0 0 16 16">
                                         <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                                         <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>

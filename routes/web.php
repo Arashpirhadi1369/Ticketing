@@ -20,11 +20,11 @@ use App\Http\Controllers\Client\InprogressDemands;
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard' , [ AllDemands::class , 'index']
+    )->name('dashboard');
 
-    Route::resource('alldemands', AllDemands::class);
+//    Route::get('/', [ AllDemands::class , 'index']);
+
     Route::resource('referreddemands', ReferredDemands::class);
     Route::resource('mydemands', MyDemands::class);
     Route::resource('inprogressdemands', InprogressDemands::class);
