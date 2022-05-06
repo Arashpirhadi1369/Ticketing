@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('referred_id')->nullable();
             $table->unsignedBigInteger('type_id')->nullable();
-            $table->string('reply');
+            $table->string('reply')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
