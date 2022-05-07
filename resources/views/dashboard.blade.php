@@ -1,8 +1,5 @@
-@extends('dashboardlayouts.masterdashboard')
-@section('dashboard-contents')
 
-    @include('dashboardlayouts.ticketdashboard.ticketdashboard')
+    <livewire:dashboardlayouts.ticketlayout.ticket-dashboard />
 
     {{--        @include('userdashboard.userdashboard')--}}
 
-@endsection

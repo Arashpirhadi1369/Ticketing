@@ -22,7 +22,7 @@
 <body  style="background-color: #DDDDDD;">
 <!-- Page Content -->
 <main class="max-height">
-    @yield('dashboard')
+    <livewire:dashboardlayouts.masterlayout.master-dashboard />
 </main>
 
 </body>

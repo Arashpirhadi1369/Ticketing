@@ -12,16 +12,21 @@ class Inprogressdemand extends Component
     use WithPagination;
 
 
+    protected $listeners = ['render'];
+
+
+
+
+
+
+
+
     public function render()
     {
-
         $statusId = getStatusId('open');
-
         $allDemands = Ticket::with('user' , 'status')
             ->where('status_id', $statusId)
             ->paginate(10);
-
-
 
         return view('livewire.dashboardlayouts.demandtypelayouts.inprogressdemand'
             , compact('allDemands'));

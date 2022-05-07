@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Livewire\Dashboardlayouts\Dashboard;
+use App\Http\Livewire\Dashboardlayouts\Demandtypelayouts\Alldemand;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AllDemands;
 use App\Http\Controllers\Client\MyDemands;
@@ -20,7 +22,7 @@ use App\Http\Controllers\Client\InprogressDemands;
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard' , [ AllDemands::class , 'index']
+    Route::get('/' ,  Dashboard::class
     )->name('dashboard');
 
 //    Route::get('/', [ AllDemands::class , 'index']);
