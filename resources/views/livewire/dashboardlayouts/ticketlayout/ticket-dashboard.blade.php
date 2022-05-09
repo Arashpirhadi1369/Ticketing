@@ -12,8 +12,8 @@
                     همه درخواست ها
                     <span class="badge badge-pill badge-primary">30</span>
                 </a>
-                <a class="nav-link text-info" id="nav-my-demand-tab" data-toggle="tab"
-                   href="#nav-my-demand" role="tab" aria-controls="nav-my-demand" aria-selected="true">
+                <a class="nav-link text-info" id="nav-referred-demands-tab" data-toggle="tab"
+                   href="#nav-referred-demands" role="tab" aria-controls="nav-referred-demands" aria-selected="true">
                     تیکت های من
                     <span class="badge badge-pill badge-info">3</span>
                 </a>
@@ -70,6 +70,10 @@
         <div class="tab-pane fade show active" id="nav-all-demand" role="tabpanel"
              aria-labelledby="nav-all-demand-tab">
             <livewire:dashboardlayouts.demandtypelayouts.alldemand />
+        </div>
+        <div class="tab-pane fade  " id="nav-referred-demands" role="tabpanel"
+             aria-labelledby="nav-referred-demands-tab">
+            <livewire:dashboardlayouts.demandtypelayouts.referred-demands />
         </div>
         <div class="tab-pane fade  " id="nav-my-demand" role="tabpanel"
              aria-labelledby="nav-my-demand-tab">

@@ -12,13 +12,12 @@ class Donedemand extends Component
 
     public function render()
     {
+        $userId = getUserId();
 
-        $statusId = getStatusId('open');
+        $statusId = getStatusId('done');
 
-        $allDemands = Ticket::with('user' , 'status')
-            ->where('status_id', $statusId)
-            ->paginate(10);
+        $doneDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->paginate(10);
 
-        return view('livewire.dashboardlayouts.demandtypelayouts.donedemand' , compact('allDemands'));
+        return view('livewire.dashboardlayouts.demandtypelayouts.donedemand', compact('doneDemands'));
     }
 }

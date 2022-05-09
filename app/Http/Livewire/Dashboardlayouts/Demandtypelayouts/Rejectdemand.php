@@ -13,13 +13,15 @@ class Rejectdemand extends Component
 
     public function render()
     {
-        $statusId = getStatusId('open');
+        $userId = getUserId();
 
-        $allDemands = Ticket::with('user' , 'status')
-            ->where('status_id', $statusId)
-            ->paginate(10);
+        $statusId = getStatusId('rejected');
 
-        return view('livewire.dashboardlayouts.demandtypelayouts.rejectdemand'
-            , compact('allDemands'));
+        $rejectedDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->paginate(10);
+
+        return view(
+            'livewire.dashboardlayouts.demandtypelayouts.rejectdemand',
+            compact('rejectedDemands')
+        );
     }
 }

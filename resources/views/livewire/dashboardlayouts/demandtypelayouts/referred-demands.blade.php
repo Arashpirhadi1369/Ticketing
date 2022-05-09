@@ -14,7 +14,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($doneDemands as $doneDemand)
+            @foreach($referredDemands as $referredDemand)
 
                 <tr class="text-sm  text-bold ">
                     <td class="p-0 ">
@@ -45,16 +45,16 @@
                         </button>
                     </td>
                     <td>{{$loop->index + ($this->page * 10 - 9)}}</td>
-                    <td>{{$doneDemand->created_at}}</td>
-                    <td>{{$doneDemand->subject}}</td>
-                    <td>{{$doneDemand->status->status}}</td>
-                    <td>{{$doneDemand->user->name}}</td>
+                    <td>{{$referredDemand->created_at}}</td>
+                    <td>{{$referredDemand->subject}}</td>
+                    <td>{{$referredDemand->status->status}}</td>
+                    <td>{{$referredDemand->user->name}}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
         <div class="mr-4 ">
-            {{ $doneDemands->links('vendor.livewire.bootstrap') }}
+            {{ $referredDemands->links('vendor.livewire.bootstrap') }}
         </div>
         <!-- Modal -->
         <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel"

@@ -6,7 +6,7 @@
             <thead >
             <tr class="">
                 <th class="">امکانات</th>
-                <th>کد</th>
+                <th>ردیف</th>
                 <th>تاریخ ثبت</th>
                 <th>عنوان درخواست</th>
                 <th>وضعیت</th>
@@ -14,7 +14,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($allDemands as $demands)
+            @foreach($inprogressDemands as $inprogressDemand)
 
                 <tr class="text-sm  text-bold ">
                     <td class="p-0 ">
@@ -44,17 +44,17 @@
                             </svg>
                         </button>
                     </td>
-                    <td>{{$demands->id}}</td>
-                    <td>{{$demands->created_at}}</td>
-                    <td>{{$demands->subject}}</td>
-                    <td>{{$demands->status->status}}</td>
-                    <td>{{$demands->user->name}}</td>
+                    <td>{{$loop->index + ($this->page * 10 - 9)}}</td>
+                    <td>{{$inprogressDemand->created_at}}</td>
+                    <td>{{$inprogressDemand->subject}}</td>
+                    <td>{{$inprogressDemand->status->status}}</td>
+                    <td>{{$inprogressDemand->user->name}}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
         <div class="mr-4 ">
-            {{ $allDemands->links('vendor.livewire.bootstrap') }}
+            {{ $inprogressDemands->links('vendor.livewire.bootstrap') }}
         </div>
         <!-- Modal -->
         <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -83,7 +83,7 @@
                             @csrf
                             <div class="form-group">
                                 <div>
-                                    <label class="text-bold">کد تیکت :</label>
+                                    <label class="text-bold">ردیف تیکت :</label>
                                     <label>101</label>
                                 </div>
                                 <div>

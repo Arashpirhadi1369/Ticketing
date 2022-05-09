@@ -9,20 +9,19 @@ use Livewire\WithPagination;
 class Mydemand extends Component
 {
 
-    use WithPagination ;
+    use WithPagination;
 
 
 
 
     public function render()
     {
+        $userId = getUserId();
 
         $statusId = getStatusId('open');
 
-        $allDemands = Ticket::with('user' , 'status')
-            ->where('status_id', $statusId)
-            ->paginate(10);
+        $myDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->paginate(10);
 
-        return view('livewire.dashboardlayouts.demandtypelayouts.mydemand' , compact('allDemands'));
+        return view('livewire.dashboardlayouts.demandtypelayouts.mydemand', compact('myDemands'));
     }
 }

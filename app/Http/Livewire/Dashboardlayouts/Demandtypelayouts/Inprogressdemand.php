@@ -23,12 +23,15 @@ class Inprogressdemand extends Component
 
     public function render()
     {
-        $statusId = getStatusId('open');
-        $allDemands = Ticket::with('user' , 'status')
-            ->where('status_id', $statusId)
-            ->paginate(10);
+        $userId = getUserId();
 
-        return view('livewire.dashboardlayouts.demandtypelayouts.inprogressdemand'
-            , compact('allDemands'));
+        $statusId = getStatusId('todo');
+
+        $inprogressDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->paginate(10);
+
+        return view(
+            'livewire.dashboardlayouts.demandtypelayouts.inprogressdemand',
+            compact('inprogressDemands')
+        );
     }
 }

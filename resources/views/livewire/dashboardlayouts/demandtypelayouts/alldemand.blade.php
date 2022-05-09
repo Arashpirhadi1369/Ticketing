@@ -6,7 +6,7 @@
             <thead >
             <tr class="">
                 <th class="">امکانات</th>
-                <th>کد</th>
+                <th>ردیف</th>
                 <th>تاریخ ثبت</th>
                 <th>عنوان درخواست</th>
                 <th>وضعیت</th>
@@ -44,7 +44,7 @@
                             </svg>
                         </button>
                     </td>
-                    <td>{{$demands->id}}</td>
+                    <td>{{$loop->index + ($this->page * 10 - 9)}}</td>
                     <td>{{$demands->created_at}}</td>
                     <td>{{$demands->subject}}</td>
                     <td>{{$demands->status->status}}</td>
@@ -83,7 +83,7 @@
                             @csrf
                             <div class="form-group">
                                 <div>
-                                    <label class="text-bold">کد تیکت :</label>
+                                    <label class="text-bold">ردیف تیکت :</label>
                                     <label>101</label>
                                 </div>
                                 <div>
