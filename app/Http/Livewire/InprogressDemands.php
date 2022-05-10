@@ -1,25 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Dashboardlayouts\Demandtypelayouts;
+namespace App\Http\Livewire;
 
 use App\Models\Ticket;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Inprogressdemand extends Component
+class InprogressDemands extends Component
 {
-
     use WithPagination;
-
-
-    protected $listeners = ['render'];
-
-
-
-
-
-
-
 
     public function render()
     {
@@ -29,9 +18,6 @@ class Inprogressdemand extends Component
 
         $inprogressDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->paginate(10);
 
-        return view(
-            'livewire.dashboardlayouts.demandtypelayouts.inprogressdemand',
-            compact('inprogressDemands')
-        );
+        return view('livewire.inprogress-demands', compact('inprogressDemands'));
     }
 }

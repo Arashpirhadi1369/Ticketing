@@ -1,14 +1,7 @@
 <?php
 
-use App\Http\Livewire\Dashboardlayouts\Dashboard;
-use App\Http\Livewire\Dashboardlayouts\Demandtypelayouts\Alldemand;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AllDemands;
-use App\Http\Controllers\Client\MyDemands;
-use App\Http\Controllers\Client\DoneDemands;
-use App\Http\Controllers\Admin\ReferredDemands;
-use App\Http\Controllers\Client\RejectedDemands;
-use App\Http\Controllers\Client\InprogressDemands;
+use App\Http\Livewire\Dashboardlayouts\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,16 +15,7 @@ use App\Http\Controllers\Client\InprogressDemands;
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/' ,  Dashboard::class
-    )->name('dashboard');
-
-//    Route::get('/', [ AllDemands::class , 'index']);
-
-    Route::resource('referreddemands', ReferredDemands::class);
-    Route::resource('mydemands', MyDemands::class);
-    Route::resource('inprogressdemands', InprogressDemands::class);
-    Route::resource('donedemands', DoneDemands::class);
-    Route::resource('rejecteddemands', RejectedDemands::class);
+    Route::get('/', Dashboard::class)->name('dashboard');
 });
 
 

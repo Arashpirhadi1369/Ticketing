@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Dashboardlayouts\Demandtypelayouts;
+namespace App\Http\Livewire;
 
 use App\Models\Ticket;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Donedemand extends Component
+class DoneDemands extends Component
 {
     use WithPagination;
 
@@ -18,6 +18,6 @@ class Donedemand extends Component
 
         $doneDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->paginate(10);
 
-        return view('livewire.dashboardlayouts.demandtypelayouts.donedemand', compact('doneDemands'));
+        return view('livewire.done-demands', compact('doneDemands'));
     }
 }

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Dashboardlayouts\Demandtypelayouts;
+namespace App\Http\Livewire;
 
 use App\Models\Ticket;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Rejectdemand extends Component
+class RejectedDemands extends Component
 {
     use WithPagination;
-
 
     public function render()
     {
@@ -19,9 +18,6 @@ class Rejectdemand extends Component
 
         $rejectedDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->paginate(10);
 
-        return view(
-            'livewire.dashboardlayouts.demandtypelayouts.rejectdemand',
-            compact('rejectedDemands')
-        );
+        return view('livewire.rejected-demands', compact('rejectedDemands'));
     }
 }

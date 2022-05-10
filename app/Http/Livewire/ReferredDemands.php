@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Dashboardlayouts\Demandtypelayouts;
+namespace App\Http\Livewire;
 
 use App\Models\Ticket;
 use Livewire\Component;
@@ -18,6 +18,6 @@ class ReferredDemands extends Component
 
         $referredDemands = Ticket::where([['status_id', $statusId], ['referred_id', $userId]])->paginate(10);
 
-        return view('livewire.dashboardlayouts.demandtypelayouts.referred-demands', compact('referredDemands'));
+        return view('livewire.referred-demands', compact('referredDemands'));
     }
 }

@@ -1,4 +1,4 @@
-<div class="card border-0 bg-light  shadow " style="height: 70px;border-radius: 10px" >
+<div class="card border-0 bg-light  shadow " style="height: 70px;border-radius: 10px">
     <div class="card-body">
 
     </div>
@@ -7,38 +7,39 @@
     <nav class="d-flex flex-row d-flex justify-content-between align-items-center">
         <div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
             @if(isAdmin())
-                <a class="nav-link active"  id="nav-all-demand-tab" data-toggle="tab"
-                   href="#nav-all-demand"  wire:click="$emit('test')" role="tab" aria-controls="nav-all-demand" aria-selected="true">
-                    همه درخواست ها
-                    <span class="badge badge-pill badge-primary">30</span>
-                </a>
-                <a class="nav-link text-info" id="nav-referred-demands-tab" data-toggle="tab"
-                   href="#nav-referred-demands" role="tab" aria-controls="nav-referred-demands" aria-selected="true">
-                    تیکت های من
-                    <span class="badge badge-pill badge-info">3</span>
-                </a>
+            <a class="nav-link active" id="nav-all-demand-tab" data-toggle="tab" href="#nav-all-demand"
+                wire:click="$emit('test')" role="tab" aria-controls="nav-all-demand" aria-selected="true">
+                همه درخواست ها
+                <span class="badge badge-pill badge-primary">30</span>
+            </a>
+            <a class="nav-link text-info" id="nav-referred-demands-tab" data-toggle="tab" href="#nav-referred-demands"
+                role="tab" aria-controls="nav-referred-demands" aria-selected="true">
+                تیکت های من
+                <span class="badge badge-pill badge-info">3</span>
+            </a>
             @else
-                <a class="nav-link text-info" id="nav-my-demand-tab" data-toggle="tab"
-                   href="#nav-my-demand" role="tab" aria-controls="nav-my-demand" aria-selected="true">
-                    درخواست های من
-                    <span class="badge badge-pill badge-info">3</span>
-                </a>
+            <a class="nav-link text-info" id="nav-my-demand-tab" data-toggle="tab" href="#nav-my-demand" role="tab"
+                aria-controls="nav-my-demand" aria-selected="true">
+                درخواست های من
+                <span class="badge badge-pill badge-info">3</span>
+            </a>
             @endif
 
             <a class="nav-link text-warning" id="nav-demand-inprogress-tab" data-toggle="tab"
-               href="#nav-demand-inprogress"  wire:click="$emit('render')"  role="tab" aria-controls="nav-demand-inprogress" aria-selected="false">
+                href="#nav-demand-inprogress" wire:click="$emit('render')" role="tab"
+                aria-controls="nav-demand-inprogress" aria-selected="false">
                 درحال انجام
                 <span class="badge badge-pill badge-warning">3</span>
             </a>
 
-            <a class="nav-link text-success" id="nav-demand-done-tab" data-toggle="tab"
-               href="#nav-demand-done" role="tab" aria-controls="nav-demand-done" aria-selected="false">
+            <a class="nav-link text-success" id="nav-demand-done-tab" data-toggle="tab" href="#nav-demand-done"
+                role="tab" aria-controls="nav-demand-done" aria-selected="false">
                 انجام شده
                 <span class="badge badge-pill badge-success">4</span>
             </a>
 
-            <a class="nav-link text-danger" id="nav-demand-reject-tab" data-toggle="tab"
-               href="#nav-demand-reject" role="tab" aria-controls="nav-demand-reject" aria-selected="false">
+            <a class="nav-link text-danger" id="nav-demand-reject-tab" data-toggle="tab" href="#nav-demand-reject"
+                role="tab" aria-controls="nav-demand-reject" aria-selected="false">
                 رد شده
                 <span class="badge badge-pill badge-danger">3</span>
             </a>
@@ -52,60 +53,64 @@
             <div class="form-group d-flex flex-column">
                 <div class="form-control bg-light input-group search-input my-2 ">
                     <div class="input-group-prepend ">
-                            <span class=" input-group-text bg-white border-left-0 pr-3" id="basic-addon1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                     class="bi bi-search" viewBox="0 0 16 16">
-                                  <path
-                                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                </svg>
-                            </span>
+                        <span class=" input-group-text bg-white border-left-0 pr-3" id="basic-addon1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                        </span>
                     </div>
-                    <input  type="text" class="form-control text-bold search-input border border-right-0"
-                            name="search" id="search-input" onkeyup="myFunction()"  placeholder="جستجو">
+                    <input type="text" class="form-control text-bold search-input border border-right-0" name="search"
+                        id="search-input" onkeyup="myFunction()" placeholder="جستجو">
                 </div>
             </div>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-all-demand" role="tabpanel"
-             aria-labelledby="nav-all-demand-tab">
-            <livewire:dashboardlayouts.demandtypelayouts.alldemand />
+        @if (isAdmin())
+
+        <div class="tab-pane fade show active" id="nav-all-demand" role="tabpanel" aria-labelledby="nav-all-demand-tab">
+            <livewire:all-demands />
         </div>
         <div class="tab-pane fade  " id="nav-referred-demands" role="tabpanel"
-             aria-labelledby="nav-referred-demands-tab">
-            <livewire:dashboardlayouts.demandtypelayouts.referred-demands />
+            aria-labelledby="nav-referred-demands-tab">
+            <livewire:referred-demands />
         </div>
-        <div class="tab-pane fade  " id="nav-my-demand" role="tabpanel"
-             aria-labelledby="nav-my-demand-tab">
-            <livewire:dashboardlayouts.demandtypelayouts.mydemand />
+
+        @else
+
+        <div class="tab-pane fade show active" id="nav-my-demand" role="tabpanel" aria-labelledby="nav-my-demand-tab">
+            <livewire:my-demands />
         </div>
         <div class="tab-pane fade" id="nav-demand-inprogress" role="tabpanel"
-             aria-labelledby="nav-demand-inprogress-tab">
-            <livewire:dashboardlayouts.demandtypelayouts.inprogressdemand />
+            aria-labelledby="nav-demand-inprogress-tab">
+            <livewire:inprogress-demands />
         </div>
-        <div class="tab-pane fade" id="nav-demand-done" role="tabpanel"
-             aria-labelledby="nav-demand-done-tab">
-            <livewire:dashboardlayouts.demandtypelayouts.donedemand />
+        <div class="tab-pane fade" id="nav-demand-done" role="tabpanel" aria-labelledby="nav-demand-done-tab">
+            <livewire:done-demands />
         </div>
-        <div class="tab-pane fade" id="nav-demand-reject" role="tabpanel"
-             aria-labelledby="nav-demand-reject-tab">
-            <livewire:dashboardlayouts.demandtypelayouts.rejectdemand />
+        <div class="tab-pane fade" id="nav-demand-reject" role="tabpanel" aria-labelledby="nav-demand-reject-tab">
+            <livewire:rejected-demands />
         </div>
+
+        @endif
+
     </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="newticketModal" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="teal"
-                         class="bi bi-plus-square" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="teal" class="bi bi-plus-square"
+                        viewBox="0 0 16 16">
                         <path
-                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                         <path
-                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                     </svg>
                     <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">ثبت درخواست جدید</h5>
                 </div>
