@@ -25,7 +25,7 @@
                         </svg>
                     </button>
                     <button class="btn btn-sm mt-2" data-placement="bottom" title="مشاهده جزئیات تیکت"
-                        data-toggle="modal" data-target="#infoModal">
+                        data-toggle="modal" data-target="#my-demand">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="indigo"
                             class=" bi bi-info-square" viewBox="0 0 16 16">
                             <path
@@ -56,7 +56,7 @@
         {{ $myDemands->links('vendor.livewire.bootstrap') }}
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="my-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">

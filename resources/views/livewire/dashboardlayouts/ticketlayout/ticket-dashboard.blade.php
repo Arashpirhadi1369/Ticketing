@@ -126,16 +126,7 @@
                         <label>عنوان درخواست</label>
                         <input type="text" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label class="" for="inlineFormCustomSelectPref">نوع درخواست</label>
-                        <select class="custom-select" id="inlineFormCustomSelectPref">
-                            <option selected>انتخاب کنید...</option>
-                            <option value="1">سخت افزاری</option>
-                            <option value="2">نرم افزاری</option>
-                            <option value="3">سامانه ها</option>
-                        </select>
-                    </div>
-                    <hr>
+
                     <div class="form-group">
                         <label>شرح درخواست</label>
                         <textarea class="form-control" rows="7"></textarea>
