@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\DoneDemandsExport;
 use App\Models\Ticket;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MyDemands extends Component
 {
@@ -81,14 +83,8 @@ class MyDemands extends Component
         $this->resetInput();
     }
 
-    // public function export_selected()
-    // {
-    //     if ($this->selected == null) {
-
-    //         return Excel::download(new companies_export($this->companiesQuery->pluck('id')), 'companies.xlsx');
-    //     } else {
-
-    //         return Excel::download(new companies_export($this->selected), 'companies.xlsx');
-    //     }
-    // }
+    public function exportExcel()
+    {
+        return Excel::download(new DoneDemandsExport, 'my-demands.xlsx');
+    }
 }

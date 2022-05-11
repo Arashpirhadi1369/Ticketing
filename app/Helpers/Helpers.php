@@ -41,4 +41,17 @@ if (!function_exists('getTypeId')) {
             return $type[0]->id;
         }
     }
+
+    if (!function_exists('getEndColumn')) {
+        function getEndColumn($count)
+        {
+            $alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+            foreach ($alphabet as $key => $value) {
+                if ($key == $count - 1) {
+                    return $value;
+                }
+            }
+        }
+    }
 }

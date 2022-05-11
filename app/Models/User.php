@@ -36,8 +36,13 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function tickets()
+    public function demands()
     {
         return $this->hasMany(Ticket::class, 'user_id', 'id');
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'referred_id', 'id');
     }
 }
