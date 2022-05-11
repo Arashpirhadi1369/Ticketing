@@ -56,7 +56,7 @@
         {{ $myDemands->links('vendor.livewire.bootstrap') }}
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="my-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="my-demand" tabindex="-1" aria-labelledby="my-demand" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -68,10 +68,11 @@
                             <path
                                 d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                         </svg>
-                        <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
+                        <h5 class="modal-title mx-3 text-bold" id="my-demand">اطلاعات تیکت</h5>
                         <span class="badge badge-pill badge-primary">جدید</span>
                     </div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button wire:click.prevent="resetInput" type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -124,7 +125,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success">ارجاع به من</button>
-                    <button type="button" class="btn btn-outline-danger">انصراف</button>
+                    <button wire:click.prevent="resetInput" data-dismiss="modal" type="button"
+                        class="btn btn-outline-danger">انصراف</button>
                 </div>
             </div>
         </div>

@@ -99,8 +99,8 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="newticketModal" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="newticketModal" data-backdrop="static" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -123,8 +123,12 @@
                 <form class="">
                     @csrf
                     <div class="form-group">
-                        <label>عنوان درخواست</label>
-                        <input type="text" class="form-control">
+                        <div>
+                            <label>عنوان درخواست</label>
+                            @error('ticket.subject') <span class="mr-2 text-danger">{{ $message }}</span>@enderror
+                        </div>
+                        <input wire:model.debounce.500ms="ticket.subject" name="subject" id="subject" type="text"
+                            class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -135,7 +139,8 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success">ثبت درخواست</button>
-                <button type="button" class="btn btn-outline-danger ">انصراف</button>
+                <button wire:click.prevent="resetInput" data-dismiss="modal" type="button"
+                    class="btn btn-outline-danger ">انصراف</button>
             </div>
         </div>
     </div>
