@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\InprogressDemandsExport;
 use App\Models\Ticket;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InprogressDemands extends Component
 {
@@ -20,4 +22,10 @@ class InprogressDemands extends Component
 
         return view('livewire.inprogress-demands', compact('inprogressDemands'));
     }
+    public function exportExcel(){
+
+        return Excel::download(new InprogressDemandsExport(),'inprogressDemands.xlsx');
+
+    }
+
 }

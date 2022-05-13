@@ -16,8 +16,10 @@ class RejectedDemands extends Component
 
         $statusId = getStatusId('rejected');
 
-        $rejectedDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->paginate(10);
+        $rejectedDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->get();
 
-        return view('livewire.rejected-demands', compact('rejectedDemands'));
+        $countDemands = Ticket::where('status_id',$statusId)->count();
+
+        return view('livewire.rejected-demands', compact('rejectedDemands' , 'countDemands'));
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\ReferredDemandsExport;
 use App\Models\Ticket;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReferredDemands extends Component
 {
@@ -18,6 +20,13 @@ class ReferredDemands extends Component
 
         $referredDemands = Ticket::where([['status_id', $statusId], ['referred_id', $userId]])->paginate(10);
 
-        return view('livewire.referred-demands', compact('referredDemands'));
+        $countDemands = Ticket::where('status_id',$statusId)->count();
+
+        return view('livewire.referred-demands', compact('referredDemands' , 'countDemands'));
     }
+
+    public function exportExcel(){
+        return Excel::download(new ReferredDemandsExport(),'referredDemands.xlsx');
+    }
+
 }

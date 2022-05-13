@@ -22,7 +22,7 @@
 <body  style="background-color: #DDDDDD;">
 <!-- Page Content -->
 <main class="max-height">
-    <livewire:dashboardlayouts.masterlayout.master-dashboard />
+    {{$slot}}
 </main>
 
 </body>

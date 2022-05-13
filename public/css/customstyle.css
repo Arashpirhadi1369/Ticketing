@@ -30,3 +30,9 @@
 .company-text{
 color: #0098c7;
 }
+.ticket-container
+{
+    height: calc(100vh - 135px ) !important;
+    border-radius: 10px
+
+}
