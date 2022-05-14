@@ -21,7 +21,7 @@
     <div class="card-body p-0">
         @foreach($doneDemands as $doneDemand)
         <div class="card list-group-item-action  border-0 mb-2  shadow">
-            <div class="card-body px-2 py-2" data-toggle="modal" data-target="#done-demand">
+            <div class="card-body px-2 py-2" data-toggle="modal" data-target="#done-demand{{$doneDemand->id}}">
                 <div class="mt-1 p-0 btn">
                     <p class="text-small text-bold mb-0 text-right">{{$doneDemand->id}} - {{$doneDemand->subject}}
                     </p>
@@ -35,100 +35,99 @@
                 </div>
             </div>
         </div>
+            <!-- Done Demand Modal -->
+
+            @if ($doneDemands->isNotEmpty())
+
+                <div class="modal fade" id="done-demand{{$doneDemand->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content" style="background-color: #f4f5f7">
+                            <div class="modal-header mx-4 mt-3">
+                                <div class="d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green"
+                                         class="bi bi-check-square" viewBox="0 0 16 16">
+                                        <path
+                                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path
+                                            d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z" />
+                                    </svg>
+                                    <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
+                                    <span class="badge badge-pill badge-success">{{$doneDemand->status->status}}</span>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body  text-right">
+                                <form class="m-4">
+                                    @csrf
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <label class="text-bold">ردیف تیکت :</label>
+                                                <label>{{$doneDemand->id}}</label>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <label class="text-bold">تاریخ ثبت :</label>
+                                                    <label>{!! jdate($doneDemand->created_at)->format('Y-m-d')!!}</label>
+                                                </div>
+                                                <div class="mr-3">
+                                                    <label class="text-bold">تاریخ ارجاع :</label>
+                                                    <label>{!! jdate($doneDemand->updated_at)->format('Y-m-d')!!}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="text-bold">درخواست دهنده :</label>
+                                            <label>{{$doneDemand->user->name}}</label>
+                                        </div>
+                                        <div>
+                                            <label class="text-bold">انجام دهنده :</label>
+                                            <label>{{$doneDemand->referred->name}}</label>
+                                        </div>
+                                        <div>
+                                            <label class="text-bold">عنوان تیکت :</label>
+                                            <label>{{$doneDemand->subject}}</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="text-bold">شرح تیکت :</label>
+                                            </br>
+                                            <label>{{$doneDemand->content}}</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="text-bold">پاسخ تیکت :</label>
+                                            </br>
+                                            <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                Commodi consequuntur eius et, eveniet ex incidunt nemo,
+                                                nihil nisi nulla possimus praesentium suscipit tenetur veniam!
+                                                Et illum non repellendus vel veniam!</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            @endif
+
         @endforeach
 
     </div>
 
     @endif
 </div>
-<!-- Done Demand Modal -->
-
-@if ($doneDemands->isNotEmpty())
-
-<div class="modal fade" id="done-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content" style="background-color: #f4f5f7">
-            <div class="modal-header mx-4 mt-3">
-                <div class="d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green"
-                        class="bi bi-check-square" viewBox="0 0 16 16">
-                        <path
-                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                        <path
-                            d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z" />
-                    </svg>
-                    <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
-                    <span class="badge badge-pill badge-success">{{$doneDemand->status->status}}</span>
-                </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body  text-right">
-                <form class="m-4">
-                    @csrf
-                    <div class="form-group">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <label class="text-bold">ردیف تیکت :</label>
-                                <label>{{$doneDemand->id}}</label>
-                            </div>
-                            <div class="d-flex">
-                                <div>
-                                    <label class="text-bold">تاریخ ثبت :</label>
-                                    <label>{!! jdate($doneDemand->created_at)->format('Y-m-d')!!}</label>
-                                </div>
-                                <div class="mr-3">
-                                    <label class="text-bold">تاریخ ارجاع :</label>
-                                    <label>{!! jdate($doneDemand->updated_at)->format('Y-m-d')!!}</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="text-bold">درخواست دهنده :</label>
-                            <label>{{$doneDemand->user->name}}</label>
-                        </div>
-                        <div>
-                            <label class="text-bold">انجام دهنده :</label>
-                            <label>{{$doneDemand->referred->name}}</label>
-                        </div>
-                        <div>
-                            <label class="text-bold">عنوان تیکت :</label>
-                            <label>{{$doneDemand->subject}}</label>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <div>
-                            <label class="text-bold">شرح تیکت :</label>
-                            </br>
-                            <label>{{$doneDemand->content}}</label>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <div>
-                            <label class="text-bold">پاسخ تیکت :</label>
-                            </br>
-                            <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Commodi consequuntur eius et, eveniet ex incidunt nemo,
-                                nihil nisi nulla possimus praesentium suscipit tenetur veniam!
-                                Et illum non repellendus vel veniam!</label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-@endif
-
-
 
 
 
