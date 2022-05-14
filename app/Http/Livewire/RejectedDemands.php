@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\Ticket;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RejectedDemandsExport;
 
 class RejectedDemands extends Component
 {
@@ -18,8 +20,11 @@ class RejectedDemands extends Component
 
         $rejectedDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->get();
 
-        $countDemands = Ticket::where('status_id',$statusId)->count();
+        return view('livewire.rejected-demands', compact('rejectedDemands'));
+    }
 
-        return view('livewire.rejected-demands', compact('rejectedDemands' , 'countDemands'));
+    public function exportExcel()
+    {
+        return Excel::download(new RejectedDemandsExport(), 'rejectedDemands.xlsx');
     }
 }

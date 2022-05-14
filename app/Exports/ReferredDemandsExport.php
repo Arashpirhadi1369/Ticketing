@@ -24,15 +24,15 @@ class ReferredDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
 
         $statusId = getStatusId('open');
 
-        $myDemands = Ticket::with('user')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        $referredDemands = Ticket::with('user')->where([['status_id', $statusId], ['user_id', $userId]])->get();
 
-        $this->row = $myDemands->count() + 1;
+        $this->row = $referredDemands->count() + 1;
 
         $count = count($this->headings());
 
         $this->columnChar = getEndColumn($count);
 
-        return $myDemands;
+        return $referredDemands;
     }
 
     public function headings(): array
@@ -45,13 +45,13 @@ class ReferredDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
         ];
     }
 
-    public function map($myDemands): array
+    public function map($referredDemands): array
     {
         return [
-            $myDemands->user->name,
-            $myDemands->subject,
-            $myDemands->content,
-            jdate($myDemands->created_at),
+            $referredDemands->user->name,
+            $referredDemands->subject,
+            $referredDemands->content,
+            jdate($referredDemands->created_at),
         ];
     }
 

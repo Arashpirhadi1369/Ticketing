@@ -20,13 +20,11 @@ class ReferredDemands extends Component
 
         $referredDemands = Ticket::where([['status_id', $statusId], ['referred_id', $userId]])->paginate(10);
 
-        $countDemands = Ticket::where('status_id',$statusId)->count();
-
-        return view('livewire.referred-demands', compact('referredDemands' , 'countDemands'));
+        return view('livewire.referred-demands', compact('referredDemands'));
     }
 
-    public function exportExcel(){
-        return Excel::download(new ReferredDemandsExport(),'referredDemands.xlsx');
+    public function exportExcel()
+    {
+        return Excel::download(new ReferredDemandsExport(), 'referredDemands.xlsx');
     }
-
 }

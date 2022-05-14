@@ -22,17 +22,17 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
     {
         $userId = getUserId();
 
-        $statusId = getStatusId('open');
+        $statusId = getStatusId('rejected');
 
-        $myDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        $rejectedDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
 
-        $this->row = $myDemands->count() + 1;
+        $this->row = $rejectedDemands->count() + 1;
 
         $count = count($this->headings());
 
         $this->columnChar = getEndColumn($count);
 
-        return $myDemands;
+        return $rejectedDemands;
     }
 
     public function headings(): array
@@ -46,14 +46,14 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
         ];
     }
 
-    public function map($doneDemands): array
+    public function map($rejectedDemands): array
     {
         return [
-            $doneDemands->user->name,
-            $doneDemands->subject,
-            $doneDemands->content,
-            $doneDemands->referred->name,
-            jdate($doneDemands->created_at),
+            $rejectedDemands->user->name,
+            $rejectedDemands->subject,
+            $rejectedDemands->content,
+            $rejectedDemands->referred->name,
+            jdate($rejectedDemands->created_at),
         ];
     }
 

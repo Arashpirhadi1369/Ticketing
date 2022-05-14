@@ -16,7 +16,6 @@ class AllDemands extends Component
 
     public function assignToMe()
     {
-
     }
 
 
@@ -28,13 +27,11 @@ class AllDemands extends Component
 
         $allDemands = Ticket::with('user', 'status')->where('status_id', $statusId)->get();
 
-        $countDemands = Ticket::where('status_id',$statusId)->count();
-
-        return view('livewire.all-demands', compact('allDemands' , 'countDemands'));
+        return view('livewire.all-demands', compact('allDemands'));
     }
 
-    public function exportExcel(){
-        return Excel::download(new AllDemandsExport(),'allDemands.xlsx');
+    public function exportExcel()
+    {
+        return Excel::download(new AllDemandsExport(), 'allDemands.xlsx');
     }
-
 }

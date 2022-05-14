@@ -20,12 +20,11 @@ class DoneDemands extends Component
 
         $doneDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->get();
 
-        $countDemands = Ticket::where('status_id',$statusId)->count();
-
-        return view('livewire.done-demands', compact('doneDemands' , 'countDemands'));
+        return view('livewire.done-demands', compact('doneDemands'));
     }
 
-    public function exportExcel(){
-        return Excel::download(new DoneDemandsExport() , 'DoneDemands.xlsx');
+    public function exportExcel()
+    {
+        return Excel::download(new DoneDemandsExport(), 'DoneDemands.xlsx');
     }
 }
