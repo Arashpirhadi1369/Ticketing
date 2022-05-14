@@ -6,7 +6,7 @@
             <span class="badge badge-pill badge-primary">{{$allDemands->count()}}</span>
         </div>
         <div class="">
-            <button class="btn" wire:click="exportExcel">
+            <button wire:click="exportExcel" class="btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green" class="bi bi-filetype-xlsx"
                     viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -18,11 +18,11 @@
 
     @if ($allDemands->isNotEmpty())
 
-    <div class="card-body  p-0">
+    <div class="card-body p-0">
         @foreach($allDemands as $demands)
-        <div class="card  list-group-item-action  border-0 mb-2  shadow">
+        <div class="card list-group-item-action  border-0 mb-2  shadow">
             <div class="card-body px-2 py-2">
-                <div class=" mt-1 p-0 btn" data-toggle="modal" data-target="#all-demand">
+                <div class="mt-1 p-0 btn" data-toggle="modal" data-target="#all-demand">
                     <p class="text-small text-bold mb-0 text-right">{{$demands->id}} - {{$demands->subject}}</p>
                 </div>
                 <div class="d-flex justify-content-between mt-2">
@@ -54,18 +54,18 @@
             </div>
         </div>
         @endforeach
-
     </div>
 
     @endif
+
 </div>
 
 <!-- All Demand Modal -->
 
 @if ($allDemands->isNotEmpty())
 
-<div class="modal  fade" id="all-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-lg modal-dialog-scrollable">
+<div class="modal fade" id="all-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content" style="background-color: #f4f5f7">
             <div class="modal-header mx-4 mt-3">
                 <div class="d-flex align-items-center">

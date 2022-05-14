@@ -25,6 +25,6 @@ class DoneDemands extends Component
 
     public function exportExcel()
     {
-        return Excel::download(new DoneDemandsExport(), 'DoneDemands.xlsx');
+        return Excel::download(new DoneDemandsExport(), 'doneDemands.xlsx');
     }
 }

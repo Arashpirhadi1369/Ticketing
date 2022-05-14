@@ -21,13 +21,13 @@
     <div class="card-body p-0">
         @foreach($rejectedDemands as $rejectedDemand)
         <div class="card   list-group-item-action  border-0 mb-2  shadow">
-            <div class="card-body px-2 py-2" data-toggle="modal" data-target="#Rejected-demand">
+            <div class="card-body px-2 py-2" data-toggle="modal" data-target="#rejected-demand">
                 <div class="mt-1 p-0 btn">
                     <p class="text-small text-bold mb-0 text-right">{{$rejectedDemand->id}} -
                         {{$rejectedDemand->subject}}</p>
                 </div>
                 <div class="d-flex justify-content-between mt-2">
-                    <div class="p-0 btn" data-toggle="modal" data-target="#Rejected-demand">
+                    <div class="p-0 btn" data-toggle="modal" data-target="#rejected-demand">
                         <span class="badge badge-pill badge-dark">{{$rejectedDemand->user->name}}</span>
                         <span class="badge badge-pill badge-danger">{{$rejectedDemand->status->status}}</span>
                         <span class="badge badge-pill badge-danger">{{$rejectedDemand->referred->name}}</span>
@@ -45,7 +45,7 @@
 
 @if ($rejectedDemands->isNotEmpty())
 
-<div class="modal fade" id="Rejected-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="rejected-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content" style="background-color: #f4f5f7">
             <div class="modal-header mx-4 mt-3">

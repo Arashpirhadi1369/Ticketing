@@ -21,13 +21,13 @@
     <div class="card-body p-0">
         @foreach($referredDemands as $referreddemand)
         <div class="card   list-group-item-action  border-0 mb-2  shadow">
-            <div class="card-body px-2 py-2" data-toggle="modal" data-target="#Referred-demand">
+            <div class="card-body px-2 py-2" data-toggle="modal" data-target="#referred-demand">
                 <div class="mt-1 p-0 btn">
                     <p class="text-small text-bold mb-0 text-right">{{$referreddemand->id}} -
                         {{$referreddemand->subject}}</p>
                 </div>
                 <div class="d-flex justify-content-between mt-2">
-                    <div class="p-0 btn" data-toggle="modal" data-target="#Referred-demand">
+                    <div class="p-0 btn" data-toggle="modal" data-target="#referred-demand">
                         <span class="badge badge-pill badge-dark">{{$referreddemand->user->name}}</span>
                         <span class="badge badge-pill badge-warning">{{$referreddemand->status->status}}</span>
                     </div>
@@ -44,7 +44,7 @@
 
 @if ($referredDemands->isNotEmpty())
 
-<div class="modal fade" id="Referred-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="referred-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content" style="background-color: #f4f5f7">
             <div class="modal-header mx-4 mt-3">
