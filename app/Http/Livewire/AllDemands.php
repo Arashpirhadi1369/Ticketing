@@ -7,19 +7,10 @@ use App\Models\Ticket;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
-use function PHPUnit\Framework\isNull;
 
 class AllDemands extends Component
 {
     use WithPagination;
-
-
-    public function assignToMe()
-    {
-    }
-
-
-
 
     public function render()
     {
@@ -28,6 +19,18 @@ class AllDemands extends Component
         $allDemands = Ticket::with('user', 'status')->where('status_id', $statusId)->get();
 
         return view('livewire.all-demands', compact('allDemands'));
+    }
+
+    public function assignToMe($id)
+    {
+        if ($id) {
+            $ticket = Ticket::find($id);
+            $ticket->referred_id = getUserId();
+            $ticket->status_id = getStatusId('todo');
+            $ticket->save();
+
+            // return redirect()->to('/');
+        }
     }
 
     public function exportExcel()

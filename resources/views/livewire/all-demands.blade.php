@@ -19,20 +19,20 @@
     @if ($allDemands->isNotEmpty())
 
     <div class="card-body p-0">
-        @foreach($allDemands as $demands)
+        @foreach($allDemands as $demand)
         <div class="card list-group-item-action  border-0 mb-2  shadow">
             <div class="card-body px-2 py-2">
                 <div class="mt-1 p-0 btn" data-toggle="modal" data-target="#all-demand">
-                    <p class="text-small text-bold mb-0 text-right">{{$demands->id}} - {{$demands->subject}}</p>
+                    <p class="text-small text-bold mb-0 text-right">{{$demand->id}} - {{$demand->subject}}</p>
                 </div>
                 <div class="d-flex justify-content-between mt-2">
                     <div class="p-0 btn" data-toggle="modal" data-target="#all-demand">
-                        <span class="badge badge-pill badge-dark">{{$demands->user->name}}</span>
-                        <span class="badge badge-pill badge-primary">{{$demands->status->status}}</span>
+                        <span class="badge badge-pill badge-dark">{{$demand->user->name}}</span>
+                        <span class="badge badge-pill badge-primary">{{$demand->status->status}}</span>
                     </div>
                     <div>
-                        <button class="btn btn-sm p-0 " data-toggle="tooltip" data-placement="bottom"
-                            title="ارجاع تیکت به من">
+                        <button wire:click='assignToMe({{$demand->id}})' class="btn btn-sm p-0 " data-toggle="tooltip"
+                            data-placement="bottom" title="ارجاع تیکت به من">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="teal"
                                 class="bi bi-arrow-down-square" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -77,7 +77,7 @@
                             d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                     </svg>
                     <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
-                    <span class="badge badge-pill badge-primary">{{$demands->status->status}}</span>
+                    <span class="badge badge-pill badge-primary">{{$demand->status->status}}</span>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -91,26 +91,26 @@
                         <div class="d-flex justify-content-between">
                             <div>
                                 <label class="text-bold">ردیف تیکت :</label>
-                                <label>{{$demands->id}}</label>
+                                <label>{{$demand->id}}</label>
                             </div>
                             <div class="d-flex">
                                 <div>
                                     <label class="text-bold">تاریخ ثبت :</label>
-                                    <label>{!! jdate($demands->created_at)->format('Y-m-d')!!}</label>
+                                    <label>{!! jdate($demand->created_at)->format('Y-m-d')!!}</label>
                                 </div>
                                 <div class="mr-3">
                                     <label class="text-bold">تاریخ ارجاع :</label>
-                                    <label>{!! jdate($demands->updated_at)->format('Y-m-d')!!}</label>
+                                    <label>{!! jdate($demand->updated_at)->format('Y-m-d')!!}</label>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <label class="text-bold">درخواست دهنده :</label>
-                            <label>{{$demands->user->name}}</label>
+                            <label>{{$demand->user->name}}</label>
                         </div>
                         <div>
                             <label class="text-bold">عنوان تیکت :</label>
-                            <label>{{$demands->subject}}</label>
+                            <label>{{$demand->subject}}</label>
                         </div>
                     </div>
 
@@ -119,14 +119,15 @@
                         <div>
                             <label class="text-bold">شرح تیکت :</label>
                             </br>
-                            <label>{{$demands->content}}</label>
+                            <label>{{$demand->content}}</label>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer m-3 ">
                 <div class="m-3">
-                    <button type="button" class="btn btn-success">ارجاع به من</button>
+                    <button wire:click='assignToMe({{$demand->id}})' type="button" class="btn btn-success">ارجاع به
+                        من</button>
                     <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
                 </div>
             </div>
@@ -164,7 +165,7 @@
                 {{-- </tr>--}}
             {{-- </thead>--}}
         {{-- <tbody>--}}
-            {{-- @foreach($allDemands as $demands)--}}
+            {{-- @foreach($allDemands as $demand)--}}
 
             {{-- <tr class="text-sm  text-bold ">--}}
                 {{-- <td class="p-0 ">--}}
@@ -209,10 +210,10 @@
                         {{-- </button>--}}
                     {{-- </td>--}}
                 {{-- <td>{{$loop->index + ($this->page * 10 - 9)}}</td>--}}
-                {{-- <td>{!! jdate($demands->created_at)->format('Y-m-d')!!}</td>--}}
-                {{-- <td>{{$demands->subject}}</td>--}}
-                {{-- <td>{{$demands->status->status}}</td>--}}
-                {{-- <td>{{$demands->user->name}}</td>--}}
+                {{-- <td>{!! jdate($demand->created_at)->format('Y-m-d')!!}</td>--}}
+                {{-- <td>{{$demand->subject}}</td>--}}
+                {{-- <td>{{$demand->status->status}}</td>--}}
+                {{-- <td>{{$demand->user->name}}</td>--}}
                 {{-- </tr>--}}
             {{-- @endforeach--}}
             {{-- </tbody>--}}
