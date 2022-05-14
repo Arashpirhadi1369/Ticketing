@@ -18,7 +18,7 @@ class InprogressDemands extends Component
 
         $statusId = getStatusId('todo');
 
-        $inprogressDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->paginate(10);
+        $inprogressDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->get();
 
         return view('livewire.inprogress-demands', compact('inprogressDemands'));
     }

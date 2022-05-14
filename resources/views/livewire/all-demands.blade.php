@@ -20,18 +20,20 @@
 
     <div class="card-body p-0">
         @foreach($allDemands as $demand)
-        <div class="card list-group-item-action  border-0 mb-2  shadow">
+        <div  class="card list-group-item-action   border-0 mb-2  shadow" >
             <div class="card-body px-2 py-2">
-                <div class="mt-1 p-0 btn" data-toggle="modal" data-target="#all-demand">
+                <div class="mt-1 p-0 btn" type="button" data-toggle="modal"
+                     data-target="#all-demand{{$demand->id}}">
                     <p class="text-small text-bold mb-0 text-right">{{$demand->id}} - {{$demand->subject}}</p>
                 </div>
-                <div class="d-flex justify-content-between mt-2">
-                    <div class="p-0 btn" data-toggle="modal" data-target="#all-demand">
+                <div class="d-flex justify-content-between mt-2" >
+                    <div class="p-0 btn" data-toggle="modal"
+                         data-target="#all-demand{{$demand->id}}">
                         <span class="badge badge-pill badge-dark">{{$demand->user->name}}</span>
                         <span class="badge badge-pill badge-primary">{{$demand->status->status}}</span>
                     </div>
                     <div>
-                        <button wire:click='assignToMe({{$demand->id}})' class="btn btn-sm p-0 " data-toggle="tooltip"
+                        <button wire:click='assignToMe({{$demand->id}})'  class="btn btn-sm p-0 " data-toggle="tooltip"
                             data-placement="bottom" title="ارجاع تیکت به من">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="teal"
                                 class="bi bi-arrow-down-square" viewBox="0 0 16 16">
@@ -39,103 +41,90 @@
                                     d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
                             </svg>
                         </button>
-                        <button wire:click="" class="btn btn-sm p-0 " data-toggle="tooltip" data-placement="bottom"
-                            title="حذف تیکت">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"
-                                class="bi bi-x-square" viewBox="0 0 16 16">
-                                <path
-                                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                                <path
-                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
+            <!-- All Demand Modal -->
+            @if ($allDemands->isNotEmpty())
+
+                <div wire:ignore.self class="modal fade" id="all-demand{{$demand->id}}" tabindex="-1"
+                     aria-labelledby="all-demand" aria-hidden="true" >
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content" style="background-color: #f4f5f7">
+                            <div class="modal-header mx-4 mt-3">
+                                <div class="d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="teal"
+                                         class=" bi bi-info-square" viewBox="0 0 16 16">
+                                        <path
+                                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path
+                                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                    </svg>
+                                    <h5 class="modal-title mx-3 text-bold" id="all-demand">اطلاعات تیکت</h5>
+                                    <span class="badge badge-pill badge-primary">{{$demand->status->status}}</span>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-right">
+                                <form class="m-4">
+                                    @csrf
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <label class="text-bold">ردیف تیکت :</label>
+                                                <label>{{$demand->id}}</label>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <label class="text-bold">تاریخ ثبت :</label>
+                                                    <label>{!! jdate($demand->created_at)->format('Y-m-d')!!}</label>
+                                                </div>
+                                                <div class="mr-3">
+                                                    <label class="text-bold">تاریخ ارجاع :</label>
+                                                    <label>{!! jdate($demand->updated_at)->format('Y-m-d')!!}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="text-bold">درخواست دهنده :</label>
+                                            <label>{{$demand->user->name}}</label>
+                                        </div>
+                                        <div>
+                                            <label class="text-bold">عنوان تیکت :</label>
+                                            <label>{{$demand->subject}}</label>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="form-group ">
+                                        <div>
+                                            <label class="text-bold">شرح تیکت :</label>
+                                            </br>
+                                            <label>{{$demand->content}}</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer m-3 ">
+                                <div class="m-3">
+                                    <button wire:click='assignToMe({{$demand->id}})' type="button" class="btn btn-success">ارجاع به
+                                        من</button>
+                                    <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
         @endforeach
     </div>
-
     @endif
 
 </div>
-
-<!-- All Demand Modal -->
-
-@if ($allDemands->isNotEmpty())
-
-<div class="modal fade" id="all-demand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content" style="background-color: #f4f5f7">
-            <div class="modal-header mx-4 mt-3">
-                <div class="d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="teal"
-                        class=" bi bi-info-square" viewBox="0 0 16 16">
-                        <path
-                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                        <path
-                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                    </svg>
-                    <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
-                    <span class="badge badge-pill badge-primary">{{$demand->status->status}}</span>
-                </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body text-right">
-                <form class="m-4">
-                    @csrf
-                    <div class="form-group">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <label class="text-bold">ردیف تیکت :</label>
-                                <label>{{$demand->id}}</label>
-                            </div>
-                            <div class="d-flex">
-                                <div>
-                                    <label class="text-bold">تاریخ ثبت :</label>
-                                    <label>{!! jdate($demand->created_at)->format('Y-m-d')!!}</label>
-                                </div>
-                                <div class="mr-3">
-                                    <label class="text-bold">تاریخ ارجاع :</label>
-                                    <label>{!! jdate($demand->updated_at)->format('Y-m-d')!!}</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="text-bold">درخواست دهنده :</label>
-                            <label>{{$demand->user->name}}</label>
-                        </div>
-                        <div>
-                            <label class="text-bold">عنوان تیکت :</label>
-                            <label>{{$demand->subject}}</label>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <div class="form-group ">
-                        <div>
-                            <label class="text-bold">شرح تیکت :</label>
-                            </br>
-                            <label>{{$demand->content}}</label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer m-3 ">
-                <div class="m-3">
-                    <button wire:click='assignToMe({{$demand->id}})' type="button" class="btn btn-success">ارجاع به
-                        من</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
-
 
 
 

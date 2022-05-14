@@ -12,6 +12,7 @@ class AllDemands extends Component
 {
     use WithPagination;
 
+
     public function render()
     {
         $statusId = getStatusId('open');
@@ -29,9 +30,11 @@ class AllDemands extends Component
             $ticket->status_id = getStatusId('todo');
             $ticket->save();
 
-            // return redirect()->to('/');
+             return redirect()->to('/');
         }
     }
+
+
 
     public function exportExcel()
     {
