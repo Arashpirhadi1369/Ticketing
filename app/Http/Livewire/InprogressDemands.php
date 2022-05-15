@@ -18,14 +18,14 @@ class InprogressDemands extends Component
 
         $statusId = getStatusId('todo');
 
-        $inprogressDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->get();
+        $inprogressDemands = Ticket::orderBy('id', 'desc')->with('referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
 
         return view('livewire.inprogress-demands', compact('inprogressDemands'));
     }
-    public function exportExcel(){
 
-        return Excel::download(new InprogressDemandsExport(),'inprogressDemands.xlsx');
+    public function exportExcel()
+    {
 
+        return Excel::download(new InprogressDemandsExport(), 'inprogressDemands.xlsx');
     }
-
 }

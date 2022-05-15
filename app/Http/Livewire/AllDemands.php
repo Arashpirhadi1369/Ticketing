@@ -17,7 +17,7 @@ class AllDemands extends Component
     {
         $statusId = getStatusId('open');
 
-        $allDemands = Ticket::with('user', 'status')->where('status_id', $statusId)->get();
+        $allDemands = Ticket::orderBy('id', 'desc')->with('user', 'status')->where('status_id', $statusId)->get();
 
         return view('livewire.all-demands', compact('allDemands'));
     }
@@ -30,7 +30,7 @@ class AllDemands extends Component
             $ticket->status_id = getStatusId('todo');
             $ticket->save();
 
-             return redirect()->to('/');
+            return redirect()->to('/');
         }
     }
 

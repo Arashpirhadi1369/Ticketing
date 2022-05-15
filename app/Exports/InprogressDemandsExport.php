@@ -22,17 +22,17 @@ class InprogressDemandsExport implements FromCollection, WithHeadings, ShouldAut
     {
         $userId = getUserId();
 
-        $statusId = getStatusId('open');
+        $statusId = getStatusId('todo');
 
-        $myDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        $inprogressDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
 
-        $this->row = $myDemands->count() + 1;
+        $this->row = $inprogressDemands->count() + 1;
 
         $count = count($this->headings());
 
         $this->columnChar = getEndColumn($count);
 
-        return $myDemands;
+        return $inprogressDemands;
     }
 
     public function headings(): array
@@ -46,14 +46,14 @@ class InprogressDemandsExport implements FromCollection, WithHeadings, ShouldAut
         ];
     }
 
-    public function map($doneDemands): array
+    public function map($inprogressDemands): array
     {
         return [
-            $doneDemands->user->name,
-            $doneDemands->subject,
-            $doneDemands->content,
-            $doneDemands->referred->name,
-            jdate($doneDemands->created_at),
+            $inprogressDemands->user->name,
+            $inprogressDemands->subject,
+            $inprogressDemands->content,
+            $inprogressDemands->referred->name,
+            jdate($inprogressDemands->created_at),
         ];
     }
 

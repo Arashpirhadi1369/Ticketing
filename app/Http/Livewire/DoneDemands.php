@@ -18,7 +18,7 @@ class DoneDemands extends Component
 
         $statusId = getStatusId('done');
 
-        $doneDemands = Ticket::where([['status_id', $statusId], ['user_id', $userId]])->get();
+        $doneDemands = Ticket::orderBy('id', 'desc')->where([['status_id', $statusId], ['user_id', $userId]])->get();
 
         return view('livewire.done-demands', compact('doneDemands'));
     }

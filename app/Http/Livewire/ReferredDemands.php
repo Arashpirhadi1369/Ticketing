@@ -18,7 +18,7 @@ class ReferredDemands extends Component
 
         $statusId = getStatusId('todo');
 
-        $referredDemands = Ticket::where([['status_id', $statusId], ['referred_id', $userId]])->get();
+        $referredDemands = Ticket::orderBy('id', 'desc')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
 
         return view('livewire.referred-demands', compact('referredDemands'));
     }

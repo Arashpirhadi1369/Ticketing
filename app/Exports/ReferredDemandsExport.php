@@ -22,9 +22,9 @@ class ReferredDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
     {
         $userId = getUserId();
 
-        $statusId = getStatusId('open');
+        $statusId = getStatusId('todo');
 
-        $referredDemands = Ticket::with('user')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        $referredDemands = Ticket::with('user')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
 
         $this->row = $referredDemands->count() + 1;
 

@@ -127,6 +127,7 @@
                     <livewire:referred-demands />
                     @else
                     <livewire:my-demands />
+                    <livewire:inprogress-demands />
                     @endif
                     <livewire:done-demands />
                     <livewire:rejected-demands />
