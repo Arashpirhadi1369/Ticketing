@@ -24,7 +24,11 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
 
         $statusId = getStatusId('rejected');
 
-        $rejectedDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        if (isAdmin()) {
+            $rejectedDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
+        } else {
+            $rejectedDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        }
 
         $this->row = $rejectedDemands->count() + 1;
 

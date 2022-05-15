@@ -18,7 +18,11 @@ class RejectedDemands extends Component
 
         $statusId = getStatusId('rejected');
 
-        $rejectedDemands = Ticket::orderBy('id', 'desc')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        if (isAdmin()) {
+            $rejectedDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
+        } else {
+            $rejectedDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        }
 
         return view('livewire.rejected-demands', compact('rejectedDemands'));
     }

@@ -6,7 +6,7 @@
             <span class="badge badge-pill badge-warning">{{$referredDemands->count()}}</span>
         </div>
         <div class="">
-            <button wire:click="exportExcel" class="btn" >
+            <button wire:click="exportExcel" class="btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green" class="bi bi-filetype-xlsx"
                     viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -34,84 +34,88 @@
                 </div>
             </div>
         </div>
-            <!-- Referred Demand  Modal -->
-            @if ($referredDemands->isNotEmpty())
+        <!-- Referred Demand  Modal -->
+        @if ($referredDemands->isNotEmpty())
 
-                <div class="modal fade" id="referred-demand{{$referreddemand->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                        <div class="modal-content" style="background-color: #f4f5f7">
-                            <div class="modal-header mx-4 mt-3">
-                                <div class="d-flex align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="orange"
-                                         class="bi bi-wrench-adjustable-circle" viewBox="0 0 16 16">
-                                        <path d="M12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z" />
-                                        <path
-                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1 0a7 7 0 1 0-13.202 3.249l1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2A7 7 0 0 0 15 8Zm-8.295.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />
-                                    </svg>
-                                    <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
-                                    <span class="badge badge-pill badge-warning">{{$referreddemand->status->status}}</span>
-                                </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+        <div wire:ignore.self class="modal fade" id="referred-demand{{$referreddemand->id}}" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content" style="background-color: #f4f5f7">
+                    <div class="modal-header mx-4 mt-3">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="orange"
+                                class="bi bi-wrench-adjustable-circle" viewBox="0 0 16 16">
+                                <path
+                                    d="M12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z" />
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1 0a7 7 0 1 0-13.202 3.249l1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2A7 7 0 0 0 15 8Zm-8.295.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />
+                            </svg>
+                            <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
+                            <span class="badge badge-pill badge-warning">{{$referreddemand->status->status}}</span>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
-                            <div class="modal-body text-right">
-                                <form class="m-4">
-                                    @csrf
-                                    <div class="form-group">
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <label class="text-bold">ردیف تیکت :</label>
-                                                <label>{{$referreddemand->id}}</label>
-                                            </div>
-                                            <div class="d-flex">
-                                                <div>
-                                                    <label class="text-bold">تاریخ ثبت :</label>
-                                                    <label>{!! jdate($referreddemand->created_at)->format('Y-m-d')!!}</label>
-                                                </div>
-                                                <div class="mr-3">
-                                                    <label class="text-bold">تاریخ ارجاع :</label>
-                                                    <label>{!! jdate($referreddemand->updated_at)->format('Y-m-d')!!}</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <label class="text-bold">درخواست دهنده :</label>
-                                            <label>{{$referreddemand->user->name}}</label>
-                                        </div>
-                                        <div>
-                                            <label class="text-bold">عنوان تیکت :</label>
-                                            <label>{{$referreddemand->subject}}</label>
-                                        </div>
-                                    </div>
-                                </form>
-                                <hr>
-                                <div class="form-group m-4">
+                    <div class="modal-body text-right">
+                        <form class="m-4">
+                            @csrf
+                            <div class="form-group">
+                                <div class="d-flex justify-content-between">
                                     <div>
-                                        <label class="text-bold">شرح تیکت :</label>
-                                        </br>
-                                        <label>{{$referreddemand->content}}</label>
+                                        <label class="text-bold">ردیف تیکت :</label>
+                                        <label>{{$referreddemand->id}}</label>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <label class="text-bold">تاریخ ثبت :</label>
+                                            <label>{!! jdate($referreddemand->created_at)->format('Y-m-d')!!}</label>
+                                        </div>
+                                        <div class="mr-3">
+                                            <label class="text-bold">تاریخ ارجاع :</label>
+                                            <label>{!! jdate($referreddemand->updated_at)->format('Y-m-d')!!}</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="form-group m-4">
-                                    <div class="">
-                                        <label class="text-bold">پاسخ به تیکت :</label>
-                                        </br>
-                                        <textarea class="d-inline-block form-control" rows="6"></textarea>
-                                    </div>
+                                <div>
+                                    <label class="text-bold">درخواست دهنده :</label>
+                                    <label>{{$referreddemand->user->name}}</label>
+                                </div>
+                                <div>
+                                    <label class="text-bold">عنوان تیکت :</label>
+                                    <label>{{$referreddemand->subject}}</label>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success">ارسال پاسخ</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
+                        </form>
+                        <hr>
+                        <div class="form-group m-4">
+                            <div>
+                                <label class="text-bold">شرح تیکت :</label>
+                                </br>
+                                <label>{{$referreddemand->content}}</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group m-4">
+                            <div class="">
+                                <label class="text-bold">پاسخ به تیکت :</label>
+                                </br>
+                                <textarea wire:model.debounce.500ms="ticket.reply" class="d-inline-block form-control"
+                                    rows="6" name="reply" id="reply"></textarea>
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button wire:click.prevent='update({{$referreddemand->id}})' type="button"
+                            class="btn btn-success">ارسال پاسخ</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
+                    </div>
                 </div>
+            </div>
+        </div>
 
-            @endif
+        @endif
         @endforeach
     </div>
 

@@ -24,7 +24,11 @@ class DoneDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize,
 
         $statusId = getStatusId('done');
 
-        $doneDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        if (isAdmin()) {
+            $doneDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
+        } else {
+            $doneDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        }
 
         $this->row = $doneDemands->count() + 1;
 

@@ -31,7 +31,7 @@ class MyDemands extends Component
 
         $statusId = getStatusId('open');
 
-        $myDemands = Ticket::orderBy('id', 'desc')->with('user')->where([['status_id', $statusId], ['user_id', $userId]])->get();
+        $myDemands = Ticket::orderBy('updated_at', 'desc')->with('user')->where([['status_id', $statusId], ['user_id', $userId]])->get();
 
         return view('livewire.my-demands', compact('myDemands'));
     }
