@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Jobs\UpdateGroups;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +27,8 @@ class LogSuccessfulLogin
      */
     public function handle(Login $event)
     {
+        UpdateGroups::dispatch();
+
         $user = $event->user;
         DB::table('auth_logs')->insert([
             'username'      => $user->username,

@@ -43,7 +43,7 @@ class UpdateGroups implements ShouldQueue
         $details = [];
 
         foreach ($adUsers as $user) {
-            $details[] = $user->memberof;
+            $details[] = $user->distinguishedname;
         }
 
         $usersWithDetails = array_combine($users, $details);
