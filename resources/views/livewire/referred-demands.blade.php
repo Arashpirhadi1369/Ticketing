@@ -86,6 +86,27 @@
                                     <label class="text-bold">عنوان تیکت :</label>
                                     <label>{{$referreddemand->subject}}</label>
                                 </div>
+                                <div class="row mr-1">
+                                    <div class="form-group ml-3 ">
+                                        <label class="text-bold" for="inputState">وضعیت تیکت</label>
+                                        <select class="custom-select form-control" id="inputGroupSelect01">
+                                            <option selected>وضعیت تیکت را انتخاب کنید ...</option>
+                                            @foreach($ticketStatuses as $ticketStatus)
+                                                <option value="{{$ticketStatus->id}}">{{$ticketStatus->status}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="text-bold" for="inputState">نوع تیکت</label>
+                                        <select class="custom-select form-control" id="inputGroupSelect01">
+                                            <option selected>نوع تیکت را انتخاب کنید ...</option>
+                                            @foreach($ticketTypes as $ticketType)
+                                                <option value="{{$ticketType->id}}">{{$ticketType->type}}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                         <hr>
@@ -97,19 +118,26 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="form-group m-4">
+                        <div class="form-group m-3">
                             <div class="">
                                 <label class="text-bold">پاسخ به تیکت :</label>
                                 </br>
                                 <textarea wire:model.debounce.500ms="ticket.reply" class="d-inline-block form-control"
-                                    rows="6" name="reply" id="reply"></textarea>
+                                    rows="4" name="reply" id="reply"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button wire:click.prevent='update({{$referreddemand->id}})' type="button"
-                            class="btn btn-success">ارسال پاسخ</button>
-                        <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <div>
+                            <form>
+
+                            </form>
+                        </div>
+                        <div>
+                            <button wire:click.prevent='update({{$referreddemand->id}})' type="button"
+                                    class="btn btn-success">ارسال پاسخ</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
+                        </div>
                     </div>
                 </div>
             </div>

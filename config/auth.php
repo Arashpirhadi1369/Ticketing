@@ -66,7 +66,7 @@ return [
         ],
 
         'users' => [
-            'driver' => 'ldap',
+            'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
     ],

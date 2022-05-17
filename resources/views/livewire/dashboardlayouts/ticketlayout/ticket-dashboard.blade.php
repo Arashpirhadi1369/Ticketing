@@ -18,11 +18,6 @@
 
 
 
-
-
-
-
-
 {{--<nav class="d-flex flex-row d-flex justify-content-between align-items-center">--}}
 {{--    <div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">--}}
 {{--        @if(isAdmin())--}}

@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Exports\ReferredDemandsExport;
 use App\Models\Ticket;
+use App\Models\TicketStatus;
+use App\Models\TicketType;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,10 +31,12 @@ class ReferredDemands extends Component
         $userId = getUserId();
 
         $statusId = getStatusId('todo');
-
+        $ticketStatuses = TicketStatus::all();
+        $ticketTypes = TicketType::all();
         $referredDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
 
-        return view('livewire.referred-demands', compact('referredDemands'));
+        return view('livewire.referred-demands'
+            , compact('referredDemands' , 'ticketStatuses' , 'ticketTypes'));
     }
 
     public function update($id)

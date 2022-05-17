@@ -1,4 +1,4 @@
-<div xmlns:livewire="">
+<div>
     <div class="d-flex ">
 
         <div class="col-3 my-4" id="navbar-dashboard">
@@ -89,6 +89,64 @@
                         </ul>
                     </div>
                 </nav>
+                <div class="d-flex justify-content-center align-content-around" >
+                    <button class="btn d-flex flex-row justify-content-center  align-items-center"
+                            style="color: green" data-toggle="modal" data-target="#insert-demand">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="green" class=" bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                        </svg>
+                       <p class="mb-0 mr-1"> ثبت درخواست جدید</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {{--Create Ticket Modal--}}
+        <div wire:ignore.self class="modal fade" id="insert-demand" tabindex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content" style="background-color: #f4f5f7">
+                    <div class="modal-header mx-4 mt-3">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green" class=" bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                            </svg>
+                            <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">ثبت تیکت جدید</h5>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-right">
+                        <form class="m-4">
+                            @csrf
+                            <div class="form-group col-md-8 p-0">
+                                    <label class="text-bold">عنوان تیکت :</label>
+                                    <input class="form-control">
+                            </div>
+                            <hr>
+                            <div class="form-group ">
+                                <div>
+                                    <label class="text-bold">شرح تیکت :</label>
+                                    </br>
+                                    <textarea class="d-inline-block form-control"
+                                              rows="4" name="insert" id="insert"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <div>
+                            <form>
+
+                            </form>
+                        </div>
+                        <div>
+                            <button wire:click.prevent='' type="button"
+                                    class="btn btn-success">ذخیره</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -114,20 +172,18 @@
                         </svg>
                         <p>واحد : {{auth()->user()->ou}}</p>
                     </div>
-
-
                 </div>
             </div>
             <div class="col-12 mr-0 px-0 mt-3">
                 <div class="d-flex ">
                     @if(isAdmin())
-                    <!-- All Demand  -->
-                    <livewire:all-demands />
-                    <!-- Referred Demand  -->
-                    <livewire:referred-demands />
+                        <!-- All Demand  -->
+                        <livewire:all-demands />
+                        <!-- Referred Demand  -->
+                        <livewire:referred-demands />
                     @else
-                    <livewire:my-demands />
-                    <livewire:inprogress-demands />
+                        <livewire:my-demands />
+                        <livewire:inprogress-demands />
                     @endif
                     <livewire:done-demands />
                     <livewire:rejected-demands />

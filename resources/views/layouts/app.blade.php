@@ -24,7 +24,7 @@
 <main class="max-height">
     {{$slot}}
 </main>
-
+<livewire:scripts/>
 </body>
 
 <!-- Scripts -->
@@ -42,5 +42,5 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/jquery.slim.min.js')}}"></script>
-<livewire:scripts/>
+
 </html>
