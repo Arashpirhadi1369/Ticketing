@@ -18,6 +18,8 @@ class ReferredDemands extends Component
 
     protected $rules = [
         'ticket.reply' => 'required|min:3|max:200',
+        'ticket.status_id' => 'required',
+        'ticket.type_id' => 'required',
     ];
 
 
@@ -35,8 +37,10 @@ class ReferredDemands extends Component
         $ticketTypes = TicketType::all();
         $referredDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
 
-        return view('livewire.referred-demands'
-            , compact('referredDemands' , 'ticketStatuses' , 'ticketTypes'));
+        return view(
+            'livewire.referred-demands',
+            compact('referredDemands', 'ticketStatuses', 'ticketTypes')
+        );
     }
 
     public function update($id)
@@ -45,7 +49,8 @@ class ReferredDemands extends Component
 
         $ticket = Ticket::find($id);
 
-        $ticket->status_id = getStatusId('done');
+        $ticket->status_id = $this->ticket->status_id;
+        $ticket->type_id = $this->ticket->type_id;
         $ticket->reply = $this->ticket->reply;
 
         $ticket->update();

@@ -89,19 +89,21 @@
                                 <div class="row mr-1">
                                     <div class="form-group ml-3 ">
                                         <label class="text-bold" for="inputState">وضعیت تیکت</label>
-                                        <select class="custom-select form-control" id="inputGroupSelect01">
+                                        <select wire:model.debounce.500ms="ticket.status_id"
+                                            class="custom-select form-control" id="inputGroupSelect01">
                                             <option selected>وضعیت تیکت را انتخاب کنید ...</option>
                                             @foreach($ticketStatuses as $ticketStatus)
-                                                <option value="{{$ticketStatus->id}}">{{$ticketStatus->status}}</option>
+                                            <option value="{{$ticketStatus->id}}">{{$ticketStatus->status}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group ">
                                         <label class="text-bold" for="inputState">نوع تیکت</label>
-                                        <select class="custom-select form-control" id="inputGroupSelect01">
+                                        <select wire:model.debounce.500ms="ticket.type_id"
+                                            class="custom-select form-control" id="inputGroupSelect01">
                                             <option selected>نوع تیکت را انتخاب کنید ...</option>
                                             @foreach($ticketTypes as $ticketType)
-                                                <option value="{{$ticketType->id}}">{{$ticketType->type}}</option>
+                                            <option value="{{$ticketType->id}}">{{$ticketType->type}}</option>
                                             @endforeach
 
                                         </select>
@@ -135,7 +137,7 @@
                         </div>
                         <div>
                             <button wire:click.prevent='update({{$referreddemand->id}})' type="button"
-                                    class="btn btn-success">ارسال پاسخ</button>
+                                class="btn btn-success">ارسال پاسخ</button>
                             <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
                         </div>
                     </div>
