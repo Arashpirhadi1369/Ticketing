@@ -45,7 +45,7 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
             'نام درخواست دهنده',
             'عنوان',
             'متن درخواست',
-            'نام پیگیری کننده درخواست',
+            'نام رد کننده درخواست',
             'تاریخ ایجاد'
         ];
     }
@@ -53,10 +53,10 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
     public function map($rejectedDemands): array
     {
         return [
-            $rejectedDemands->user->name,
+            __($rejectedDemands->user->name),
             $rejectedDemands->subject,
             $rejectedDemands->content,
-            $rejectedDemands->referred->name,
+            __($rejectedDemands->referred->name),
             jdate($rejectedDemands->created_at),
         ];
     }

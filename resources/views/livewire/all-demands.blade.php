@@ -29,8 +29,8 @@
                     </div>
                     <div class="d-flex justify-content-between mt-2">
                         <div class="p-0 btn" data-toggle="modal" data-target="#all-demand{{$demand->id}}">
-                            <span class="badge badge-pill badge-dark">{{$demand->user->name}}</span>
-                            <span class="badge badge-pill badge-primary">{{$demand->status->status}}</span>
+                            <span class="badge badge-pill badge-dark">{{__($demand->user->name)}}</span>
+                            <span class="badge badge-pill badge-primary">{{__($demand->status->status)}}</span>
                         </div>
                         <div>
                             <button wire:click='assignToMe({{$demand->id}})' class="btn btn-sm p-0 "
@@ -63,7 +63,7 @@
                                         d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                 </svg>
                                 <h5 class="modal-title mx-3 text-bold" id="all-demand">اطلاعات تیکت</h5>
-                                <span class="badge badge-pill badge-primary">{{$demand->status->status}}</span>
+                                <span class="badge badge-pill badge-primary">{{__($demand->status->status)}}</span>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -91,7 +91,7 @@
                                     </div>
                                     <div>
                                         <label class="text-bold">درخواست دهنده :</label>
-                                        <label>{{$demand->user->name}}</label>
+                                        <label>{{__($demand->user->name)}}</label>
                                     </div>
                                     <div>
                                         <label class="text-bold">عنوان تیکت :</label>

@@ -45,7 +45,7 @@ class DoneDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize,
             'نام درخواست دهنده',
             'عنوان',
             'متن درخواست',
-            'نام پیگیری کننده درخواست',
+            'نام انجام دهنده درخواست',
             'تاریخ ایجاد'
         ];
     }
@@ -53,10 +53,10 @@ class DoneDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize,
     public function map($doneDemands): array
     {
         return [
-            $doneDemands->user->name,
+            __($doneDemands->user->name),
             $doneDemands->subject,
             $doneDemands->content,
-            $doneDemands->referred->name,
+            __($doneDemands->referred->name),
             jdate($doneDemands->created_at),
         ];
     }

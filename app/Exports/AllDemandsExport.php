@@ -46,7 +46,7 @@ class AllDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize, 
     public function map($allDemands): array
     {
         return [
-            $allDemands->user->name,
+            __($allDemands->user->name),
             $allDemands->subject,
             $allDemands->content,
             jdate($allDemands->created_at),

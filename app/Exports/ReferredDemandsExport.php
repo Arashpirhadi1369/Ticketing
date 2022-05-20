@@ -48,7 +48,7 @@ class ReferredDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
     public function map($referredDemands): array
     {
         return [
-            $referredDemands->user->name,
+            __($referredDemands->user->name),
             $referredDemands->subject,
             $referredDemands->content,
             jdate($referredDemands->created_at),

@@ -49,10 +49,10 @@ class InprogressDemandsExport implements FromCollection, WithHeadings, ShouldAut
     public function map($inprogressDemands): array
     {
         return [
-            $inprogressDemands->user->name,
+            __($inprogressDemands->user->name),
             $inprogressDemands->subject,
             $inprogressDemands->content,
-            $inprogressDemands->referred->name,
+            __($inprogressDemands->referred->name),
             jdate($inprogressDemands->created_at),
         ];
     }
