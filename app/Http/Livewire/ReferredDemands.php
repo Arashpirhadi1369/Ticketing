@@ -15,13 +15,14 @@ class ReferredDemands extends Component
     use WithPagination;
 
     public $ticket;
-    protected $listeners = ['render' => '$refresh'];
+
+    protected $listeners = ['renderReferredDemands' => '$refresh'];
+
     protected $rules = [
         'ticket.reply' => 'required|min:3|max:200',
         'ticket.status_id' => 'required',
         'ticket.type_id' => 'required',
     ];
-
 
     public function mount(Ticket $ticket)
     {
@@ -33,14 +34,14 @@ class ReferredDemands extends Component
         $userId = getUserId();
 
         $statusId = getStatusId('todo');
+
         $ticketStatuses = TicketStatus::all();
+
         $ticketTypes = TicketType::all();
+
         $referredDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
 
-        return view(
-            'livewire.referred-demands',
-            compact('referredDemands', 'ticketStatuses', 'ticketTypes')
-        );
+        return view('livewire.referred-demands', compact('referredDemands', 'ticketStatuses', 'ticketTypes'));
     }
 
     public function update($id)
@@ -54,8 +55,21 @@ class ReferredDemands extends Component
         $ticket->reply = $this->ticket->reply;
 
         $ticket->update();
-        $this->emit('render');
-//        return redirect()->to('/');
+
+        $this->resetInput();
+
+        $this->emit('renderDoneDemands');
+        $this->emit('renderRejectedDemands');
+    }
+
+    public function resetInput()
+    {
+        $this->ticket->id = null;
+        $this->ticket->status_id = null;
+        $this->ticket->type_id = null;
+        $this->ticket->reply = null;
+
+        $this->resetValidation();
     }
 
     public function exportExcel()

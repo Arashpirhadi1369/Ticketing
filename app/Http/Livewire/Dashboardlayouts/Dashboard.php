@@ -9,8 +9,6 @@ class Dashboard extends Component
 {
     public $ticket;
 
-    protected $listeners = ['render' => '$refresh'];
-
     protected $rules = [
         'ticket.subject' => 'required|min:3|max:30',
         'ticket.content' => 'required|min:10|max:100',
@@ -34,7 +32,9 @@ class Dashboard extends Component
         $this->ticket->save();
 
         $this->resetInput();
-        $this->emit('render');
+
+        $this->emit('renderMyDemands');
+        $this->emit('renderAllDemands');
     }
 
     public function resetInput()

@@ -12,6 +12,8 @@ class RejectedDemands extends Component
 {
     use WithPagination;
 
+    protected $listeners = ['renderRejectedDemands' => '$refresh'];
+
     public function render()
     {
         $userId = getUserId();

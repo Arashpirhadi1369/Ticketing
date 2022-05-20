@@ -12,6 +12,8 @@ class InprogressDemands extends Component
 {
     use WithPagination;
 
+    protected $listeners = ['renderInprogressDemands' => '$refresh'];
+
     public function render()
     {
         $userId = getUserId();

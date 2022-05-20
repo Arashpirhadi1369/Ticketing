@@ -24,6 +24,7 @@ class MyDemands extends Component
         $this->ticket = $ticket;
     }
 
+    protected $listeners = ['renderMyDemands' => '$refresh'];
 
     public function render()
     {

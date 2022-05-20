@@ -12,6 +12,8 @@ class DoneDemands extends Component
 {
     use WithPagination;
 
+    protected $listeners = ['renderDoneDemands' => '$refresh'];
+
     public function render()
     {
         $userId = getUserId();
