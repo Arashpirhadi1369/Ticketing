@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class AllDemands extends Component
 {
     use WithPagination;
+    protected $listeners = ['render' => '$refresh'];
 
 
     public function render()
@@ -32,8 +33,8 @@ class AllDemands extends Component
             $ticket->referred_id = getUserId();
             $ticket->status_id = getStatusId('todo');
             $ticket->save();
-
-            return redirect()->to('/');
+            $this->emit('render' );
+//            return redirect()->to('/');
         }
     }
 

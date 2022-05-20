@@ -121,12 +121,12 @@
                         </button>
                     </div>
                     <div class="modal-body text-right">
-                        <form class="m-4">
+                        <form method="POST" class="m-4">
                             @csrf
                             <div class="form-group col-md-8 p-0">
                                 <label class="text-bold">عنوان تیکت :</label>
-                                {{-- @error('ticket.subject') <span class="mr-2 text-danger">{{ $message
-                                    }}</span>@enderror --}}
+                                 @error('ticket.subject') <span class="mr-2 text-danger">{{ $message
+                                    }}</span>@enderror
                                 <input wire:model.debounce.500ms='ticket.subject' class="form-control">
                             </div>
                             <hr>
@@ -149,7 +149,7 @@
                             </form>
                         </div>
                         <div>
-                            <button wire:click.prevent='store' type="button" class="btn btn-success">ذخیره</button>
+                            <button wire:click='store' data-dismiss="modal" type="button" class="btn btn-success">ذخیره</button>
                             <button type="button" data-dismiss="modal" class="btn btn-outline-danger">انصراف</button>
                         </div>
                     </div>

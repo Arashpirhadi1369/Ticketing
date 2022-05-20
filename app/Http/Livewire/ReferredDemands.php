@@ -15,7 +15,7 @@ class ReferredDemands extends Component
     use WithPagination;
 
     public $ticket;
-
+    protected $listeners = ['render' => '$refresh'];
     protected $rules = [
         'ticket.reply' => 'required|min:3|max:200',
         'ticket.status_id' => 'required',
@@ -54,8 +54,8 @@ class ReferredDemands extends Component
         $ticket->reply = $this->ticket->reply;
 
         $ticket->update();
-
-        return redirect()->to('/');
+        $this->emit('render');
+//        return redirect()->to('/');
     }
 
     public function exportExcel()
