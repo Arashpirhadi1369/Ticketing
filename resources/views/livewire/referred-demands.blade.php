@@ -94,6 +94,8 @@
                                     <div class="row mr-1">
                                         <div class="form-group ml-3 ">
                                             <label class="text-bold" for="inputState">وضعیت تیکت</label>
+                                            @error('ticket.status_id') <span class="mr-2 text-danger">{{ $message
+                                                }}</span>@enderror
                                             <select wire:model.debounce.500ms="ticket.status_id"
                                                 class="custom-select form-control" id="inputGroupSelect01">
                                                 <option selected>وضعیت تیکت را انتخاب کنید ...</option>
@@ -105,6 +107,8 @@
                                         </div>
                                         <div class="form-group ">
                                             <label class="text-bold" for="inputState">نوع تیکت</label>
+                                            @error('ticket.type_id') <span class="mr-2 text-danger">{{ $message
+                                                }}</span>@enderror
                                             <select wire:model.debounce.500ms="ticket.type_id"
                                                 class="custom-select form-control" id="inputGroupSelect01">
                                                 <option selected>نوع تیکت را انتخاب کنید ...</option>
@@ -129,6 +133,8 @@
                             <div class="form-group m-3">
                                 <div class="">
                                     <label class="text-bold">پاسخ به تیکت :</label>
+                                    @error('ticket.reply') <span class="mr-2 text-danger">{{ $message
+                                        }}</span>@enderror
                                     </br>
                                     <textarea wire:model.debounce.500ms="ticket.reply"
                                         class="d-inline-block form-control" rows="4" name="reply" id="reply"></textarea>
@@ -145,7 +151,7 @@
                                 <button wire:click.prevent='update({{$referreddemand->id}})' type="button"
                                     data-dismiss="modal" class="btn btn-success">ارسال پاسخ</button>
 
-                                <button type="button" data-dismiss="modal"
+                                <button wire:click='resetInput' type="button" data-dismiss="modal"
                                     class="btn btn-outline-danger">انصراف</button>
                             </div>
                         </div>
