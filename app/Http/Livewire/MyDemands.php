@@ -12,18 +12,6 @@ class MyDemands extends Component
 {
     use WithPagination;
 
-    public $ticket;
-
-    protected $rules = [
-        'ticket.subject' => 'required|min:3|max:30',
-        'ticket.content' => 'required|min:10|max:100',
-    ];
-
-    public function mount(Ticket $ticket)
-    {
-        $this->ticket = $ticket;
-    }
-
     protected $listeners = ['renderMyDemands' => '$refresh'];
 
     public function render()
@@ -35,53 +23,6 @@ class MyDemands extends Component
         $myDemands = Ticket::orderBy('updated_at', 'desc')->with('user')->where([['status_id', $statusId], ['user_id', $userId]])->get();
 
         return view('livewire.my-demands', compact('myDemands'));
-    }
-
-    public function resetInput()
-    {
-        $this->ticket->id = null;
-        $this->ticket->subject = null;
-        $this->ticket->content = null;
-
-        $this->resetValidation();
-    }
-
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
-
-    public function store()
-    {
-        $this->validate();
-
-        $this->ticket->save();
-
-        $this->resetInput();
-    }
-
-    public function edit(Ticket $ticket)
-    {
-        $this->ticket = $ticket;
-    }
-
-    public function update()
-    {
-        $this->validate();
-
-        $this->ticket->update();
-
-        $this->resetInput();
-    }
-
-    public function destroy($id)
-    {
-        if ($id) {
-            $ticket = Ticket::where('id', $id);
-            $ticket->delete();
-        }
-
-        $this->resetInput();
     }
 
     public function exportExcel()

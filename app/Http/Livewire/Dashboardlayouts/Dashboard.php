@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dashboardlayouts;
 
 use App\Models\Ticket;
 use Livewire\Component;
+use App\Notifications\TicketNotification;
 
 class Dashboard extends Component
 {
@@ -11,7 +12,7 @@ class Dashboard extends Component
 
     protected $rules = [
         'ticket.subject' => 'required|min:3|max:30',
-        'ticket.content' => 'required|min:10|max:100',
+        'ticket.content' => 'required|min:10|max:254',
     ];
 
     public function mount(Ticket $ticket)
@@ -28,8 +29,15 @@ class Dashboard extends Component
     {
         $this->validate();
 
-        $this->ticket->user_id = getUserId();
-        $this->ticket->save();
+        $userId = $this->ticket->user_id = getUserId();
+
+        $savedTicket = Ticket::create([
+            'user_id' => $userId,
+            'subject' => $this->ticket->subject,
+            'content' => $this->ticket->content
+        ]);
+
+        $savedTicket->notify(new TicketNotification);
 
         $this->resetInput();
 
