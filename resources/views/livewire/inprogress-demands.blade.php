@@ -30,8 +30,9 @@
                     </div>
                     <div class="d-flex justify-content-between mt-2">
                         <div class="p-0 btn" data-toggle="modal" data-target="#inprogress-demand">
-                            <span class="badge badge-pill badge-dark">{{$inprogressDemand->referred->name}}</span>
-                            <span class="badge badge-pill badge-warning">{{$inprogressDemand->status->status}}</span>
+                            <span class="badge badge-pill badge-dark">{{__($inprogressDemand->referred->name)}}</span>
+                            <span
+                                class="badge badge-pill badge-warning">{{__($inprogressDemand->status->status)}}</span>
                         </div>
                     </div>
                 </div>
@@ -50,9 +51,9 @@
                                     <path
                                         d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1 0a7 7 0 1 0-13.202 3.249l1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2A7 7 0 0 0 15 8Zm-8.295.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />
                                 </svg>
-                                <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
+                                <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات درخواست</h5>
                                 <span
-                                    class="badge badge-pill badge-warning">{{$inprogressDemand->status->status}}</span>
+                                    class="badge badge-pill badge-warning">{{__($inprogressDemand->status->status)}}</span>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -65,7 +66,7 @@
                                 <div class="form-group">
                                     <div class="d-flex justify-content-between">
                                         <div>
-                                            <label class="text-bold">ردیف تیکت :</label>
+                                            <label class="text-bold">کد درخواست :</label>
                                             <label>{{$inprogressDemand->id}}</label>
                                         </div>
                                         <div class="d-flex">
@@ -83,10 +84,10 @@
                                     </div>
                                     <div>
                                         <label class="text-bold">انجام دهنده :</label>
-                                        <label>{{$inprogressDemand->referred->name}}</label>
+                                        <label>{{__($inprogressDemand->referred->name)}}</label>
                                     </div>
                                     <div>
-                                        <label class="text-bold">عنوان تیکت :</label>
+                                        <label class="text-bold">عنوان درخواست :</label>
                                         <label>{{$inprogressDemand->subject}}</label>
                                     </div>
                                 </div>
@@ -94,7 +95,7 @@
                             <hr>
                             <div class="form-group m-4">
                                 <div>
-                                    <label class="text-bold">شرح تیکت :</label>
+                                    <label class="text-bold">شرح درخواست :</label>
                                     </br>
                                     <label>{{$inprogressDemand->content}}</label>
                                 </div>

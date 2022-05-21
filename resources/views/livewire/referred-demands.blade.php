@@ -3,7 +3,7 @@
     <div class="card overflow-auto px-2   bg-light ticket-container">
         <div class="d-flex justify-content-between align-items-center">
             <div class="card-header bg-light text-warning border-0">
-                تیکت های من
+                درخواست های من
                 <span class="badge badge-pill badge-warning">{{$referredDemands->count()}}</span>
             </div>
             <div class="">
@@ -52,7 +52,7 @@
                                     <path
                                         d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1 0a7 7 0 1 0-13.202 3.249l1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2A7 7 0 0 0 15 8Zm-8.295.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />
                                 </svg>
-                                <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
+                                <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات درخواست</h5>
                                 <span
                                     class="badge badge-pill badge-warning">{{__($referreddemand->status->status)}}</span>
                             </div>
@@ -67,7 +67,7 @@
                                 <div class="form-group">
                                     <div class="d-flex justify-content-between">
                                         <div>
-                                            <label class="text-bold">ردیف تیکت :</label>
+                                            <label class="text-bold">کد درخواست :</label>
                                             <label>{{$referreddemand->id}}</label>
                                         </div>
                                         <div class="d-flex">
@@ -88,30 +88,31 @@
                                         <label>{{__($referreddemand->user->name)}}</label>
                                     </div>
                                     <div>
-                                        <label class="text-bold">عنوان تیکت :</label>
+                                        <label class="text-bold">عنوان درخواست :</label>
                                         <label>{{$referreddemand->subject}}</label>
                                     </div>
-                                    <div class="row mr-1">
-                                        <div class="form-group ml-3 ">
-                                            <label class="text-bold" for="inputState">وضعیت تیکت</label>
+                                    <hr>
+                                    <div class="row mr-8">
+                                        <div class="form-group ">
+                                            <label class="text-bold" for="inputState">وضعیت درخواست</label>
                                             @error('ticket.status_id') <span class="mr-2 text-danger">{{ $message
                                                 }}</span>@enderror
                                             <select wire:model.debounce.500ms="ticket.status_id"
                                                 class="custom-select form-control" id="inputGroupSelect01">
-                                                <option selected>وضعیت تیکت را انتخاب کنید ...</option>
+                                                <option selected>وضعیت درخواست را انتخاب کنید ...</option>
                                                 @foreach($ticketStatuses as $ticketStatus)
                                                 <option value="{{$ticketStatus->id}}">{{__($ticketStatus->status)}}
                                                 </option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div>&nbsp;
                                         <div class="form-group ">
-                                            <label class="text-bold" for="inputState">نوع تیکت</label>
+                                            <label class="text-bold" for="inputState">نوع درخواست</label>
                                             @error('ticket.type_id') <span class="mr-2 text-danger">{{ $message
                                                 }}</span>@enderror
                                             <select wire:model.debounce.500ms="ticket.type_id"
                                                 class="custom-select form-control" id="inputGroupSelect01">
-                                                <option selected>نوع تیکت را انتخاب کنید ...</option>
+                                                <option selected>نوع درخواست را انتخاب کنید ...</option>
                                                 @foreach($ticketTypes as $ticketType)
                                                 <option value="{{$ticketType->id}}">{{__($ticketType->type)}}</option>
                                                 @endforeach
@@ -124,7 +125,7 @@
                             <hr>
                             <div class="form-group m-4">
                                 <div>
-                                    <label class="text-bold">شرح تیکت :</label>
+                                    <label class="text-bold">شرح درخواست :</label>
                                     </br>
                                     <label>{{$referreddemand->content}}</label>
                                 </div>
@@ -132,7 +133,7 @@
                             <hr>
                             <div class="form-group m-3">
                                 <div class="">
-                                    <label class="text-bold">پاسخ به تیکت :</label>
+                                    <label class="text-bold">پاسخ به درخواست :</label>
                                     @error('ticket.reply') <span class="mr-2 text-danger">{{ $message
                                         }}</span>@enderror
                                     </br>
@@ -200,7 +201,7 @@
             {{-- <thead>--}}
                 {{-- <tr class="">--}}
                     {{-- <th class="">امکانات</th>--}}
-                    {{-- <th>ردیف</th>--}}
+                    {{-- <th>کد</th>--}}
                     {{-- <th>تاریخ ثبت</th>--}}
                     {{-- <th>عنوان درخواست</th>--}}
                     {{-- <th>وضعیت</th>--}}
@@ -213,7 +214,7 @@
                 {{-- <tr class="text-sm  text-bold ">--}}
                     {{-- <td class="p-0 ">--}}
                         {{-- <button class="btn btn-sm mt-2" data-toggle="tooltip" data-placement="bottom" --}} {{--
-                            title="ارجاع تیکت به من">--}}
+                            title="ارجاع درخواست به من">--}}
                             {{-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="teal" --}} {{--
                                 class="bi bi-arrow-down-square" viewBox="0 0 16 16">--}}
                                 {{--
@@ -223,7 +224,7 @@
                                 {{--
                             </svg>--}}
                             {{-- </button>--}}
-                        {{-- <button class="btn btn-sm mt-2" data-placement="bottom" title="مشاهده جزئیات تیکت" --}}
+                        {{-- <button class="btn btn-sm mt-2" data-placement="bottom" title="مشاهده جزئیات درخواست" --}}
                             {{-- data-toggle="modal" data-target="#referred-demand">--}}
                             {{-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="indigo" --}} {{--
                                 class=" bi bi-warning-square" viewBox="0 0 16 16">--}}
@@ -284,7 +285,7 @@
                                 --}}
                                 {{--
                             </svg>--}}
-                            {{-- <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>--}}
+                            {{-- <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات درخواست</h5>--}}
                             {{-- <span class="badge badge-pill badge-primary">جدید</span>--}}
                             {{-- </div>--}}
                         {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
@@ -297,7 +298,7 @@
                             {{-- @csrf--}}
                             {{-- <div class="form-group">--}}
                                 {{-- <div>--}}
-                                    {{-- <label class="text-bold">ردیف تیکت :</label>--}}
+                                    {{-- <label class="text-bold">کد درخواست :</label>--}}
                                     {{-- <label>101</label>--}}
                                     {{-- </div>--}}
                                 {{-- <div>--}}
@@ -305,7 +306,7 @@
                                     {{-- <label>مسعود قاسمی تاج</label>--}}
                                     {{-- </div>--}}
                                 {{-- <div>--}}
-                                    {{-- <label class="text-bold">عنوان تیکت :</label>--}}
+                                    {{-- <label class="text-bold">عنوان درخواست :</label>--}}
                                     {{-- <label> درخواست تغییر ویندوز سیستم</label>--}}
                                     {{-- </div>--}}
                                 {{-- </div>--}}
@@ -314,7 +315,7 @@
                         <hr>--}}
                         {{-- <div class="form-group">--}}
                             {{-- <div>--}}
-                                {{-- <label class="text-bold">شرح تیکت :</label>--}}
+                                {{-- <label class="text-bold">شرح درخواست :</label>--}}
                                 {{-- </br>--}}
                                 {{-- <label>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
                                     طراحان--}}

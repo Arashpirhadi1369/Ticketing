@@ -93,7 +93,7 @@
                                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
                             </path>
                         </svg>
-                        ثبت تیکت جدید
+                        ثبت درخواست جدید
                     </button>
                     {{--Create Ticket Modal--}}
                     <div wire:ignore.self class="modal fade" id="insert-demand" tabindex="-1"
@@ -111,7 +111,8 @@
                                                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
                                             </path>
                                         </svg>
-                                        <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">ثبت تیکت جدید</h5>
+                                        <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">ثبت درخواست جدید
+                                        </h5>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -121,7 +122,7 @@
                                     <form method="POST" class="m-4">
                                         @csrf
                                         <div class="form-group col-md-8 p-0">
-                                            <label class="text-bold">عنوان تیکت :</label>
+                                            <label class="text-bold">عنوان درخواست :</label>
                                             @error('ticket.subject') <span class="mr-2 text-danger">{{ $message
                                                 }}</span>@enderror
                                             <input wire:model.debounce.500ms='ticket.subject' class="form-control">
@@ -129,7 +130,7 @@
                                         <hr>
                                         <div class="form-group ">
                                             <div>
-                                                <label class="text-bold">شرح تیکت
+                                                <label class="text-bold">شرح درخواست
                                                     :</label>
                                                 @error('ticket.content') <span class="mr-2 text-danger">{{ $message
                                                     }}</span>@enderror

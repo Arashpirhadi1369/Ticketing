@@ -3,7 +3,7 @@
     <div class="card overflow-auto px-2  bg-light ticket-container">
         <div class="d-flex justify-content-between align-items-center">
             <div class="card-header bg-light text-info border-0">
-                تیکت های من
+                درخواست های من
                 <span class="badge badge-pill badge-info">{{$myDemands->count()}}</span>
             </div>
             <div class="">
@@ -47,7 +47,7 @@
                                     <path
                                         d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                 </svg>
-                                <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات تیکت</h5>
+                                <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات درخواست</h5>
                                 <span class="badge badge-pill badge-primary">{{__($myDemand->status->status)}}</span>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <div class="d-flex justify-content-between">
                                         <div>
-                                            <label class="text-bold">ردیف تیکت :</label>
+                                            <label class="text-bold">کد درخواست :</label>
                                             <label>{{$myDemand->id}}</label>
                                         </div>
                                         <div class="d-flex">
@@ -80,14 +80,14 @@
                                         <label>{{__($myDemand->user->name)}}</label>
                                     </div>
                                     <div>
-                                        <label class="text-bold">عنوان تیکت :</label>
+                                        <label class="text-bold">عنوان درخواست :</label>
                                         <label> {{$myDemand->subject}}</label>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <div>
-                                        <label class="text-bold">شرح تیکت :</label>
+                                        <label class="text-bold">شرح درخواست :</label>
                                         </br>
                                         <label>{{$myDemand->content}}</label>
                                     </div>
@@ -129,7 +129,7 @@
         {{-- <thead>--}}
             {{-- <tr class="">--}}
                 {{-- <th class="">امکانات</th>--}}
-                {{-- <th>ردیف</th>--}}
+                {{-- <th>کد</th>--}}
                 {{-- <th>تاریخ ثبت</th>--}}
                 {{-- <th>عنوان درخواست</th>--}}
                 {{-- <th>وضعیت</th>--}}
@@ -142,7 +142,7 @@
             {{-- <tr class="text-sm  text-bold ">--}}
                 {{-- <td class="p-0 ">--}}
                     {{-- <button class="btn btn-sm mt-2" data-toggle="tooltip" data-placement="bottom" --}} {{--
-                        title="ارجاع تیکت به من">--}}
+                        title="ارجاع درخواست به من">--}}
                         {{-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="teal" --}} {{--
                             class="bi bi-arrow-down-square" viewBox="0 0 16 16">--}}
                             {{--
@@ -152,7 +152,7 @@
                             {{--
                         </svg>--}}
                         {{-- </button>--}}
-                    {{-- <button class="btn btn-sm mt-2" data-placement="bottom" title="مشاهده جزئیات تیکت" --}} {{--
+                    {{-- <button class="btn btn-sm mt-2" data-placement="bottom" title="مشاهده جزئیات درخواست" --}} {{--
                         data-toggle="modal" data-target="#my-demand">--}}
                         {{-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="indigo" --}} {{--
                             class=" bi bi-info-square" viewBox="0 0 16 16">--}}
@@ -212,7 +212,7 @@
                             --}}
                             {{--
                         </svg>--}}
-                        {{-- <h5 class="modal-title mx-3 text-bold" id="my-demand">اطلاعات تیکت</h5>--}}
+                        {{-- <h5 class="modal-title mx-3 text-bold" id="my-demand">اطلاعات درخواست</h5>--}}
                         {{-- <span class="badge badge-pill badge-primary">جدید</span>--}}
                         {{-- </div>--}}
                     {{-- <button wire:click.prevent="resetInput" type="button" class="close" data-dismiss="modal" --}}
@@ -226,7 +226,7 @@
                         {{-- @csrf--}}
                         {{-- <div class="form-group">--}}
                             {{-- <div>--}}
-                                {{-- <label class="text-bold">ردیف تیکت :</label>--}}
+                                {{-- <label class="text-bold">کد درخواست :</label>--}}
                                 {{-- <label>101</label>--}}
                                 {{-- </div>--}}
                             {{-- <div>--}}
@@ -234,7 +234,7 @@
                                 {{-- <label>مسعود قاسمی تاج</label>--}}
                                 {{-- </div>--}}
                             {{-- <div>--}}
-                                {{-- <label class="text-bold">عنوان تیکت :</label>--}}
+                                {{-- <label class="text-bold">عنوان درخواست :</label>--}}
                                 {{-- <label> درخواست تغییر ویندوز سیستم</label>--}}
                                 {{-- </div>--}}
                             {{-- </div>--}}
@@ -243,7 +243,7 @@
                     <hr>--}}
                     {{-- <div class="form-group">--}}
                         {{-- <div>--}}
-                            {{-- <label class="text-bold">شرح تیکت :</label>--}}
+                            {{-- <label class="text-bold">شرح درخواست :</label>--}}
                             {{-- </br>--}}
                             {{-- <label>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
                                 طراحان--}}
