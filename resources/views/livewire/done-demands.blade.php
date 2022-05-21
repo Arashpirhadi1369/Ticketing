@@ -107,10 +107,7 @@
                                     <div>
                                         <label class="text-bold">پاسخ درخواست :</label>
                                         </br>
-                                        <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Commodi consequuntur eius et, eveniet ex incidunt nemo,
-                                            nihil nisi nulla possimus praesentium suscipit tenetur veniam!
-                                            Et illum non repellendus vel veniam!</label>
+                                        <label>{{$doneDemand->reply}}</label>
                                     </div>
                                 </div>
                             </form>
