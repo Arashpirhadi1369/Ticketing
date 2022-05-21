@@ -11,8 +11,8 @@ class Dashboard extends Component
     public $ticket;
 
     protected $rules = [
-        'ticket.subject' => 'required|min:3|max:30',
-        'ticket.content' => 'required|min:10|max:254',
+        'ticket.subject' => 'required|min:3|max:60',
+        'ticket.content' => 'required|min:5|max:254',
     ];
 
     public function mount(Ticket $ticket)
