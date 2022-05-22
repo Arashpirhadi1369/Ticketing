@@ -114,7 +114,8 @@
                                         <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">ثبت درخواست جدید
                                         </h5>
                                     </div>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button wire:click='resetInput' type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close" id="close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -149,8 +150,7 @@
                                         </form>
                                     </div>
                                     <div>
-                                        <button wire:click='store' data-dismiss="modal" type="button"
-                                            class="btn btn-success">ذخیره</button>
+                                        <button wire:click='store' type="button" class="btn btn-success">ذخیره</button>
                                         <button wire:click='resetInput' type="button" data-dismiss="modal"
                                             class="btn btn-outline-danger">انصراف</button>
                                     </div>

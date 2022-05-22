@@ -111,7 +111,7 @@
                         </div>
                         <div class="modal-footer m-3 ">
                             <div class="m-3">
-                                <button wire:click='assignToMe({{$demand->id}})' type="button"
+                                <button wire:click='assignToMe({{$demand->id}})' type="button" data-dismiss="modal"
                                     class="btn btn-success">ارجاع به
                                     من</button>
                                 <button type="button" data-dismiss="modal"

@@ -56,7 +56,7 @@ class ReferredDemands extends Component
 
         $ticket->update();
 
-        $this->resetInput();
+        $this->dispatchBrowserEvent('closeModal');
 
         $this->emit('renderDoneDemands');
         $this->emit('renderRejectedDemands');
