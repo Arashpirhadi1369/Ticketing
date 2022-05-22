@@ -23,8 +23,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body class=" bg-light">
-    <div>
+<body class=" " background="{{url('images/loginimages.png')}}" style="background-size:cover">
+    <div class="">
         @yield('login-content')
     </div>
 </body>

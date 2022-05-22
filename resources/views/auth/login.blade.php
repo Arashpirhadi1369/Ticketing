@@ -3,7 +3,7 @@
 
 
 {{--Company Logo and Name--}}
-<div class="d-flex justify-content-center mx-5 mt-5">
+<div class="d-flex   mx-5 mt-5 ">
     <a class="d-flex flex-row align-content-center text-decoration-none text-dark">
         <img src="{{url('images/logo.png')}}" style="width: 5rem ; height: 3rem" />
 
@@ -13,9 +13,9 @@
         </div>
     </a>
 </div>
-<div class="card bg-light border-0">
-    <div class="d-flex justify-content-center row no-gutters">
-        <div class="card-body col-md-4 align-self-center">
+<div class="card bg-transparent mt-5 border-0">
+    <div class="d-flex row no-gutters">
+        <div class="card-body col-md-4 align-self-center border-0">
 
             {{--Login User Container --}}
             <div class="card bg-light mr-4 login-card">

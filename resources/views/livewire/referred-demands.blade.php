@@ -18,33 +18,35 @@
         </div>
 
         @if ($referredDemands->isNotEmpty())
-
         <div class="card-body p-0">
             @foreach($referredDemands as $referreddemand)
-            <div class="card   list-group-item-action  border-0 mb-2  shadow">
-                <div class="card-body px-2 py-2" data-toggle="modal"
-                    data-target="#referred-demand{{$referreddemand->id}}">
+            <div class="card list-group-item-action  border-0 mb-2  shadow"data-toggle="modal"
+                 data-target="#referred-demand{{$referreddemand->id}}">
+                <div class="card-body px-2 py-2" >
                     <div class="mt-1 p-0 btn">
                         <p class="text-small text-bold mb-0 text-right">{{$referreddemand->id}} -
                             {{$referreddemand->subject}}</p>
                     </div>
                     <div class="d-flex justify-content-between mt-2">
-                        <div class="p-0 btn" data-toggle="modal" data-target="#referred-demand">
+                        <div class="p-0 btn">
                             <span class="badge badge-pill badge-dark">{{__($referreddemand->user->name)}}</span>
                             <span class="badge badge-pill badge-warning">{{__($referreddemand->status->status)}}</span>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
+
+        </div>
             <!-- Referred Demand  Modal -->
             <div wire:ignore.self class="modal fade" id="referred-demand{{$referreddemand->id}}" tabindex="-1"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-scrollable">
                     <div class="modal-content" style="background-color: #f4f5f7">
                         <div class="modal-header mx-4 mt-3">
                             <div class="d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="orange"
-                                    class="bi bi-wrench-adjustable-circle" viewBox="0 0 16 16">
+                                     class="bi bi-wrench-adjustable-circle" viewBox="0 0 16 16">
                                     <path
                                         d="M12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z" />
                                     <path
@@ -55,7 +57,7 @@
                                     class="badge badge-pill badge-warning">{{__($referreddemand->status->status)}}</span>
                             </div>
                             <button wire:click='resetInput' type="button" class="close" data-dismiss="modal"
-                                aria-label="Close" id="close">
+                                    aria-label="Close" id="close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -94,26 +96,31 @@
                                     <div class="row mr-8">
                                         <div class="form-group ">
                                             <label class="text-bold" for="inputState">وضعیت درخواست</label>
-                                            @error('ticket.status_id') <span class="mr-2 text-danger">{{ $message
+                                            <div>
+                                                @error('ticket.status_id') <span class="mr-2 text-danger">{{ $message
                                                 }}</span>@enderror
+                                            </div>
+
                                             <select wire:model.debounce.500ms="ticket.status_id"
-                                                class="custom-select form-control" id="inputGroupSelect01">
+                                                    class="custom-select form-control" id="inputGroupSelect01">
                                                 <option selected>وضعیت درخواست را انتخاب کنید ...</option>
                                                 @foreach($ticketStatuses as $ticketStatus)
-                                                <option value="{{$ticketStatus->id}}">{{__($ticketStatus->status)}}
-                                                </option>
+                                                    <option value="{{$ticketStatus->id}}">{{__($ticketStatus->status)}}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>&nbsp;
                                         <div class="form-group ">
                                             <label class="text-bold" for="inputState">نوع درخواست</label>
-                                            @error('ticket.type_id') <span class="mr-2 text-danger">{{ $message
+                                            <div>
+                                                @error('ticket.type_id') <span class="mr-2 text-danger">{{ $message
                                                 }}</span>@enderror
+                                            </div>
                                             <select wire:model.debounce.500ms="ticket.type_id"
-                                                class="custom-select form-control" id="inputGroupSelect01">
+                                                    class="custom-select form-control" id="inputGroupSelect01">
                                                 <option selected>نوع درخواست را انتخاب کنید ...</option>
                                                 @foreach($ticketTypes as $ticketType)
-                                                <option value="{{$ticketType->id}}">{{__($ticketType->type)}}</option>
+                                                    <option value="{{$ticketType->id}}">{{__($ticketType->type)}}</option>
                                                 @endforeach
 
                                             </select>
@@ -133,33 +140,31 @@
                             <div class="form-group m-3">
                                 <div class="">
                                     <label class="text-bold">پاسخ به درخواست :</label>
-                                    @error('ticket.reply') <span class="mr-2 text-danger">{{ $message
+                                    <div>
+                                        @error('ticket.reply') <span class="mr-2 text-danger">{{ $message
                                         }}</span>@enderror
+                                    </div>
                                     </br>
                                     <textarea wire:model.debounce.500ms="ticket.reply"
-                                        class="d-inline-block form-control" rows="4" name="reply" id="reply"></textarea>
+                                              class="d-inline-block form-control" rows="4" name="reply" id="reply"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
                             <div>
-                                <form>
-
-                                </form>
                             </div>
                             <div>
                                 <button wire:click.prevent='update({{$referreddemand->id}})' type="button"
-                                    class="btn btn-success">ارسال پاسخ</button>
+                                        class="btn btn-success">ارسال پاسخ</button>
 
                                 <button wire:click='resetInput' type="button" data-dismiss="modal"
-                                    class="btn btn-outline-danger">انصراف</button>
+                                        class="btn btn-outline-danger">انصراف</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
-        </div>
+
         @endif
     </div>
 </div>
