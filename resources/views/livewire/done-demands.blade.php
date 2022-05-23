@@ -53,7 +53,7 @@
                                     <path
                                         d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z" />
                                 </svg>
-                                <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات درخواست</h5>
+                                <h5 class="modal-title mx-3 text-bold">اطلاعات درخواست</h5>
                                 <span class="badge badge-pill badge-success">{{__($doneDemand->status->status)}}</span>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

@@ -47,8 +47,6 @@
             </div>
 
             <!-- All Demand Modal -->
-            @if ($allDemands->isNotEmpty())
-
             <div wire:ignore.self class="modal fade" id="all-demand{{$demand->id}}" tabindex="-1"
                 aria-labelledby="all-demand" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-scrollable">
@@ -62,7 +60,7 @@
                                     <path
                                         d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                 </svg>
-                                <h5 class="modal-title mx-3 text-bold" id="all-demand">اطلاعات درخواست</h5>
+                                <h5 class="modal-title mx-3 text-bold">اطلاعات درخواست</h5>
                                 <span class="badge badge-pill badge-primary">{{__($demand->status->status)}}</span>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -121,7 +119,6 @@
                     </div>
                 </div>
             </div>
-            @endif
             @endforeach
         </div>
         @endif

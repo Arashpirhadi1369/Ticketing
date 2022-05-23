@@ -18,153 +18,163 @@
         </div>
 
         @if ($referredDemands->isNotEmpty())
+
         <div class="card-body p-0">
-            @foreach($referredDemands as $referreddemand)
-            <div class="card list-group-item-action  border-0 mb-2  shadow"data-toggle="modal"
-                 data-target="#referred-demand{{$referreddemand->id}}">
-                <div class="card-body px-2 py-2" >
+            @foreach($referredDemands as $referredDemand)
+            <div class="card list-group-item-action  border-0 mb-2 shadow">
+                <div wire:click="edit({{ $referredDemand }})" data-toggle="modal" data-target="#referred-demand"
+                    class=" card-body px-2 py-2">
                     <div class="mt-1 p-0 btn">
-                        <p class="text-small text-bold mb-0 text-right">{{$referreddemand->id}} -
-                            {{$referreddemand->subject}}</p>
+                        <p class="text-small text-bold mb-0 text-right">{{$referredDemand->id}} -
+                            {{$referredDemand->subject}}</p>
                     </div>
                     <div class="d-flex justify-content-between mt-2">
                         <div class="p-0 btn">
-                            <span class="badge badge-pill badge-dark">{{__($referreddemand->user->name)}}</span>
-                            <span class="badge badge-pill badge-warning">{{__($referreddemand->status->status)}}</span>
+                            <span class="badge badge-pill badge-dark">{{__($referredDemand->user->name)}}</span>
+                            <span class="badge badge-pill badge-warning">{{__($referredDemand->status->status)}}</span>
                         </div>
                     </div>
                 </div>
             </div>
             @endforeach
-
         </div>
-            <!-- Referred Demand  Modal -->
-            <div wire:ignore.self class="modal fade" id="referred-demand{{$referreddemand->id}}" tabindex="-1"
-                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content" style="background-color: #f4f5f7">
-                        <div class="modal-header mx-4 mt-3">
-                            <div class="d-flex align-items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="orange"
-                                     class="bi bi-wrench-adjustable-circle" viewBox="0 0 16 16">
-                                    <path
-                                        d="M12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z" />
-                                    <path
-                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1 0a7 7 0 1 0-13.202 3.249l1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2A7 7 0 0 0 15 8Zm-8.295.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />
-                                </svg>
-                                <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">اطلاعات درخواست</h5>
-                                <span
-                                    class="badge badge-pill badge-warning">{{__($referreddemand->status->status)}}</span>
-                            </div>
-                            <button wire:click='resetInput' type="button" class="close" data-dismiss="modal"
-                                    aria-label="Close" id="close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+        @endif
+    </div>
 
-                        <div class="modal-body text-right">
-                            <form class="m-4">
-                                @csrf
-                                <div class="form-group">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <label class="text-bold">کد درخواست :</label>
-                                            <label>{{$referreddemand->id}}</label>
-                                        </div>
-                                        <div class="d-flex">
-                                            <div>
-                                                <label class="text-bold">تاریخ ثبت :</label>
-                                                <label>{!!
-                                                    jdate($referreddemand->created_at)->format('Y-m-d')!!}</label>
-                                            </div>
-                                            <div class="mr-3">
-                                                <label class="text-bold">تاریخ ارجاع :</label>
-                                                <label>{!!
-                                                    jdate($referreddemand->updated_at)->format('Y-m-d')!!}</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label class="text-bold">درخواست دهنده :</label>
-                                        <label>{{__($referreddemand->user->name)}}</label>
-                                    </div>
-                                    <div>
-                                        <label class="text-bold">عنوان درخواست :</label>
-                                        <label>{{$referreddemand->subject}}</label>
-                                    </div>
-                                    <hr>
-                                    <div class="row mr-8">
-                                        <div class="form-group ">
-                                            <label class="text-bold" for="inputState">وضعیت درخواست</label>
-                                            <div>
-                                                @error('ticket.status_id') <span class="mr-2 text-danger">{{ $message
-                                                }}</span>@enderror
-                                            </div>
 
-                                            <select wire:model.debounce.500ms="ticket.status_id"
-                                                    class="custom-select form-control" id="inputGroupSelect01">
-                                                <option selected>وضعیت درخواست را انتخاب کنید ...</option>
-                                                @foreach($ticketStatuses as $ticketStatus)
-                                                    <option value="{{$ticketStatus->id}}">{{__($ticketStatus->status)}}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>&nbsp;
-                                        <div class="form-group ">
-                                            <label class="text-bold" for="inputState">نوع درخواست</label>
-                                            <div>
-                                                @error('ticket.type_id') <span class="mr-2 text-danger">{{ $message
-                                                }}</span>@enderror
-                                            </div>
-                                            <select wire:model.debounce.500ms="ticket.type_id"
-                                                    class="custom-select form-control" id="inputGroupSelect01">
-                                                <option selected>نوع درخواست را انتخاب کنید ...</option>
-                                                @foreach($ticketTypes as $ticketType)
-                                                    <option value="{{$ticketType->id}}">{{__($ticketType->type)}}</option>
-                                                @endforeach
 
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <hr>
-                            <div class="form-group m-4">
+    <!-- Referred Demand  Modal -->
+    <div wire:ignore.self class="modal fade" id="referred-demand" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content" style="background-color: #f4f5f7">
+                <div class="modal-header mx-4 mt-3">
+                    <div class="d-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="orange"
+                            class="bi bi-wrench-adjustable-circle" viewBox="0 0 16 16">
+                            <path
+                                d="M12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z" />
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1 0a7 7 0 1 0-13.202 3.249l1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2A7 7 0 0 0 15 8Zm-8.295.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />
+                        </svg>
+                        <h5 class="modal-title mx-3 text-bold">اطلاعات درخواست</h5>
+
+                        @foreach ($ticketStatuses as $status)
+                        @if ($status->id == $ticket->status_id)
+                        <span class="badge badge-pill badge-warning">{{__($status->status)}}</span>
+                        @endif
+                        @endforeach
+
+                    </div>
+                    <button wire:click='resetInput' type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        id="referredModalClose">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-right">
+                    <form class="m-4">
+                        @csrf
+                        <div class="form-group">
+                            <div class="d-flex justify-content-between">
                                 <div>
-                                    <label class="text-bold">شرح درخواست :</label>
-                                    </br>
-                                    <label>{{$referreddemand->content}}</label>
+                                    <label class="text-bold">کد درخواست :</label>
+                                    <label>{{$ticket->id}}</label>
+                                </div>
+                                <div class="d-flex">
+                                    <div>
+                                        <label class="text-bold">تاریخ ثبت :</label>
+                                        <label>{!!
+                                            jdate($ticket->created_at)->format('Y-m-d')!!}</label>
+                                    </div>
+                                    <div class="mr-3">
+                                        <label class="text-bold">تاریخ ارجاع :</label>
+                                        <label>{!!
+                                            jdate($ticket->updated_at)->format('Y-m-d')!!}</label>
+                                    </div>
                                 </div>
                             </div>
+                            <div>
+                                <label class="text-bold">درخواست دهنده :</label>
+
+                                @foreach ($users as $user)
+                                @if ($user->id == $ticket->user_id)
+                                <label>{{__($user->name)}}</label>
+                                @endif
+                                @endforeach
+
+                            </div>
+                            <div>
+                                <label class="text-bold">عنوان درخواست :</label>
+                                <label>{{$ticket->subject}}</label>
+                            </div>
                             <hr>
-                            <div class="form-group m-3">
-                                <div class="">
-                                    <label class="text-bold">پاسخ به درخواست :</label>
+                            <div class="row mr-8">
+                                <div class="form-group ">
+                                    <label class="text-bold" for="inputState">وضعیت درخواست</label>
                                     <div>
-                                        @error('ticket.reply') <span class="mr-2 text-danger">{{ $message
-                                        }}</span>@enderror
+                                        @error('ticket.status_id') <span class="mr-2 text-danger">{{ $message
+                                            }}</span>@enderror
                                     </div>
-                                    </br>
-                                    <textarea wire:model.debounce.500ms="ticket.reply"
-                                              class="d-inline-block form-control" rows="4" name="reply" id="reply"></textarea>
+                                    <select wire:model.debounce.500ms="ticket.status_id"
+                                        class="custom-select form-control" name="status_id" id="status_id">
+                                        <option selected>وضعیت درخواست را انتخاب کنید ...</option>
+                                        @foreach($ticketStatuses as $ticketStatus)
+                                        <option value="{{$ticketStatus->id}}">{{__($ticketStatus->status)}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>&nbsp;
+                                <div class="form-group ">
+                                    <label class="text-bold" for="inputState">نوع درخواست</label>
+                                    <div>
+                                        @error('ticket.type_id') <span class="mr-2 text-danger">{{ $message
+                                            }}</span>@enderror
+                                    </div>
+                                    <select wire:model.debounce.500ms="ticket.type_id"
+                                        class="custom-select form-control" name="type_id" id="type_id">
+                                        <option selected>نوع درخواست را انتخاب کنید ...</option>
+                                        @foreach($ticketTypes as $ticketType)
+                                        <option value="{{$ticketType->id}}">{{__($ticketType->type)}}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer d-flex justify-content-between">
+                    </form>
+                    <hr>
+                    <div class="form-group m-4">
+                        <div>
+                            <label class="text-bold">شرح درخواست :</label>
+                            </br>
+                            <label>{{$ticket->content}}</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group m-3">
+                        <div class="">
+                            <label class="text-bold">پاسخ به درخواست :</label>
                             <div>
+                                @error('ticket.reply') <span class="mr-2 text-danger">{{ $message
+                                    }}</span>@enderror
                             </div>
-                            <div>
-                                <button wire:click.prevent='update({{$referreddemand->id}})' type="button"
-                                        class="btn btn-success">ارسال پاسخ</button>
-
-                                <button wire:click='resetInput' type="button" data-dismiss="modal"
-                                        class="btn btn-outline-danger">انصراف</button>
-                            </div>
+                            </br>
+                            <textarea wire:model.debounce.500ms="ticket.reply" class="d-inline-block form-control"
+                                rows="4" name="reply" id="reply"></textarea>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="modal-footer m-3 ">
+                    <div class="m-3">
+                        <button wire:click='update' type="button" class="btn btn-success">ارسال
+                            پاسخ</button>
 
-        @endif
+                        <button wire:click='resetInput' type="button" data-dismiss="modal"
+                            class="btn btn-outline-danger">انصراف</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

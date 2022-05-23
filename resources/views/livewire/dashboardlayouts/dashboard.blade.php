@@ -111,11 +111,11 @@
                                                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
                                             </path>
                                         </svg>
-                                        <h5 class="modal-title mx-3 text-bold" id="exampleModalLabel">ثبت درخواست جدید
+                                        <h5 class="modal-title mx-3 text-bold">ثبت درخواست جدید
                                         </h5>
                                     </div>
                                     <button wire:click='resetInput' type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close" id="close">
+                                        aria-label="Close" id="dashboardModalClose">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>

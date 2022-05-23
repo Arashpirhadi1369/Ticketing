@@ -10,6 +10,8 @@ class Dashboard extends Component
 {
     public $ticket;
 
+    protected $listeners = ['renderDashboard' => '$refresh'];
+
     protected $rules = [
         'ticket.subject' => 'required|min:3|max:60',
         'ticket.content' => 'required|min:5|max:254',
