@@ -27,10 +27,10 @@ class Setup extends Command
      *
      * @return int
      */
-    public function handle(UpdateGroups $updateGroups)
+    public function handle()
     {
         Artisan::call('db:seed');
         Artisan::call('adldap:import', ['-n']);
-        $updateGroups->handle();
+        UpdateGroups::dispatch();
     }
 }

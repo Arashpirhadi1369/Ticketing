@@ -39,7 +39,7 @@ class Dashboard extends Component
             'content' => $this->ticket->content
         ]);
 
-        // $savedTicket->notify(new TicketNotification);
+        $savedTicket->notify(new TicketNotification);
 
         $this->dispatchBrowserEvent('closeModal');
 
