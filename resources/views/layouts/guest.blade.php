@@ -9,9 +9,8 @@
     <title>{{ config('app.name', 'Ticket') }}</title>
     <link rel="icon" href="{!! asset('images/title.png') !!}" />
 
-    <link href="{{asset('css/fontiran.css')}}" rel="stylesheet" type="text/css" />
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link href="{{asset('css/fontiran.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
