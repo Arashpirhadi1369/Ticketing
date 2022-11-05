@@ -53,7 +53,7 @@ class InprogressDemandsExport implements FromCollection, WithHeadings, ShouldAut
             $inprogressDemands->subject,
             $inprogressDemands->content,
             __($inprogressDemands->referred->name),
-            jdate($inprogressDemands->created_at),
+            jdate($inprogressDemands->created_at)->format('Y-m-d'),
         ];
     }
 

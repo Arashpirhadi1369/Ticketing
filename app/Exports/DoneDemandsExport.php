@@ -25,7 +25,7 @@ class DoneDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize,
         $statusId = getStatusId('done');
 
         if (isAdmin()) {
-            $doneDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
+            $doneDemands = Ticket::with('user', 'referred', 'type')->where('status_id', $statusId)->get();
         } else {
             $doneDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
         }
@@ -46,6 +46,7 @@ class DoneDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize,
             'عنوان',
             'متن درخواست',
             'نام انجام دهنده درخواست',
+            'نوع درخواست',
             'تاریخ ایجاد'
         ];
     }
@@ -57,7 +58,8 @@ class DoneDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize,
             $doneDemands->subject,
             $doneDemands->content,
             __($doneDemands->referred->name),
-            jdate($doneDemands->created_at),
+            __($doneDemands->type->type),
+            jdate($doneDemands->created_at)->format('Y-m-d'),
         ];
     }
 

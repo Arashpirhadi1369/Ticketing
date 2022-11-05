@@ -21,7 +21,7 @@ class RejectedDemands extends Component
         $statusId = getStatusId('rejected');
 
         if (isAdmin()) {
-            $rejectedDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
+            $rejectedDemands = Ticket::orderBy('updated_at', 'desc')->where('status_id', $statusId)->get();
         } else {
             $rejectedDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['user_id', $userId]])->get();
         }

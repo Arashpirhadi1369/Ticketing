@@ -51,7 +51,7 @@ class MyDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize, W
             __($myDemands->user->name),
             $myDemands->subject,
             $myDemands->content,
-            jdate($myDemands->created_at),
+            jdate($myDemands->created_at)->format('Y-m-d'),
         ];
     }
 

@@ -49,7 +49,7 @@ class AllDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize, 
             __($allDemands->user->name),
             $allDemands->subject,
             $allDemands->content,
-            jdate($allDemands->created_at),
+            jdate($allDemands->created_at)->format('Y-m-d'),
         ];
     }
 

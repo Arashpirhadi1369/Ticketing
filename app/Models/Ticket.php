@@ -23,6 +23,11 @@ class Ticket extends Model
         return $this->belongsTo(TicketStatus::class, null, 'id');
     }
 
+    public function type()
+    {
+        return $this->belongsTo(TicketType::class, null, 'id');
+    }
+
     public function referred()
     {
         return $this->belongsTo(User::class, null, 'id');

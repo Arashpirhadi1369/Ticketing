@@ -25,7 +25,7 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
         $statusId = getStatusId('rejected');
 
         if (isAdmin()) {
-            $rejectedDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
+            $rejectedDemands = Ticket::with('user', 'referred', 'type')->where('status_id', $statusId)->get();
         } else {
             $rejectedDemands = Ticket::with('user', 'referred')->where([['status_id', $statusId], ['user_id', $userId]])->get();
         }
@@ -46,6 +46,7 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
             'عنوان',
             'متن درخواست',
             'نام رد کننده درخواست',
+            'نوع درخواست',
             'تاریخ ایجاد'
         ];
     }
@@ -57,7 +58,8 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
             $rejectedDemands->subject,
             $rejectedDemands->content,
             __($rejectedDemands->referred->name),
-            jdate($rejectedDemands->created_at),
+            __($rejectedDemands->type->type),
+            jdate($rejectedDemands->created_at)->format('Y-m-d'),
         ];
     }
 

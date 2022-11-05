@@ -51,7 +51,7 @@ class ReferredDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
             __($referredDemands->user->name),
             $referredDemands->subject,
             $referredDemands->content,
-            jdate($referredDemands->created_at),
+            jdate($referredDemands->created_at)->format('Y-m-d'),
         ];
     }
 

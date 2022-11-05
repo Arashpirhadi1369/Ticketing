@@ -21,7 +21,7 @@ class DoneDemands extends Component
         $statusId = getStatusId('done');
 
         if (isAdmin()) {
-            $doneDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
+            $doneDemands = Ticket::orderBy('updated_at', 'desc')->where('status_id', $statusId)->get();
         } else {
             $doneDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['user_id', $userId]])->get();
         }
