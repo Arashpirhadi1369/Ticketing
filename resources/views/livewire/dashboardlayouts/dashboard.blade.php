@@ -82,8 +82,8 @@
         <div class="col-9 mt-4 pr-0">
             <div class="card border-0 bg-light shadow " style="height: 70px;border-radius: 10px">
                 <div class="card-body d-flex flex-row py-3 justify-content-between align-items-center">
-                    <button type="button" class="btn btn-success d-flex flex-row" data-toggle="modal"
-                        data-target="#insert-demand">
+                    <button wire:click="$set('showSavedButton' , 1)" type="button"
+                        class="btn btn-success d-flex flex-row" data-toggle="modal" data-target="#insert-demand">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="ml-2 bi bi-plus-square" viewBox="0 0 16 16">
                             <path
@@ -150,7 +150,8 @@
                                         </form>
                                     </div>
                                     <div>
-                                        <button wire:click='store' type="button" class="btn btn-success">ذخیره</button>
+                                        <button wire:click='store' {{ $showSavedButton==0 ? 'disabled' : '' }}
+                                            type="button" class="btn btn-success">ذخیره</button>
                                         <button wire:click='resetInput' type="button" data-dismiss="modal"
                                             class="btn btn-outline-danger">انصراف</button>
                                     </div>

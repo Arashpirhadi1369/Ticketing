@@ -10,6 +10,8 @@ class Dashboard extends Component
 {
     public $ticket;
 
+    public $showSavedButton = 1;
+
     protected $listeners = ['renderDashboard' => '$refresh'];
 
     protected $rules = [
@@ -31,20 +33,25 @@ class Dashboard extends Component
     {
         $this->validate();
 
-        $userId = $this->ticket->user_id = getUserId();
+        if ($this->showSavedButton == 1) {
 
-        $savedTicket = Ticket::create([
-            'user_id' => $userId,
-            'subject' => $this->ticket->subject,
-            'content' => $this->ticket->content
-        ]);
+            $this->showSavedButton = 0;
 
-        $savedTicket->notify(new TicketNotification);
+            $userId = $this->ticket->user_id = getUserId();
 
-        $this->dispatchBrowserEvent('closeModal');
+            $savedTicket = Ticket::create([
+                'user_id' => $userId,
+                'subject' => $this->ticket->subject,
+                'content' => $this->ticket->content
+            ]);
 
-        $this->emit('renderMyDemands');
-        $this->emit('renderAllDemands');
+            $savedTicket->notify(new TicketNotification);
+
+            $this->dispatchBrowserEvent('closeModal');
+
+            $this->emit('renderMyDemands');
+            $this->emit('renderAllDemands');
+        }
     }
 
     public function resetInput()
