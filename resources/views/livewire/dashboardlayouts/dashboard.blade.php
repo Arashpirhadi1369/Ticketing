@@ -22,7 +22,7 @@
                     </button>
                     <div class="collapse navbar-collapse align-self-start mt-5 " id="navbarSupportedContent">
                         <ul class="navbar-nav d-flex flex-column">
-                            <li class="nav-item  active">
+                            {{-- <li class="nav-item  active">
                                 <a class="nav-link d-flex text-dark align-items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black"
                                         class="ml-3 bi bi-card-text" viewBox="0 0 16 16">
@@ -33,7 +33,7 @@
                                     </svg>
                                     ثبت درخواست
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link d-flex text-dark align-items-center mt-3 " data-toggle="collapse"
                                     href="#collapseExample" role="button" aria-expanded="true"
