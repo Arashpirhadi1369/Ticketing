@@ -26,7 +26,7 @@
                         <h6 class="">سامانه درخواست های واحد فناوری اطلاعات</h6>
                     </div>
                     <div class="dropdown-divider"></div>
-                    <form method="post" action="{{route('login')}}">
+                    <form method="POST" action="{{route('login')}}">
                         @csrf
                         <!-- Username  -->
                         <div class="form-group d-flex flex-column ">
@@ -42,7 +42,7 @@
                                     </span>
                                 </div>
                                 <input type="text" class="form-control text-bold x-input border border-right-0"
-                                    name="username" id="username" placeholder="کدکاربری">
+                                    name="username" id="username" placeholder="نام کاربری">
                             </div>
                             <!--End Username  -->
                             <div class="form-control bg-light input-group x-input">
