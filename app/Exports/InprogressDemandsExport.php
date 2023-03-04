@@ -39,6 +39,7 @@ class InprogressDemandsExport implements FromCollection, WithHeadings, ShouldAut
     {
         return [
             'نام درخواست دهنده',
+            'واحد',
             'عنوان',
             'متن درخواست',
             'نام پیگیری کننده درخواست',
@@ -50,6 +51,7 @@ class InprogressDemandsExport implements FromCollection, WithHeadings, ShouldAut
     {
         return [
             __($inprogressDemands->user->name),
+            __($inprogressDemands->user->ou),
             $inprogressDemands->subject,
             $inprogressDemands->content,
             __($inprogressDemands->referred->name),

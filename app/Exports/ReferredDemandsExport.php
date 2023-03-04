@@ -39,6 +39,7 @@ class ReferredDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
     {
         return [
             'نام درخواست دهنده',
+            'واحد',
             'عنوان',
             'متن درخواست',
             'تاریخ ایجاد'
@@ -49,6 +50,7 @@ class ReferredDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
     {
         return [
             __($referredDemands->user->name),
+            __($referredDemands->user->ou),
             $referredDemands->subject,
             $referredDemands->content,
             jdate($referredDemands->created_at)->format('Y-m-d'),

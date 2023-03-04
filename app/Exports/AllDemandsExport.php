@@ -37,6 +37,7 @@ class AllDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize, 
     {
         return [
             'نام درخواست دهنده',
+            'واحد',
             'عنوان',
             'متن درخواست',
             'تاریخ ایجاد'
@@ -47,6 +48,7 @@ class AllDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize, 
     {
         return [
             __($allDemands->user->name),
+            __($allDemands->user->ou),
             $allDemands->subject,
             $allDemands->content,
             jdate($allDemands->created_at)->format('Y-m-d'),

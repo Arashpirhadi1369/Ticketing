@@ -43,6 +43,7 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
     {
         return [
             'نام درخواست دهنده',
+            'واحد',
             'عنوان',
             'متن درخواست',
             'نام رد کننده درخواست',
@@ -55,6 +56,7 @@ class RejectedDemandsExport implements FromCollection, WithHeadings, ShouldAutoS
     {
         return [
             __($rejectedDemands->user->name),
+            __($rejectedDemands->user->ou),
             $rejectedDemands->subject,
             $rejectedDemands->content,
             __($rejectedDemands->referred->name),

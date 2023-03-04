@@ -39,6 +39,7 @@ class MyDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize, W
     {
         return [
             'نام درخواست دهنده',
+            'واحد',
             'عنوان',
             'متن درخواست',
             'تاریخ ایجاد'
@@ -49,6 +50,7 @@ class MyDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize, W
     {
         return [
             __($myDemands->user->name),
+            __($myDemands->user->ou),
             $myDemands->subject,
             $myDemands->content,
             jdate($myDemands->created_at)->format('Y-m-d'),

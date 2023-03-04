@@ -43,11 +43,13 @@ class DoneDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize,
     {
         return [
             'نام درخواست دهنده',
+            'واحد',
             'عنوان',
             'متن درخواست',
             'نام انجام دهنده درخواست',
             'نوع درخواست',
-            'تاریخ ایجاد'
+            'تاریخ ایجاد',
+            'تاریخ انجام درخواست'
         ];
     }
 
@@ -55,11 +57,13 @@ class DoneDemandsExport implements FromCollection, WithHeadings, ShouldAutoSize,
     {
         return [
             __($doneDemands->user->name),
+            __($doneDemands->user->ou),
             $doneDemands->subject,
             $doneDemands->content,
             __($doneDemands->referred->name),
             __($doneDemands->type->type),
             jdate($doneDemands->created_at)->format('Y-m-d'),
+            jdate($doneDemands->updated_at)->format('Y-m-d'),
         ];
     }
 
