@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{asset('/css/customstyle.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 </head>
 
 <body class=" " background="{{url('images/loginimages.png')}}" style="background-size:cover">
@@ -29,10 +29,10 @@
 </body>
 
 <!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
+{{-- <script src="{{ mix('js/app.js') }}"></script>
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/jquery.slim.min.js')}}"></script>
-<script src="{{asset('js/popper.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}"></script> --}}
 
 </html>

@@ -28,12 +28,15 @@
         <livewire:scripts />
 </body>
 
+<script src="{{asset('js/jquery.min.js')}}"></script>
+{{-- <script src="{{asset('js/ajax-libs.min.js')}}"></script> --}}
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
 <!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
+{{-- <script src="{{ mix('js/app.js') }}"></script>
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/jquery.slim.min.js')}}"></script>
-<script src="{{asset('js/popper.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}"></script> --}}
 
 <script>
         window.addEventListener('closeModal', event => {
