@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password')->nullable();
             $table->string('ou')->nullable();
+            $table->string('phone')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();
             $table->softDeletes();
