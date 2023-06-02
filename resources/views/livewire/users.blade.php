@@ -43,7 +43,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/entities">
+                                <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/users">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="balck"
                                         class="ml-3 bi" viewBox="0 0 24 24">
                                         <path
@@ -64,6 +64,7 @@
         <div class="col-9 mt-4 pr-0">
             <div class="card border-0 bg-light shadow " style="height: 70px;border-radius: 10px">
                 <div class="card-body d-flex flex-row py-3 justify-content-between align-items-center">
+                    <div></div>
                     {{-- <button wire:click="$set('showSavedButton' , 1)" type="button"
                         class="btn btn-success d-flex flex-row" data-toggle="modal" data-target="#test">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -444,3 +445,6 @@
         </div>
     </div>
 </div>
+<script src="{{asset('js/popper.min.js')}}"></script>
+
+<script src="{{asset('js/bootstrap.min.js')}}"></script>

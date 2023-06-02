@@ -23,6 +23,12 @@
     height: calc( 100vh - 21px );
 }
 
+.max-height-content
+{
+    height: calc( 100vh - 135px );
+}
+
+
 #dashboard-content {
     height: calc(100vh - 140px ) !important;
 }

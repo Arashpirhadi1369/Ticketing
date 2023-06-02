@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 
 class Sms extends Component
@@ -33,9 +34,9 @@ class Sms extends Component
 
     public function render()
     {
-        if ($this->selectAll) {
-            $this->selected = $this->usersQuery->pluck('id')->map(fn ($id) => (string) $id);
-        }
+//        if ($this->selectAll) {
+//            $this->selected = $this->usersQuery->pluck('id')->map(fn ($id) => (string) $id);
+//        }
 
         return view('livewire.sms', ['entities' => $this->entities]);
     }
@@ -48,8 +49,8 @@ class Sms extends Component
                 ->orwhere('username', 'like', '%' . $search . '%'))
 
             ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
-            ->when($this->filters['username'], fn ($query, $search) => $query->where('username', 'like', '%' . $search . '%'))
-            ->orderby($this->sortField, $this->sortDirection);
+            ->when($this->filters['username'], fn ($query, $search) => $query->where('username', 'like', '%' . $search . '%'));
+//            ->orderby($this->sortField, $this->sortDirection);
     }
 
     public function getentitiesProperty()

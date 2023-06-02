@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Sms;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboardlayouts\Dashboard;
 use App\Http\Livewire\Users;
@@ -17,7 +18,7 @@ use App\Http\Livewire\Users;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', Dashboard::class)->name('dashboard');
-    Route::get('/sms', Dashboard::class)->name('sms');
+    Route::get('/sms', Sms::class)->name('sms');
     Route::get('/users', Users::class)->name('users');
 });
 
