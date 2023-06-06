@@ -18,9 +18,7 @@
                     <div class="collapse navbar-collapse align-self-start mt-5 " id="navbarSupportedContent">
                         <ul class="navbar-nav d-flex flex-column">
                             <li class="nav-item">
-                                <a class="nav-link d-flex text-dark align-items-center mt-3 " data-toggle="collapse"
-                                    href="{{ route('dashboard') }}" role="button" aria-expanded="true"
-                                    aria-controls="collapseExample">
+                                <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/">
                                     <svg width="25" height="25" fill="balck" class="ml-3 bi"
                                         xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                                         <path
@@ -28,12 +26,9 @@
                                     </svg>
                                     داشبورد
                                 </a>
-                                <div class="collapse" id="collapseExample">
-
-                                </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex text-dark align-items-center mt-3 " href="#">
+                                <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/sms">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black"
                                         class="ml-3 bi bi-person-lines-fill" viewBox="0 0 16 16">
                                         <path

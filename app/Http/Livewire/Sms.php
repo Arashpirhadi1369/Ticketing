@@ -2,55 +2,62 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\User;
+use App\Models\Sms as ModelsSms;
+use App\Traits\ConvertNumbers;
 use Livewire\Component;
+use App\Traits\Sortable;
+use App\Traits\ResetInput;
+use App\Traits\ResetSearchFilters;
+use App\Traits\Smsable;
+use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class Sms extends Component
 {
+    use Smsable, ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, WithPagination;
+
     public $entity;
 
     public $componentName = "sms";
 
     protected $rules = [
-        'entity.name' => 'required|min:3|max:200',
-        'entity.phone' => '',
+        'entity.receiver_name' => '',
+        'entity.destination_number' => 'required|min:11',
+        'entity.message' => 'required|min:11|max:80',
     ];
 
     public $filter  = 'all';
 
     public $filters = [
         'all'       => null,
-        'name'      => null,
-        'username'  => null,
-        'phone'     => null,
+        'receiver_name'      => null,
+        'destination_number'     => null,
     ];
 
-    public $headers = ["name", "username", "ou", "phone"];
+    public $headers = ['source_number', 'receiver_name', 'destination_number', 'status', 'created_at'];
 
-    public function mount(User $entity)
+    public $modalFields = ['receiver_name', 'destination_number', 'message'];
+
+    public function mount(ModelsSms $entity)
     {
         $this->entity = $entity;
     }
 
     public function render()
     {
-//        if ($this->selectAll) {
-//            $this->selected = $this->usersQuery->pluck('id')->map(fn ($id) => (string) $id);
-//        }
-
         return view('livewire.sms', ['entities' => $this->entities]);
     }
 
     public function getentitiesQueryProperty()
     {
-        return User::query()
+        return ModelsSms::query()
             ->when($this->filters['all'], fn ($query, $search) => $query
-                ->where('name', 'like', '%' . $search . '%')
-                ->orwhere('username', 'like', '%' . $search . '%'))
+                ->where('receiver_name', 'like', '%' . $search . '%')
+                ->orwhere('destination_number', 'like', '%' . $search . '%'))
 
-            ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
-            ->when($this->filters['username'], fn ($query, $search) => $query->where('username', 'like', '%' . $search . '%'));
-//            ->orderby($this->sortField, $this->sortDirection);
+            ->when($this->filters['receiver_name'], fn ($query, $search) => $query->where('receiver_name', 'like', '%' . $search . '%'))
+            ->when($this->filters['destination_number'], fn ($query, $search) => $query->where('destination_number', 'like', '%' . $search . '%'))
+            ->orderby($this->sortField, $this->sortDirection);
     }
 
     public function getentitiesProperty()
@@ -61,20 +68,36 @@ class Sms extends Component
     public function store()
     {
         $this->validate();
-        $this->entity->phone = $this->faToen($this->entity->phone);
-        $this->entity->save();
+        $this->entity->destination_number = $this->faToen($this->entity->destination_number);
+
+        $results = $this->sendSms($this->entity->destination_number, $this->entity->message);
+
+        foreach ($results as $result) {
+            DB::table('sms')->insert([
+                'sender_user_id' => auth()->user()->id,
+                'source_number' => $result->sender,
+                'destination_number' => $result->receptor,
+                'receiver_name' => $this->entity->receiver_name,
+                'message' => $result->message,
+                'status' => $result->status,
+                'cost' => $result->cost,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
         $this->dispatchBrowserEvent('closeModal');
         $this->resetInput();
     }
 
-    public function edit(User $entity)
+    public function edit(ModelsSms $entity)
     {
         $this->entity = $entity;
     }
 
     public function destroy()
     {
-        $user = User::find($this->entity->id);
+        $user = ModelsSms::find($this->entity->id);
         $user->delete();
         $this->resetInput();
     }

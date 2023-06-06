@@ -46,4 +46,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ticket::class, 'referred_id', 'id');
     }
+
+    public function sendSms()
+    {
+        return $this->hasMany(Sms::class, 'sender_user_id', 'id');
+    }
+
+    public function receiveSms()
+    {
+        return $this->hasMany(Sms::class, 'receiver_user_id', 'id');
+    }
 }

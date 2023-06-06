@@ -42,6 +42,7 @@
         window.addEventListener('closeModal', event => {
                 document.getElementById('dashboardModalClose').click();
                 document.getElementById('referredModalClose').click();
+                document.getElementById('smsModalClose').click();
         })
 </script>
 

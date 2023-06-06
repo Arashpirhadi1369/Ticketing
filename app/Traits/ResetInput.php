@@ -9,17 +9,11 @@ trait ResetInput
         foreach ($this->headers as $header) {
             $this->entity->$header = null;
         }
-        if (isset($this->inputs)) {
-            $this->inputs = [];
-            $this->inputs1 = [];
-            $this->item = [];
-            $this->amount = [];
-            $this->price = [];
-            $this->essential = [];
-            $this->quantity = [];
-            $this->product = [];
-            $this->i = 0;
+
+        if ($this->entity->message) {
+            $this->entity->message = null;
         }
+
         if (isset($this->editMode)) {
             $this->editMode = false;
         }
