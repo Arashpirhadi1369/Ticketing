@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="modal-body text-right">
-                    <form class="m-4">
+                    <form class="m-3">
                         @csrf
                         <div class="form-group">
                             <div class="d-flex justify-content-between">
@@ -144,7 +144,7 @@
                         </div>
                     </form>
                     <hr>
-                    <div class="form-group m-4">
+                    <div class="form-group m-2">
                         <div>
                             <label class="text-bold">شرح درخواست :</label>
                             </br>
@@ -154,7 +154,7 @@
                     <hr>
                     <div class="form-group m-3">
                         <div class="">
-                            <label class="text-bold">پاسخ به درخواست :</label>
+                                <label class="text-bold">پاسخ به درخواست :</label>
                             <div>
                                 @error('ticket.reply') <span class="mr-2 text-danger">{{ $message
                                     }}</span>@enderror
@@ -162,11 +162,16 @@
                             </br>
                             <textarea wire:model.debounce.500ms="ticket.reply" class="d-inline-block form-control"
                                 rows="4" name="reply" id="reply"></textarea>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">پیامک به درخواست دهنده ارسال شود ؟</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer m-3 ">
-                    <div class="m-3">
+                <div class="modal-footer mx-3 ">
+                    <div class="mx-3 ">
+
                         <button wire:click='update' type="button" class="btn btn-success">ارسال
                             پاسخ</button>
 

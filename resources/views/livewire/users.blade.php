@@ -201,18 +201,18 @@
                     </div>
                 </div>
             </div>
-            <div class="card mt-4 rounded rounded-lg">
+            <div class="card mt-4 rounded rounded-lg " style="border-radius: 10px !important;">
                 <div class="card-body">
-                    <div class="d-flex flex-row justify-content-between align-items-center">
+                    <div class="d-flex flex-row mb-4 justify-content-between align-items-center">
 
-                        <p class="h5 mb-0">اطلاعات کاریران</p>
+                        <p class="h5 text-bold mb-0">مدیریت کاربران </p>
 
                         <div class="d-flex flex-row align-items-center">
 
-                            <div class="dropdown">
-                                <a class="btn btn-outline-info dropdown-toggle" role="button" id="dropdownMenuLink"
+                            <div class="dropdown d-flex align-items-center">
+                                <a class="btn d-flex align-items-center btn-outline-info dropdown-toggle" role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                         class="bi bi-menu-button-wide ml-2" viewBox="0 0 16 16">
                                         <path
                                             d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v2A1.5 1.5 0 0 1 14.5 5h-13A1.5 1.5 0 0 1 0 3.5v-2zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-13z" />
@@ -222,9 +222,9 @@
                                     امکانات بیشتر
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                    <button wire:click="exportSelected" class="dropdown-item text-success text-small">
+                                    <button wire:click="exportSelected" class="dropdown-item d-flex align-items-center text-success text-small">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green"
-                                            class="bi bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
+                                            class="bi ml-2 bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
                                             <path d="M6 12v-2h3v2H6z" />
                                             <path
                                                 d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM3 9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2H3V9z" />
@@ -434,8 +434,9 @@
                         @endif
                         @endforeach
                     </div>
+                    <div class="mt-2">{{ $entities->links() }}</div>
                 </div>
-                <div class="mt-2">{{ $entities->links() }}</div>
+
             </div>
         </div>
     </div>

@@ -20,8 +20,14 @@
                             @error("entity.$field")<span class="mr-2  text-danger">{{ $message
                                 }}</span>@enderror
                         </div>
-                        <input wire:model.debounce.500ms="entity.{{$field}}" class="form-control mb-2" name="{{$field}}"
+                        @if($field == 'message')
+                                <textarea  wire:model.debounce.500ms="entity.{{$field}}" class="form-control mb-2" name="{{$field}}" rows="10"
+                                id="{{$field}}"></textarea>
+                        @else
+                        <input wire:model.debounce.500ms="entity.{{$field}}" class="form-control  mb-2" name="{{$field}}"
                             id="{{$field}}">
+
+                            @endif
                         @endforeach
 
                         <div class="mt-4 modal-footer">

@@ -20,7 +20,7 @@
 
 .max-height
 {
-    height: calc( 100vh - 21px );
+    height: calc( 100vh - 25px );
 }
 
 .max-height-content

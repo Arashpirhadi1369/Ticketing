@@ -1,20 +1,23 @@
-<div wire:ignore.self class="modal fade" id="infoModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+<div wire:ignore.self  class="modal  fade" id="infoModal"  data-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabelCompanies" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content p-3 ">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabelCompanies">افزودن</h5>
+                <div class="d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-bold ml-2 bi-send" viewBox="0 0 16 16">
+                        <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                    </svg>
+                    <h5 class="modal-title text-bold" id="staticBackdropLabelCompanies"> جزئیات پیام</h5>
+                </div>
                 <button wire:click.prevent="resetInput" type="button" class="close" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            <div wire:click.prevent="resetInput" class="modal-body">
                     @csrf
                     <div class="form-group">
-
-                        <div class="form-group d-flex justify-content-between col-md-8 p-0 text-center">
+                        <div class=" p-0">
                             <div class="">
                                 <label class="text-bold"> نام دریافت کننده :</label>
                                 <label>{{$this->entity->receiver_name}}</label>
@@ -23,33 +26,26 @@
                                 <label class="text-bold"> شماره دریافت کننده :</label>
                                 <label>{{$this->entity->destination_number}}</label>
                             </div>
-                            <div class="">
-                                <label class="text-bold">ارسال کننده:</label>
-                                @if ($this->entity->senderUser)
-                                <label>{{$this->entity->senderUser->name}}</label>
-                                @endif
+                            <div class="d-flex justify-content-between">
+                                <div class="">
+                                    <label class="text-bold">ارسال کننده:</label>
+                                    @if ($this->entity->senderUser)
+                                        <label>{{$this->entity->senderUser->name}}</label>
+                                    @endif
+                                </div>
+                                <div class="">
+                                    <label class="text-bold"> هزینه ارسال :</label>
+                                    <label>{{$this->entity->cost}}</label>
+                                </div>
                             </div>
-                            <div class="">
-                                <label class="text-bold"> هزینه ارسال :</label>
-                                <label>{{$this->entity->cost}}</label>
-                            </div>
+
                         </div>
                         <hr>
-                        <div class="form-group ">
-                            <div>
-                                <label class="text-bold">متن پیامک :</label>
-                                </br>
-                                <label class="text-bold">{{$this->entity->message}}</label>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 modal-footer">
-
-                            <button wire:click="resetInput" class="btn btn-secondary mt-2" data-dismiss="modal">انصراف
-                            </button>
+                        <div class="">
+                            <label class="text-bold">متن پیامک :</label>
+                            <p class="text-break text-justify">{{$this->entity->message}}</p>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>

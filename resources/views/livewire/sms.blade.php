@@ -101,27 +101,26 @@
                     </div>
                 </div>
             </div>
-            <div class="card mt-4 rounded rounded-lg">
+            <div class="card mt-4 shadow" style="border-radius: 10px">
                 <div class="card-body">
-                    <div class="d-flex flex-row justify-content-between align-items-center">
-
-                        <p class="h5 mb-0">اطلاعات کاریران</p>
-
-                        <div class="d-flex flex-row align-items-center">
-
-                            <button class="btn btn-outline-info ml-2" type="button" data-toggle="modal"
-                                data-target="#createModal">
+                    <div class="d-flex mb-3 justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <p class="h5 text-bold mb-0 ml-3">مدیریت پیامک</p>
+                            <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button" data-toggle="modal"
+                                    data-target="#createModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                     class="bi ml-2 bi-plus-lg" viewBox="0 0 16 16">
                                     <path
                                         d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
                                 </svg>
-                                افزودن
+                                ارسال پیامک جدید
                             </button>
+                        </div>
+                        <div class="d-flex  flex-row align-items-center">
                             <div class="dropdown">
-                                <a class="btn btn-outline-info dropdown-toggle" role="button" id="dropdownMenuLink"
+                                <a class="btn d-flex align-items-center btn-outline-info dropdown-toggle" role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                         class="bi bi-menu-button-wide ml-2" viewBox="0 0 16 16">
                                         <path
                                             d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v2A1.5 1.5 0 0 1 14.5 5h-13A1.5 1.5 0 0 1 0 3.5v-2zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-13z" />
@@ -131,9 +130,9 @@
                                     امکانات بیشتر
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                    <button wire:click="exportSelected" class="dropdown-item text-success text-small">
+                                    <button wire:click="exportSelected" class="dropdown-item d-flex text-success text-small">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green"
-                                            class="bi bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
+                                            class="bi ml-2 bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
                                             <path d="M6 12v-2h3v2H6z" />
                                             <path
                                                 d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM3 9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2H3V9z" />
@@ -202,6 +201,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <table id="table" class="table table-striped table-bordered" style="width:100%">
                         <thead>
@@ -282,15 +282,17 @@
                                 @endforeach
                             </tr>
                             @empty
-                            <td colspan="{{count($headers)}}" class="h5 text-center text-danger pt-4 pb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                    class="bi bi-exclamation-triangle ml-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
-                                    <path
-                                        d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
-                                </svg>
-                                نتیجه ای یافت نشد
+                            <td colspan="{{count($headers) + 1}}" class="h6  text-center text-danger pt-4 pb-4">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                         class="bi bi-exclamation-triangle ml-2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                                        <path
+                                            d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                                    </svg>
+                                    <p class="mb-0">نتیجه ای یافت نشد</p>
+                                </div>
                             </td>
                             @endforelse
                         </tbody>

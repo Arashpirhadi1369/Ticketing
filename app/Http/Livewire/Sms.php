@@ -16,6 +16,10 @@ class Sms extends Component
 {
     use Smsable, ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, WithPagination;
 
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     public $entity;
 
     public $componentName = "sms";

@@ -15,6 +15,8 @@ class Users extends Component
 {
     use ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, BulkAction, WithPagination;
 
+    protected $paginationTheme = 'bootstrap';
+
     public $entity;
 
     public $componentName = "users";
