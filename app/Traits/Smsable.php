@@ -11,6 +11,10 @@ trait Smsable
         try {
             $sender = env('KAVENEGAR_SENDER_NUMBER');        //This is the Sender number
 
+            if (!$sender) {
+                abort(403, 'sender number is not avalable.');
+            }
+
             $receptor = [$receptor];                         //Receptors numbers
 
             $result = Kavenegar::Send($sender, $receptor, $message);

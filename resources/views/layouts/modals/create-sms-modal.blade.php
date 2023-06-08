@@ -21,13 +21,13 @@
                                 }}</span>@enderror
                         </div>
                         @if($field == 'message')
-                                <textarea  wire:model.debounce.500ms="entity.{{$field}}" class="form-control mb-2" name="{{$field}}" rows="10"
-                                id="{{$field}}"></textarea>
+                        <textarea wire:model.debounce.500ms="entity.{{$field}}" class="form-control mb-2"
+                            name="{{$field}}" rows="10" id="{{$field}}"></textarea>
                         @else
-                        <input wire:model.debounce.500ms="entity.{{$field}}" class="form-control  mb-2" name="{{$field}}"
-                            id="{{$field}}">
+                        <input wire:model.debounce.500ms="entity.{{$field}}" class="form-control  mb-2"
+                            name="{{$field}}" id="{{$field}}">
 
-                            @endif
+                        @endif
                         @endforeach
 
                         <div class="mt-4 modal-footer">

@@ -106,10 +106,10 @@
                     <div class="d-flex mb-3 justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
                             <p class="h5 text-bold mb-0 ml-3">مدیریت پیامک</p>
-                            <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button" data-toggle="modal"
-                                    data-target="#createModal">
+                            <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button"
+                                data-toggle="modal" data-target="#createModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="bi ml-2 bi-plus-lg" viewBox="0 0 16 16">
+                                    class="bi ml-2 bi-plus-lg" viewBox="0 0 16 16">
                                     <path
                                         d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
                                 </svg>
@@ -118,8 +118,9 @@
                         </div>
                         <div class="d-flex  flex-row align-items-center">
                             <div class="dropdown">
-                                <a class="btn d-flex align-items-center btn-outline-info dropdown-toggle" role="button" id="dropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="btn d-flex align-items-center btn-outline-info dropdown-toggle" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                         class="bi bi-menu-button-wide ml-2" viewBox="0 0 16 16">
                                         <path
@@ -130,7 +131,8 @@
                                     امکانات بیشتر
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                    <button wire:click="exportSelected" class="dropdown-item d-flex text-success text-small">
+                                    <button wire:click="exportSelected"
+                                        class="dropdown-item d-flex text-success text-small">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green"
                                             class="bi ml-2 bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
                                             <path d="M6 12v-2h3v2H6z" />
@@ -285,7 +287,7 @@
                             <td colspan="{{count($headers) + 1}}" class="h6  text-center text-danger pt-4 pb-4">
                                 <div class="d-flex align-items-center justify-content-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                         class="bi bi-exclamation-triangle ml-2" viewBox="0 0 16 16">
+                                        class="bi bi-exclamation-triangle ml-2" viewBox="0 0 16 16">
                                         <path
                                             d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
                                         <path
@@ -322,18 +324,18 @@
                         @endif
                         @endforeach
                     </div>
+                    <div class="mt-2">{{ $entities->links() }}</div>
                 </div>
-                <div class="mt-2">{{ $entities->links() }}</div>
             </div>
         </div>
     </div>
+
+    <script>
+        window.addEventListener('closeModal', event => {
+            document.getElementById('smsModalClose').click();
+    })
+    </script>
 </div>
 <script src="{{asset('js/popper.min.js')}}"></script>
 
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
-
-<script>
-    window.addEventListener('closeModal', event => {
-            document.getElementById('smsModalClose').click();
-    })
-</script>

@@ -154,7 +154,8 @@
                     <hr>
                     <div class="form-group m-3">
                         <div class="">
-                                <label class="text-bold">پاسخ به درخواست :</label>
+                            <button onclick="uncheck()" id="smsUncheckButton"></button>
+                            <label class="text-bold">پاسخ به درخواست :</label>
                             <div>
                                 @error('ticket.reply') <span class="mr-2 text-danger">{{ $message
                                     }}</span>@enderror
@@ -163,8 +164,9 @@
                             <textarea wire:model.debounce.500ms="ticket.reply" class="d-inline-block form-control"
                                 rows="4" name="reply" id="reply"></textarea>
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">پیامک به درخواست دهنده ارسال شود ؟</label>
+                                <input wire:click="smsCheckbox" id="smsCheck" type="checkbox" class="form-check-input">
+                                <label class="form-check-label">پیامک به درخواست دهنده ارسال شود
+                                    ؟</label>
                             </div>
                         </div>
                     </div>
@@ -182,4 +184,13 @@
             </div>
         </div>
     </div>
+    <script>
+        window.addEventListener('smsUncheckButton', event => {
+            document.getElementById('smsUncheckButton').click();
+    })
+
+        function uncheck() {
+          document.getElementById("smsCheck").checked = false;
+        }
+    </script>
 </div>

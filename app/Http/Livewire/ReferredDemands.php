@@ -7,15 +7,18 @@ use App\Models\Ticket;
 use App\Models\TicketStatus;
 use App\Models\TicketType;
 use App\Models\User;
+use App\Traits\Smsable;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReferredDemands extends Component
 {
-    use WithPagination;
+    use Smsable, WithPagination;
 
     public $ticket;
+
+    public $sendSms = false;
 
     protected $listeners = ['renderReferredDemands' => '$refresh'];
 
@@ -64,6 +67,16 @@ class ReferredDemands extends Component
 
         $ticket->update();
 
+        if ($this->sendSms == true) {
+            $user = User::find($ticket->user_id);
+
+            $this->sendSms($user->phone, $ticket->reply);
+
+            $this->resetInput();
+
+            $this->dispatchBrowserEvent('smsUncheckButton');
+        }
+
         $this->dispatchBrowserEvent('closeModal');
 
         $this->emit('renderDoneDemands');
@@ -76,6 +89,7 @@ class ReferredDemands extends Component
         $this->ticket->status_id = null;
         $this->ticket->type_id = null;
         $this->ticket->reply = null;
+        $this->sendSms = false;
 
         $this->resetValidation();
     }
@@ -83,6 +97,15 @@ class ReferredDemands extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+    }
+
+    public function smsCheckbox()
+    {
+        if ($this->sendSms == false) {
+            $this->sendSms = true;
+        } else {
+            $this->sendSms = false;
+        }
     }
 
     public function exportExcel()
