@@ -6,10 +6,12 @@ use App\Models\User;
 use Livewire\Component;
 use App\Traits\Sortable;
 use App\Traits\BulkAction;
-use App\Traits\ConvertNumbers;
 use App\Traits\ResetInput;
+use App\Exports\UsersExport;
 use Livewire\WithPagination;
+use App\Traits\ConvertNumbers;
 use App\Traits\ResetSearchFilters;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Users extends Component
 {
@@ -56,10 +58,12 @@ class Users extends Component
         return User::query()
             ->when($this->filters['all'], fn ($query, $search) => $query
                 ->where('name', 'like', '%' . $search . '%')
-                ->orwhere('username', 'like', '%' . $search . '%'))
+                ->orwhere('username', 'like', '%' . $search . '%')
+                ->orwhere('phone', 'like', '%' . $search . '%'))
 
             ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
             ->when($this->filters['username'], fn ($query, $search) => $query->where('username', 'like', '%' . $search . '%'))
+            ->when($this->filters['phone'], fn ($query, $search) => $query->where('phone', 'like', '%' . $search . '%'))
             ->orderby($this->sortField, $this->sortDirection);
     }
 
@@ -87,5 +91,10 @@ class Users extends Component
         $user = User::find($this->entity->id);
         $user->delete();
         $this->resetInput();
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new UsersExport(), 'Users.xlsx');
     }
 }

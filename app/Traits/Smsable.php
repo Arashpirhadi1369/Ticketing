@@ -9,7 +9,7 @@ trait Smsable
     public function sendSms($receptor, $message)
     {
         try {
-            $sender = env('KAVENEGAR_SENDER_NUMBER');        //This is the Sender number
+            $sender = env('KAVENEGAR_SENDER_NUMBER', '100022709738');        //This is the Sender number
 
             if (!$sender) {
                 abort(403, 'sender number is not avalable.');

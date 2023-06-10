@@ -27,6 +27,18 @@
     "Commercial(territorial)": "بازرگانی داخلی",
     "Commercial(foreigner)": "بازرگانی خارجی",
 
+    "source_number": "شماره ارسال",
+    "receiver_name": "نام دریافت کننده",
+    "destination_number": "شماره دریافت کننده",
+    "status": "وضعیت",
+    "created_at": "تاریخ ایجاد",
+    "message": "پیام",
+
+    "name": "نام",
+    "username": "نام کاربری",
+    "ou": "گروه",
+    "phone": "شماره تماس",
+
     "Arash Pirhadi": "آرش پیرهادی",
     "mohammadzadeh": "مجید محمدزاده",
     "enayati": "حمیده عنایتی",

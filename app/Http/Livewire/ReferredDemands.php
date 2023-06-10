@@ -70,7 +70,11 @@ class ReferredDemands extends Component
         if ($this->sendSms == true) {
             $user = User::find($ticket->user_id);
 
-            $this->sendSms($user->phone, $ticket->reply);
+            $message = __($user->name) . ' گرامی
+درخواست شما با عنوان : ' . $ticket->subject . '
+به وضعیت : ' . __($ticket->status->status) . '
+تغییر پیدا کرد';
+            $this->sendSms($user->phone, $message);
 
             $this->resetInput();
 

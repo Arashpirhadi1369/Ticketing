@@ -131,7 +131,7 @@
                                     امکانات بیشتر
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                    <button wire:click="exportSelected"
+                                    <button wire:click="exportExcel"
                                         class="dropdown-item d-flex text-success text-small">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green"
                                             class="bi ml-2 bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">

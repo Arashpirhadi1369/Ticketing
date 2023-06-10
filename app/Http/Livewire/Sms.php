@@ -2,15 +2,17 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Sms as ModelsSms;
-use App\Traits\ConvertNumbers;
+use App\Traits\Smsable;
 use Livewire\Component;
 use App\Traits\Sortable;
+use App\Exports\SmsExport;
 use App\Traits\ResetInput;
-use App\Traits\ResetSearchFilters;
-use App\Traits\Smsable;
-use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use App\Traits\ConvertNumbers;
+use App\Models\Sms as ModelsSms;
+use App\Traits\ResetSearchFilters;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Sms extends Component
 {
@@ -33,9 +35,9 @@ class Sms extends Component
     public $filter  = 'all';
 
     public $filters = [
-        'all'       => null,
+        'all'                => null,
         'receiver_name'      => null,
-        'destination_number'     => null,
+        'destination_number' => null,
     ];
 
     public $headers = ['source_number', 'receiver_name', 'destination_number', 'status', 'created_at'];
@@ -107,5 +109,10 @@ class Sms extends Component
         $user = ModelsSms::find($this->entity->id);
         $user->delete();
         $this->resetInput();
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new SmsExport(), 'sms.xlsx');
     }
 }
