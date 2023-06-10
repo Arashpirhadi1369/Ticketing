@@ -31,6 +31,8 @@
                                     داشبورد
                                 </a>
                             </li>
+
+                            @if (Auth::user()->ou == "HR" || Auth::user()->ou =="IT")
                             <li class="nav-item">
                                 <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/sms">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black"
@@ -41,6 +43,9 @@
                                     ارسال SMS
                                 </a>
                             </li>
+                            @endif
+
+                            @if (Auth::user()->ou == "IT")
                             <li class="nav-item">
                                 <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/users">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="balck"
@@ -51,6 +56,8 @@
                                     مدیریت کاربران
                                 </a>
                             </li>
+                            @endif
+
                             <li class="nav-item my-3">
 
                             </li>

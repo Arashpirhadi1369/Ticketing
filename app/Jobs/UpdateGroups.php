@@ -2,10 +2,11 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Adldap\Laravel\Facades\Adldap;
-use App\Models\User;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -32,6 +33,8 @@ class UpdateGroups implements ShouldQueue
      */
     public function handle()
     {
+        Artisan::call('adldap:import', ['-n']);
+
         $adUsers = Adldap::search()->users()->get();
 
         $users = [];
