@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Exports\ReferredDemandsExport;
+use App\Models\Sms;
 use App\Models\Ticket;
 use App\Models\TicketStatus;
 use App\Models\TicketType;
@@ -74,7 +75,23 @@ class ReferredDemands extends Component
 درخواست شما با عنوان : ' . $ticket->subject . '
 به وضعیت : ' . __($ticket->status->status) . '
 تغییر پیدا کرد';
-            $this->sendSms($user->phone, $message);
+
+            $results = $this->sendSms($user->phone, $message);
+
+            foreach ($results as $result) {
+                Sms::create(
+                    [
+                        'sender_user_id'        => auth()->user()->id,
+                        'source_number'         => env("KAVENEGAR_SENDER_NUMBER"),
+                        'receiver_user_id'      => $user->id,
+                        'destination_number'    => $user->phone,
+                        'receiver_name'         => $user->name,
+                        'message'               => $message,
+                        'status'                => $result->status,
+                        'cost'                  => $result->cost,
+                    ]
+                );
+            }
 
             $this->resetInput();
 
