@@ -47,9 +47,9 @@ class Sms extends Component
     public function mount(ModelsSms $entity)
     {
         $this->entity = $entity;
-        $this->entity->message = '
-        
-شرکت محافظان بهبود آب';
+        //         $this->entity->message = '
+
+        // شرکت محافظان بهبود آب';
     }
 
     public function render()

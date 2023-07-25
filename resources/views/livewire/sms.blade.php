@@ -32,7 +32,7 @@
                                 </a>
                             </li>
 
-                            @if (Auth::user()->ou == "HR" || Auth::user()->ou =="IT")
+                            @permission("sms-read")
                             <li class="nav-item">
                                 <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/sms">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black"
@@ -43,9 +43,9 @@
                                     ارسال SMS
                                 </a>
                             </li>
-                            @endif
+                            @endpermission
 
-                            @if (Auth::user()->ou == "IT")
+                            @permission("users-read")
                             <li class="nav-item">
                                 <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/users">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="balck"
@@ -56,7 +56,7 @@
                                     مدیریت کاربران
                                 </a>
                             </li>
-                            @endif
+                            @endpermission
 
                             <li class="nav-item my-3">
 
@@ -113,6 +113,8 @@
                     <div class="d-flex mb-3 justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
                             <p class="h5 text-bold mb-0 ml-3">مدیریت پیامک</p>
+
+                            @permission("sms-create")
                             <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button"
                                 data-toggle="modal" data-target="#createModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -122,6 +124,8 @@
                                 </svg>
                                 ارسال پیامک جدید
                             </button>
+                            @endpermission
+
                         </div>
                         <div class="d-flex  flex-row align-items-center">
                             <div class="dropdown">

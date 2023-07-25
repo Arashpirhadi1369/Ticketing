@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(TicketStatusSeeder::class);
         $this->call(TicketTypeSeeder::class);
+        $this->call(LaratrustSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

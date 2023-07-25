@@ -4,8 +4,6 @@ use App\Http\Livewire\Sms;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboardlayouts\Dashboard;
 use App\Http\Livewire\Users;
-use App\Http\Middleware\IsHR;
-use App\Http\Middleware\IsIT;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +18,8 @@ use App\Http\Middleware\IsIT;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', Dashboard::class)->name('dashboard');
-    Route::get('/sms', Sms::class)->name('sms')->middleware(IsHR::class);
-    Route::get('/users', Users::class)->name('users')->middleware(IsIT::class);
+    Route::get('/sms', Sms::class)->name('sms')->middleware('permission:sms-read');
+    Route::get('/users', Users::class)->name('users')->middleware('permission:users-read');
 });
 
 
