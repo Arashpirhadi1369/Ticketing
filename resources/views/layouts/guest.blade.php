@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
-    <link rel="icon" href="{!! asset('images/title.png') !!}" />
+    <link rel="icon" href="{!! asset('images/Title.png') !!}" />
 
     <!-- Fonts -->
     <link href="{{asset('css/fontiran.css')}}" rel="stylesheet" type="text/css" />
