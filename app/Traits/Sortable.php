@@ -6,7 +6,7 @@ trait Sortable
 {
     public $sortField = 'created_at';
 
-    public $sortDirection = 'asc';
+    public $sortDirection = 'desc';
 
     public function sortby($field)
     {
