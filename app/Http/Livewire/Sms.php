@@ -30,7 +30,7 @@ class Sms extends Component
 
     protected $rules = [
         'entity.receiver_name' => '',
-        'entity.destination_number' => 'required|numeric|min:11',
+        'entity.destination_number' => 'required|min:11',
         'entity.message' => 'required|min:11|max:200',
     ];
 
