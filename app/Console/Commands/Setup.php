@@ -29,8 +29,8 @@ class Setup extends Command
      */
     public function handle()
     {
-        Artisan::call('db:seed');
         Artisan::call('adldap:import', ['-n']);
+        Artisan::call('db:seed');
         UpdateGroups::dispatch();
     }
 }

@@ -24,11 +24,13 @@ class Sms extends Component
 
     public $entity;
 
+    public $infoEntity;
+
     public $componentName = "sms";
 
     protected $rules = [
         'entity.receiver_name' => '',
-        'entity.destination_number' => 'required|min:11',
+        'entity.destination_number' => 'required|numeric|min:11',
         'entity.message' => 'required|min:11|max:200',
     ];
 
@@ -47,6 +49,7 @@ class Sms extends Component
     public function mount(ModelsSms $entity)
     {
         $this->entity = $entity;
+        $this->infoEntity = $entity;
         //         $this->entity->message = '
 
         // شرکت محافظان بهبود آب';
@@ -101,7 +104,7 @@ class Sms extends Component
 
     public function edit(ModelsSms $entity)
     {
-        $this->entity = $entity;
+        $this->infoEntity = $entity;
     }
 
     public function destroy()

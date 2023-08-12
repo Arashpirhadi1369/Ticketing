@@ -1,4 +1,4 @@
-<div wire:ignore.self  class="modal  fade" id="infoModal"  data-keyboard="false" tabindex="-1"
+<div wire:ignore.self class="modal  fade" id="infoModal" data-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabelCompanies" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content p-3 ">
@@ -20,22 +20,22 @@
                         <div class=" p-0">
                             <div class="">
                                 <label class="text-bold"> نام دریافت کننده :</label>
-                                <label>{{$this->entity->receiver_name}}</label>
+                                <label>{{$this->infoEntity->receiver_name}}</label>
                             </div>
                             <div class="">
                                 <label class="text-bold"> شماره دریافت کننده :</label>
-                                <label>{{$this->entity->destination_number}}</label>
+                                <label>{{$this->infoEntity->destination_number}}</label>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="">
                                     <label class="text-bold">ارسال کننده:</label>
-                                    @if ($this->entity->senderUser)
-                                        <label>{{$this->entity->senderUser->name}}</label>
+                                    @if ($this->infoEntity->senderUser)
+                                        <label>{{$this->infoEntity->senderUser->name}}</label>
                                     @endif
                                 </div>
                                 <div class="">
                                     <label class="text-bold"> هزینه ارسال :</label>
-                                    <label>{{$this->entity->cost}}</label>
+                                    <label>{{$this->infoEntity->cost}}</label>
                                 </div>
                             </div>
 
@@ -43,7 +43,7 @@
                         <hr>
                         <div class="">
                             <label class="text-bold">متن پیامک :</label>
-                            <p class="text-break text-justify">{{$this->entity->message}}</p>
+                            <p class="text-break text-justify">{{$this->infoEntity->message}}</p>
                         </div>
                     </div>
             </div>
