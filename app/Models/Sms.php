@@ -11,7 +11,7 @@ class Sms extends Model
 
     protected $fillable = [
         'sender_user_id', 'source_number', 'receiver_user_id', 'destination_number', 'receiver_name',
-        'message', 'status', 'cost'
+        'subject', 'message', 'status', 'cost'
     ];
 
     public function senderUser()

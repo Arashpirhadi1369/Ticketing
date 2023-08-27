@@ -10,8 +10,12 @@ trait ResetInput
             $this->entity->$header = null;
         }
 
-        if ($this->entity->message) {
+        if (isset($this->entity->message)) {
             $this->entity->message = null;
+        }
+
+        if (isset($this->phones)) {
+            $this->phones = null;
         }
 
         if (isset($this->editMode)) {

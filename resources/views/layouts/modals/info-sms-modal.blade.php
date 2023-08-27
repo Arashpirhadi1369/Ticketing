@@ -30,7 +30,7 @@
                                 <div class="">
                                     <label class="text-bold">ارسال کننده:</label>
                                     @if ($this->infoEntity->senderUser)
-                                        <label>{{$this->infoEntity->senderUser->name}}</label>
+                                        <label>{{ __($this->infoEntity->senderUser->name) }}</label>
                                     @endif
                                 </div>
                                 <div class="">

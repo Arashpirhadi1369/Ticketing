@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('source_number');
             $table->unsignedBigInteger('receiver_user_id')->nullable();
             $table->string('destination_number');
+            $table->string('subject')->nullable();
             $table->string('receiver_name')->nullable();
             $table->string('message');
             $table->unsignedBigInteger('status');

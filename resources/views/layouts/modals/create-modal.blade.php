@@ -21,46 +21,21 @@
                                 }}</span>@enderror
                         </div>
 
-                        @if($field == 'phonebook')
-                        <div wire:ignore class="mb-2">
-                            <select wire:model="phones" id="phones-dropdown" class="form-control" style="width: 100%" multiple="multiple">
-                                @foreach($phonebooks as $phonebook)
-                                <option value="{{$phonebook->id}}">{{ $phonebook->name }} {{ $phonebook->phone }}</option>
-                            @endforeach
-                              </select>
-                        </div>
-                        @elseif($field == 'message')
-                        <textarea wire:model.debounce.500ms="entity.{{$field}}" class="form-control mb-2"
-                            name="{{$field}}" rows="10" id="{{$field}}"></textarea>
-                        @else
+                        
                         <input wire:model.debounce.500ms="entity.{{$field}}" class="form-control  mb-2"
                             name="{{$field}}" id="{{$field}}">
 
-                        @endif
                         @endforeach
                         
                         <div class="mt-4 modal-footer">
                             <button wire:click.prevent="store" type="submit" class="btn btn-info mt-2">ذخیره
                             </button>
-                            <button wire:click="resetInput" class="btn btn-secondary mt-2" data-dismiss="modal">انصراف
+                            <button wire:click="resetInput" id="dashboardModalClose" class="btn btn-secondary mt-2" data-dismiss="modal">انصراف
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
-
-            <script>
-                $(document).ready(function () {
-                    $('#phones-dropdown').select2();
-                    $('#phones-dropdown').on('change', function (e) {
-                        let data = $(this).val();
-                        @this.set('phones', data);
-                    });
-                    window.livewire.on('stored', () => {
-                        $('#phones-dropdown').select2();
-                    });
-                });  
-            </script>
         </div>
     </div>
 </div>

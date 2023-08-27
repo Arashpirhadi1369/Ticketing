@@ -17,6 +17,12 @@
         <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css') }}">
         <link rel="stylesheet" href="{{asset('/css/fontiranstyle.css') }}">
         <link rel="stylesheet" href="{{asset('/css/customstyle.css') }}">
+        <link rel="stylesheet" href="{{asset('/css/select2.min.css') }}">
+
+        <!-- Scripts -->
+        <script src="{{asset('js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="{{asset('js/select2.min.js')}}"></script>
 
         <livewire:styles />
 </head>
@@ -28,16 +34,6 @@
         </main>
         <livewire:scripts />
 </body>
-
-<script src="{{asset('js/jquery.min.js')}}"></script>
-{{-- <script src="{{asset('js/ajax-libs.min.js')}}"></script> --}}
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<!-- Scripts -->
-{{-- <script src="{{ mix('js/app.js') }}"></script>
-<script src="{{asset('js/app.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="{{asset('js/jquery.slim.min.js')}}"></script>
-<script src="{{asset('js/popper.min.js')}}"></script> --}}
 
 <script>
         window.addEventListener('closeModal', event => {

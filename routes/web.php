@@ -3,6 +3,7 @@
 use App\Http\Livewire\Sms;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboardlayouts\Dashboard;
+use App\Http\Livewire\Phonebooks;
 use App\Http\Livewire\Users;
 
 /*
@@ -19,6 +20,7 @@ use App\Http\Livewire\Users;
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', Dashboard::class)->name('dashboard');
     Route::get('/sms', Sms::class)->name('sms')->middleware('permission:sms-read');
+    Route::get('/phonebooks', Phonebooks::class)->name('phonebooks')->middleware('permission:sms-read');
     Route::get('/users', Users::class)->name('users')->middleware('permission:users-read');
 });
 

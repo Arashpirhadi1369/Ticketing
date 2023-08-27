@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Sms;
+use App\Models\Phonebook;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithStyles;
@@ -14,28 +14,25 @@ use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 
-
-class SmsExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping, WithEvents, WithStyles, WithColumnFormatting
+class PhonebooksExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping, WithEvents, WithStyles, WithColumnFormatting
 {
     private $row;
 
     private $columnChar;
 
-    private $fields = [
-        'شماره ارسال', 'موضوع', 'نام ارسال کننده', 'نام دریافت کننده', 'شماره دریافت کننده', 'متن پیامک', 'وضعیت پیامک', 'هزینه پیامک', 'تاریخ ایجاد'
-    ];
+    private $fields = ['نام', 'شماره تماس'];
 
     public function collection()
     {
-        $sms = Sms::with('senderUser', 'receiverUser')->get();
+        $phonebooks = Phonebook::get();
 
-        $this->row = $sms->count() + 1;
+        $this->row = $phonebooks->count() + 1;
 
         $count = count($this->headings());
 
         $this->columnChar = getEndColumn($count);
 
-        return $sms;
+        return $phonebooks;
     }
 
     public function headings(): array
@@ -43,51 +40,13 @@ class SmsExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMap
         return $this->fields;
     }
 
-    public function map($sms): array
+    public function map($phonebooks): array
     {
 
-        $rowData = [];
-
-        foreach ($this->fields as $field) {
-            if ($field == 'شماره ارسال') {
-                $rowData[] = $sms->source_number;
-            } elseif ($field == 'موضوع') {
-                if ($sms->subject != null) {
-                    $rowData[] = $sms->subject;
-                } else {
-                    $rowData[] = null;
-                }
-            }
-            elseif ($field == 'نام ارسال کننده') {
-                if ($sms->senderUser != null) {
-                    $rowData[] = __($sms->senderUser->name);
-                } else {
-                    $rowData[] = __($sms->senderUser);
-                }
-            } elseif ($field == 'نام دریافت کننده') {
-                if ($sms->receiverUser != null) {
-                    $rowData[] = __($sms->receiverUser->name);
-                } else {
-                    $rowData[] = __($sms->receiver_name);
-                }
-            } elseif ($field == 'شماره دریافت کننده') {
-                $rowData[] = $sms->destination_number;
-            } elseif ($field == 'متن پیامک') {
-                $rowData[] = $sms->message;
-            } elseif ($field == 'وضعیت پیامک') {
-                if ($sms->status == 1) {
-                    $rowData[] =  'ارسال شده';
-                } else {
-                    $rowData[] =  'خطا';
-                }
-            } elseif ($field == 'هزینه پیامک') {
-                $rowData[] = $sms->cost;
-            } elseif ($field == 'تاریخ ایجاد') {
-                $rowData[] = jdate($sms->created_at)->format('Y-m-d H:i:s');
-            }
-        }
-
-        return array_chunk($rowData, count($this->fields));
+        return [
+            $phonebooks->name,
+            $phonebooks->phone,
+        ];
     }
 
     public function registerEvents(): array

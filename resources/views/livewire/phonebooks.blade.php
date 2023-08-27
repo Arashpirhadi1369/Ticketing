@@ -1,4 +1,7 @@
 <div>
+
+    @include('layouts.modals.create-modal')
+
     <div class="d-flex ">
         <div class="col-3 my-4" id="navbar-dashboard">
             <div class=" bg-light shadow  mr-2" id="navbar-dashboard">
@@ -123,68 +126,6 @@
                         </div>
                     </div>
 
-                    {{--Create user Modal--}}
-                    <div wire:ignore.self class="modal fade" id="modal" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                            <div class="modal-content" style="background-color: #f4f5f7">
-                                <div class="modal-header mx-4 mt-3">
-                                    <div class="d-flex align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green"
-                                            class="ml-2 bi bi-plus-square" viewBox="0 0 16 16">
-                                            <path
-                                                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z">
-                                            </path>
-                                            <path
-                                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
-                                            </path>
-                                        </svg>
-                                        <h5 class="modal-title mx-3 text-bold">ثبت درخواست جدید FR035
-                                        </h5>
-                                    </div>
-                                    <button wire:click='resetInput' type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close" id="dashboardModalClose">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body text-right">
-                                    <form method="POST" class="m-4">
-                                        @csrf
-                                        <div class="form-group col-md-8 p-0">
-                                            <label class="text-bold"> نام کاربر :</label>
-                                            @error('user.name') <span class="mr-2 text-danger">{{ $message
-                                                }}</span>@enderror
-                                            <input wire:model.debounce.500ms='entity.name' class="form-control">
-                                        </div>
-                                        <hr>
-                                        <div class="form-group col-md-8 p-0">
-                                            <div>
-                                                <label class="text-bold">شماره موبایل
-                                                    :</label>
-                                                @error('user.phone') <span class="mr-2 text-danger">{{ $message
-                                                    }}</span>@enderror
-                                                </br>
-                                                <input wire:model.debounce.500ms='entity.phone' class="form-control"
-                                                    name="phone" id="phone">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer d-flex justify-content-between">
-                                    <div>
-                                        <form>
-
-                                        </form>
-                                    </div>
-                                    <div>
-                                        <button wire:click='store' type="button" class="btn btn-success">ذخیره</button>
-                                        <button wire:click='resetInput' type="button" data-dismiss="modal"
-                                            class="btn btn-outline-danger">انصراف</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="d-flex flex-row">
                         <div class="mr-3 row">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -221,12 +162,25 @@
                     </div>
                 </div>
             </div>
-            <div class="card mt-4 rounded rounded-lg " style="border-radius: 10px !important;">
+            <div class="card mt-4 shadow" style="border-radius: 10px">
                 <div class="card-body">
-                    <div class="d-flex flex-row mb-4 justify-content-between align-items-center">
+                    <div class="d-flex mb-3 justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
 
-                        <p class="h5 text-bold mb-0">مدیریت کاربران </p>
+                        <p class="h5 text-bold mb-0 ml-3">مدیریت دفترچه تلفن </p>
 
+                        @permission("sms-create")
+                            <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button"
+                                data-toggle="modal" data-target="#createModal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi ml-2 bi-plus-lg" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
+                                </svg>
+                                ایجاد مخاطب جدید
+                            </button>
+                            @endpermission
+                        </div>
                         <div class="d-flex flex-row align-items-center">
 
                             <div class="dropdown d-flex align-items-center">
@@ -380,10 +334,10 @@
                                         <input wire:model="selected" type="checkbox" class="mycheckbox"
                                             value="{{ $entity->id }}" />
 
-                                        @permission("users-update")
+                                        @permission("sms-update")
                                         <button wire:click="edit({{ $entity->id }})"
                                             class="btn text-info bg-transparent border-0" type="button"
-                                            data-toggle="modal" data-target="#modal">
+                                            data-toggle="modal" data-target="#createModal">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                 <path
@@ -394,7 +348,7 @@
                                         </button>
                                         @endpermission
 
-                                        @permission("users-delete")
+                                        @permission("sms-delete")
                                         <button wire:click="edit({{ $entity->id }})"
                                             class="btn bg-transparent text-danger border-0" type="button"
                                             data-toggle="modal" data-target="#deletemodal">

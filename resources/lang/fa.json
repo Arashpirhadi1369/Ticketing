@@ -33,6 +33,8 @@
     "status": "وضعیت",
     "created_at": "تاریخ ایجاد",
     "message": "پیام",
+    "subject": "موضوع",
+    "phonebook": "دفترچه تلفن",
 
     "name": "نام",
     "username": "نام کاربری",
