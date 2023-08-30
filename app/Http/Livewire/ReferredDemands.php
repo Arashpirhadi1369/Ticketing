@@ -84,7 +84,7 @@ class ReferredDemands extends Component
                     Sms::create(
                         [
                             'sender_user_id'        => auth()->user()->id,
-                            'source_number'         => env("KAVENEGAR_SENDER_NUMBER"),
+                            'source_number'         => $result->sender,
                             'receiver_user_id'      => $user->id,
                             'destination_number'    => $user->phone,
                             'receiver_name'         => $user->name,
