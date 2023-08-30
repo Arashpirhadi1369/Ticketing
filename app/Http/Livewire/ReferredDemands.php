@@ -87,6 +87,7 @@ class ReferredDemands extends Component
                             'source_number'         => $result->sender,
                             'receiver_user_id'      => $user->id,
                             'destination_number'    => $user->phone,
+                            'subject'               => 'Ticket Reply',
                             'receiver_name'         => $user->name,
                             'message'               => $message,
                             'status'                => $result->status,
