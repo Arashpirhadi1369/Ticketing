@@ -15,6 +15,7 @@ return [
         'administrator' => [
             'users' => 'c,r,u,d',
             'sms' => 'c,r,u,d',
+            'TemperatureMonitoring' => 'c,r,u,d'
         ],
         'user-manager' => [
             'users' => 'c,r,u,d',

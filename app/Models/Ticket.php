@@ -35,6 +35,6 @@ class Ticket extends Model
 
     public function routeNotificationForSlack($notification)
     {
-        return 'https://hooks.slack.com/services/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';
+        return 'https://hooks.slack.com/services/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';
     }
 }
