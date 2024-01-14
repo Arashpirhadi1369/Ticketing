@@ -1,4 +1,7 @@
 <div>
+    {{-- @include('layouts.modals.create-sms-modal')
+
+    @include('layouts.modals.info-sms-modal') --}}
 
     <div class="d-flex ">
         <div class="col-3 my-4" id="navbar-dashboard">
@@ -122,6 +125,19 @@
                 <div class="card-body">
                     <div class="d-flex mb-3 justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
+                            {{-- <p class="h5 text-bold mb-0 ml-3">مدیریت پیامک</p>
+
+                            @permission("sms-create")
+                            <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button"
+                                data-toggle="modal" data-target="#createModal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi ml-2 bi-plus-lg" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
+                                </svg>
+                                ارسال پیامک جدید
+                            </button>
+                            @endpermission --}}
 
                         </div>
                         <div class="d-flex  flex-row align-items-center">
@@ -261,23 +277,39 @@
 
                                 @foreach ($headers as $header)
 
-                                @if ($header == 'status')
+                                @if ($header == 'device')
                                 <td wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
                                     data-target="#infoModal">
 
-                                    @if ($entity->status == 1)
-                                    {{"ارسال شده"}}
-                                    @else
-                                    {{"خطا"}}
-                                    @endif
+                                    {{$entity->sensor->device_name}}
                                 </td>
 
-                                @elseif($header == 'created_at')
+                                @elseif($header == 'sensor')
 
                                 <td dir="ltr" wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
                                     data-target="#infoModal">
 
-                                    {!! jdate($entity->created_at)->format('Y-m-d H:i:s')!!}</td>
+                                    {{$entity->sensor->sensor_name}}
+
+                                    @elseif($header == 'location')
+
+                                <td dir="ltr" wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
+
+                                    {{$entity->sensor->location}}
+
+                                    @elseif($header == 'ip')
+
+                                <td dir="ltr" wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
+
+                                    {{$entity->sensor->ip}}
+                                    @elseif($header == 'date')
+
+                                <td dir="ltr" wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
+
+                                    {!! jdate($entity->created_at)->format('Y-m-d')!!}</td>
 
                                 @else
 
@@ -338,6 +370,11 @@
         </div>
     </div>
 
+    <script>
+        window.addEventListener('closeModal', event => {
+            document.getElementById('smsModalClose').click();
+    })
+    </script>
 </div>
 <script src="{{asset('js/popper.min.js')}}"></script>
 

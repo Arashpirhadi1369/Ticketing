@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sensor_id');
             $table->integer('average_temperature');
             $table->integer('average_humidity');
+            $table->timestamp('date');
             $table->timestamps();
 
             $table->foreign('sensor_id')->references('id')->on('sensors')
