@@ -41,6 +41,13 @@
     "ou": "گروه",
     "phone": "شماره تماس",
 
+    "device": "دستگاه",
+    "sensor_id": "سنسور",
+    "location": "موقیت مکانی",
+    "average_temperature": "میانگین دما",
+    "average_humidity": "میانگین رطوبت",
+    "date": "تاریخ",
+
     "Arash Pirhadi": "آرش پیرهادی",
     "mohammadzadeh": "مجید محمدزاده",
     "enayati": "حمیده عنایتی",

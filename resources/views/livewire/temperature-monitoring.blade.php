@@ -278,43 +278,37 @@
                                 @foreach ($headers as $header)
 
                                 @if ($header == 'device')
-                                <td wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
-                                    data-target="#infoModal">
+                                <td>
 
                                     {{$entity->sensor->device_name}}
                                 </td>
 
                                 @elseif($header == 'sensor')
 
-                                <td dir="ltr" wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
-                                    data-target="#infoModal">
+                                <td>
 
                                     {{$entity->sensor->sensor_name}}
 
                                     @elseif($header == 'location')
 
-                                <td dir="ltr" wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
-                                    data-target="#infoModal">
+                                <td>
 
                                     {{$entity->sensor->location}}
 
                                     @elseif($header == 'ip')
 
-                                <td dir="ltr" wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
-                                    data-target="#infoModal">
+                                <td>
 
                                     {{$entity->sensor->ip}}
                                     @elseif($header == 'date')
 
-                                <td dir="ltr" wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
-                                    data-target="#infoModal">
+                                <td>
 
-                                    {!! jdate($entity->created_at)->format('Y-m-d')!!}</td>
+                                    {{$entity->date}}</td>
 
                                 @else
 
-                                <td wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
-                                    data-target="#infoModal">
+                                <td>
 
                                     {{$entity["$header"]}}
                                 </td>

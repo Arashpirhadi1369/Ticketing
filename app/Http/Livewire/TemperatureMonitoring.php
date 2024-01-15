@@ -2,18 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AverageTemperature;
-use App\Models\Sensor;
-use GuzzleHttp\Client;
 use Livewire\Component;
 use App\Traits\Sortable;
 use App\Traits\BulkAction;
 use App\Traits\ResetInput;
 use Livewire\WithPagination;
 use App\Traits\ConvertNumbers;
+use App\Models\AverageTemperature;
 use App\Traits\ResetSearchFilters;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TemperatureMonitoringExport;
 
 class TemperatureMonitoring extends Component
 {
@@ -28,12 +26,17 @@ class TemperatureMonitoring extends Component
     public $filter  = 'all';
 
     public $filters = [
-        'all'       => null,
-        'name'      => null,
-        'date'     => null,
+        'all'              => null,
+        'date'             => null,
+        'date_greaterThan' => null,
+        'date_lessThan'    => null,
     ];
 
-    public $headers = ["device", "sensor", "location", "ip", "average_temperature", "average_humidity", "date"];
+    protected $rules = [
+        'entity.date' => 'required',
+    ];
+
+    public $headers = ["device", "sensor_id", "location", "ip", "average_temperature", "average_humidity", "date"];
 
     public $modalFields = ['subject', 'phonebook', 'message'];
 
@@ -55,11 +58,11 @@ class TemperatureMonitoring extends Component
     {
         return AverageTemperature::query()
             ->when($this->filters['all'], fn ($query, $search) => $query
-                ->where('name', 'like', '%' . $search . '%')
-                ->orwhere('phone', 'like', '%' . $search . '%'))
+                ->where('date', 'like', '%' . $search . '%'))
 
-            ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
-            ->when($this->filters['date'], fn ($query, $search) => $query->where('phone', 'like', '%' . $search . '%'))
+            ->when($this->filters['date'], fn ($query, $search) => $query->where('date', 'like', '%' . $search . '%'))
+            ->when($this->filters['date_greaterThan'], fn ($query, $search) => $query->where('date', '>=',  $search))
+            ->when($this->filters['date_lessThan'], fn ($query, $search) => $query->where('date', '<=',  $search))
             ->orderby($this->sortField, $this->sortDirection);
     }
 
@@ -68,8 +71,8 @@ class TemperatureMonitoring extends Component
         return $this->entitiesQuery->paginate(10);
     }
 
-    // public function exportExcel()
-    // {
-    //     return Excel::download(new ModelsTemperatureMonitoringsExport(), 'ModelsTemperatureMonitoring.xlsx');
-    // }
+    public function exportExcel()
+    {
+        return Excel::download(new TemperatureMonitoringExport(), 'TemperatureMonitoring.xlsx');
+    }
 }

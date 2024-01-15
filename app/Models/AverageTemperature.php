@@ -9,7 +9,7 @@ class AverageTemperature extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sensor_id', 'average_temperature', 'average_humidity'];
+    protected $fillable = ['sensor_id', 'average_temperature', 'average_humidity', 'date'];
 
     public function sensor()
     {

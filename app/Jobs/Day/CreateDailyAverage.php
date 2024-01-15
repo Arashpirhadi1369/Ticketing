@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Day;
 
-use Carbon\Carbon;
+use Morilog\Jalali\Jalalian;
 use Illuminate\Bus\Queueable;
 use App\Services\SensorsService;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +40,7 @@ class CreateDailyAverage implements ShouldQueue
                 'sensor_id'             => $sensorAverage['sensor_id'],
                 'average_temperature'   => $sensorAverage['temperature'],
                 'average_humidity'      => $sensorAverage['humidity'],
-                'date'                  => Carbon::yesterday(),
+                'date'                  => Jalalian::fromDateTime('yesterday')->format('Y-m-d'),
                 'created_at'            => now(),
                 'updated_at'            => now(),
             ]);
