@@ -21,7 +21,7 @@ class TemperatureMonitoring extends Component
 
     public $entity;
 
-    public $componentName = "TemperatureMonitoring";
+    public $componentName = "temperature-monitoring";
 
     public $filter  = 'all';
 

@@ -50,17 +50,17 @@ class CreateTemperature implements ShouldQueue
             ]);
 
             if (($sensor->temperature_max_allowance != null) && ($temperature >= $sensor->temperature_max_allowance)) {
-                foreach ($sensor->alarmable_numbers as $numbers) {
-                    foreach ($numbers as $number) {
-                        $this->sendSms($number, "دمای جاری $temperature بیش از حد مجاز برای دستگاه $sensor->device_name در قسمت $sensor->location");
+                if ($sensor->phonebooks != null) {
+                    foreach ($sensor->phonebooks as $phonebook) {
+                        $this->sendSms($phonebook->phone, "دمای جاری $temperature بیش از حد مجاز برای دستگاه $sensor->device_name در قسمت $sensor->location");
                     }
                 }
             }
 
             if (($sensor->humidity_max_allowance != null) && ($humidity >= $sensor->humidity_max_allowance)) {
-                foreach ($sensor->alarmable_numbers as $numbers) {
-                    foreach ($numbers as $number) {
-                        $this->sendSms($number, "رطوبت جاری $humidity بیش از حد مجاز برای دستگاه $sensor->device_name در قسمت $sensor->location");
+                if ($sensor->phonebooks != null) {
+                    foreach ($sensor->phonebooks as $phonebook) {
+                        $this->sendSms($phonebook->phone, "رطوبت جاری $humidity بیش از حد مجاز برای دستگاه $sensor->device_name در قسمت $sensor->location");
                     }
                 }
             }

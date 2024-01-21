@@ -23,11 +23,13 @@
 
                         @if($field == 'phonebook')
                         <div wire:ignore class="mb-2">
-                            <select wire:model="phones" id="phones-dropdown" class="form-control" style="width: 100%" multiple="multiple">
+                            <select wire:model="phones" id="phones-dropdown" class="form-control" style="width: 100%"
+                                multiple="multiple">
                                 @foreach($phonebooks as $phonebook)
-                                <option value="{{$phonebook->id}}">{{ $phonebook->name }} {{ $phonebook->phone }}</option>
-                            @endforeach
-                              </select>
+                                <option value="{{$phonebook->id}}">{{ $phonebook->name }} {{ $phonebook->phone }}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
                         @elseif($field == 'message')
                         <textarea wire:model.debounce.500ms="entity.{{$field}}" class="form-control mb-2"
@@ -38,7 +40,7 @@
 
                         @endif
                         @endforeach
-                        
+
                         <div class="mt-4 modal-footer">
                             <button wire:click.prevent="store" type="submit" class="btn btn-info mt-2">ذخیره
                             </button>

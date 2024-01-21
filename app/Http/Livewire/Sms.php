@@ -26,7 +26,7 @@ class Sms extends Component
     public $phonebooks;
 
     public $phones;
-    
+
     public $infoEntity;
 
     public $componentName = "sms";

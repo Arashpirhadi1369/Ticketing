@@ -1,6 +1,7 @@
 <div>
+    @include('layouts.modals.create-sensor-modal')
 
-    @include('layouts.modals.create-modal')
+    @include('layouts.modals.info-sensor-modal')
 
     <div class="d-flex ">
         <div class="col-3 my-4" id="navbar-dashboard">
@@ -59,19 +60,6 @@
 
                             @permission("sensors-read")
                             <li class="nav-item">
-                                <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/sensors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="balck"
-                                        class="ml-3 bi" viewBox="0 0 24 24">
-                                        <path
-                                            d="M17 10.645v-2.29c-1.17-.417-1.907-.533-2.28-1.431-.373-.9.07-1.512.6-2.625l-1.618-1.619c-1.105.525-1.723.974-2.626.6-.9-.373-1.017-1.116-1.431-2.28h-2.29c-.412 1.158-.53 1.907-1.431 2.28h-.001c-.9.374-1.51-.07-2.625-.6l-1.617 1.619c.527 1.11.973 1.724.6 2.625-.375.901-1.123 1.019-2.281 1.431v2.289c1.155.412 1.907.531 2.28 1.431.376.908-.081 1.534-.6 2.625l1.618 1.619c1.107-.525 1.724-.974 2.625-.6h.001c.9.373 1.018 1.118 1.431 2.28h2.289c.412-1.158.53-1.905 1.437-2.282h.001c.894-.372 1.501.071 2.619.602l1.618-1.619c-.525-1.107-.974-1.723-.601-2.625.374-.899 1.126-1.019 2.282-1.43zm-8.5 1.689c-1.564 0-2.833-1.269-2.833-2.834s1.269-2.834 2.833-2.834 2.833 1.269 2.833 2.834-1.269 2.834-2.833 2.834zm15.5 4.205v-1.077c-.55-.196-.897-.251-1.073-.673-.176-.424.033-.711.282-1.236l-.762-.762c-.52.248-.811.458-1.235.283-.424-.175-.479-.525-.674-1.073h-1.076c-.194.545-.25.897-.674 1.073-.424.176-.711-.033-1.235-.283l-.762.762c.248.523.458.812.282 1.236-.176.424-.528.479-1.073.673v1.077c.544.193.897.25 1.073.673.177.427-.038.722-.282 1.236l.762.762c.521-.248.812-.458 1.235-.283.424.175.479.526.674 1.073h1.076c.194-.545.25-.897.676-1.074h.001c.421-.175.706.034 1.232.284l.762-.762c-.247-.521-.458-.812-.282-1.235s.529-.481 1.073-.674zm-4 .794c-.736 0-1.333-.597-1.333-1.333s.597-1.333 1.333-1.333 1.333.597 1.333 1.333-.597 1.333-1.333 1.333zm-4 3.071v-.808c-.412-.147-.673-.188-.805-.505s.024-.533.212-.927l-.572-.571c-.389.186-.607.344-.926.212s-.359-.394-.506-.805h-.807c-.146.409-.188.673-.506.805-.317.132-.533-.024-.926-.212l-.572.571c.187.393.344.609.212.927-.132.318-.396.359-.805.505v.808c.408.145.673.188.805.505.133.32-.028.542-.212.927l.572.571c.39-.186.608-.344.926-.212.318.132.359.395.506.805h.807c.146-.409.188-.673.507-.805h.001c.315-.131.529.025.924.213l.572-.571c-.186-.391-.344-.609-.212-.927s.397-.361.805-.506zm-3 .596c-.552 0-1-.447-1-1s.448-1 1-1 1 .447 1 1-.448 1-1 1z" />
-                                    </svg>
-                                    مدیریت سنسورها
-                                </a>
-                            </li>
-                            @endpermission
-
-                            @permission("sensors-read")
-                            <li class="nav-item">
                                 <a class="nav-link d-flex text-dark align-items-center mt-3 "
                                     href="/temperature-monitoring">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="balck"
@@ -109,21 +97,6 @@
         <div class="col-9 mt-4 pr-0">
             <div class="card border-0 bg-light shadow " style="height: 70px;border-radius: 10px">
                 <div class="card-body d-flex flex-row py-3 justify-content-between align-items-center">
-                    <div></div>
-                    {{-- <button wire:click="$set('showSavedButton' , 1)" type="button"
-                        class="btn btn-success d-flex flex-row" data-toggle="modal" data-target="#test">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="ml-2 bi bi-plus-square" viewBox="0 0 16 16">
-                            <path
-                                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z">
-                            </path>
-                            <path
-                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
-                            </path>
-                        </svg>
-                        ثبت درخواست جدید
-                    </button> --}}
-
                     <div wire:ignore.self class="modal fade" id="deletemodal" data-backdrop="static"
                         data-keyboard="false" tabindex="-1" aria-labelledby="deletemodal" aria-hidden="true">
                         <div class="modal-dialog">
@@ -193,10 +166,9 @@
                 <div class="card-body">
                     <div class="d-flex mb-3 justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
+                            <p class="h5 text-bold mb-0 ml-3">مدیریت دستگاه ها</p>
 
-                            <p class="h5 text-bold mb-0 ml-3">مدیریت دفترچه تلفن </p>
-
-                            @permission("sms-create")
+                            @permission("sensors-create")
                             <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button"
                                 data-toggle="modal" data-target="#createModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -204,38 +176,12 @@
                                     <path
                                         d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
                                 </svg>
-                                ایجاد مخاطب جدید
+                                ایجاد سنسور جدید
                             </button>
                             @endpermission
-                        </div>
-                        <div class="d-flex flex-row align-items-center">
 
-                            <div class="dropdown d-flex align-items-center">
-                                <a class="btn d-flex align-items-center btn-outline-info dropdown-toggle" role="button"
-                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                        class="bi bi-menu-button-wide ml-2" viewBox="0 0 16 16">
-                                        <path
-                                            d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v2A1.5 1.5 0 0 1 14.5 5h-13A1.5 1.5 0 0 1 0 3.5v-2zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-13z" />
-                                        <path
-                                            d="M2 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm10.823.323-.396-.396A.25.25 0 0 1 12.604 2h.792a.25.25 0 0 1 .177.427l-.396.396a.25.25 0 0 1-.354 0zM0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2H1zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
-                                    </svg>
-                                    امکانات بیشتر
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                    <button wire:click="exportExcel"
-                                        class="dropdown-item d-flex align-items-center text-success text-small">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green"
-                                            class="bi ml-2 bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
-                                            <path d="M6 12v-2h3v2H6z" />
-                                            <path
-                                                d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM3 9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2H3V9z" />
-                                        </svg>
-                                        خروجی اکسل
-                                    </button>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="d-flex  flex-row align-items-center">
                             <div class="d-flex flex-row mr-2">
                                 <div class="form-group  list-group-item list-group-item-action mb-0 p-0">
                                     <div class="input-group">
@@ -296,6 +242,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <table id="table" class="table table-striped table-bordered" style="width:100%">
                         <thead>
@@ -310,17 +257,14 @@
                                 @if ($entities->isNotEmpty())
                                 <th style="width: 13%">
                                     <div class="d-flex flex-row">
-                                        <input wire:model="selectPage" class="mt-2 mycheckbox" type="checkbox" />
+                                        {{-- <input wire:model="selectPage" class="mt-2 mycheckbox" type="checkbox" />
+                                        --}}
                                         <span class="mr-4 mt-1">عملیات</span>
                                     </div>
                                 </th>
                                 @endif
 
                                 @foreach ($headers as $header)
-                                @if ($header == 'id' || $header == 'created_at' || $header == 'updated_at' ||
-                                $header == 'msds' || $header == 'coa')
-                                @continue
-                                @endif
                                 <th>
                                     <span wire:click="sortby('{{$header}}')" class="pointer">{{__($header)}}</span>
                                     @if ($sortDirection == 'asc' && $sortField == '{{__($header)}}')
@@ -358,10 +302,10 @@
 
                                 <td>
                                     <div>
-                                        <input wire:model="selected" type="checkbox" class="mycheckbox"
-                                            value="{{ $entity->id }}" />
+                                        {{-- <input wire:model="selected" type="checkbox" class="mycheckbox"
+                                            value="{{ $entity->id }}" /> --}}
 
-                                        @permission("sms-update")
+                                        @permission("sensors-update")
                                         <button wire:click="edit({{ $entity->id }})"
                                             class="btn text-info bg-transparent border-0" type="button"
                                             data-toggle="modal" data-target="#createModal">
@@ -375,7 +319,7 @@
                                         </button>
                                         @endpermission
 
-                                        @permission("sms-delete")
+                                        @permission("sensors-delete")
                                         <button wire:click="edit({{ $entity->id }})"
                                             class="btn bg-transparent text-danger border-0" type="button"
                                             data-toggle="modal" data-target="#deletemodal">
@@ -394,12 +338,22 @@
 
                                 @foreach ($headers as $header)
 
-                                @if ($header == 'id' || $header == 'created_at' || $header == 'updated_at' ||
-                                $header == 'msds' || $header == 'coa')
-                                @continue
-                                @endif
+                                @if($header == 'created_at')
 
-                                <td> {{$entity["$header"]}} </td>
+                                <td dir="ltr" wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
+
+                                    {!! jdate($entity->created_at)->format('Y-m-d H:i:s')!!}</td>
+
+                                @else
+
+                                <td wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
+
+                                    {{$entity["$header"]}}
+                                </td>
+
+                                @endif
 
                                 @endforeach
                             </tr>
@@ -431,7 +385,7 @@
                         @break
                         @endif
                         @if ($loop->iteration == count($filters))
-                        <small>نمایش اطلاعات کاربران</small>
+                        <small>نمایش اطلاعات دستگاه ها</small>
                         @endif
                         @endforeach
 
@@ -446,10 +400,15 @@
                     </div>
                     <div class="mt-2">{{ $entities->links() }}</div>
                 </div>
-
             </div>
         </div>
     </div>
+
+    <script>
+        window.addEventListener('closeModal', event => {
+            document.getElementById('sensorModalClose').click();
+    })
+    </script>
 </div>
 <script src="{{asset('js/popper.min.js')}}"></script>
 

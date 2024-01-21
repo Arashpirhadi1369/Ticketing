@@ -11,12 +11,13 @@ class Sensor extends Model
 
     protected $fillable = ['device_name', 'sensor_name', 'location', 'ip', 'temperature_max_allowance', 'humidity_max_allowance', 'alarmable_numbers'];
 
-    protected $casts = [
-        'alarmable_numbers' => 'array'
-    ];
-
     public function average()
     {
         return $this->hasMany(AverageTemperature::class);
+    }
+
+    public function phonebooks()
+    {
+        return $this->belongsToMany(Phonebook::class, 'phonebook_sensor', 'sensor_id', 'phonebook_id');
     }
 }

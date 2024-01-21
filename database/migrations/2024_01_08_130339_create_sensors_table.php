@@ -21,7 +21,6 @@ return new class extends Migration
             $table->ipAddress('ip');
             $table->integer('temperature_max_allowance')->nullable();
             $table->integer('humidity_max_allowance')->nullable();
-            $table->json('alarmable_numbers')->nullable();
             $table->timestamps();
         });
     }

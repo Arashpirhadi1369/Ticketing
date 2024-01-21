@@ -41,12 +41,16 @@
     "ou": "گروه",
     "phone": "شماره تماس",
 
-    "device": "دستگاه",
+    "device_name": "دستگاه",
+    "sensor_name": "سنسور",
     "sensor_id": "سنسور",
     "location": "موقیت مکانی",
     "average_temperature": "میانگین دما",
     "average_humidity": "میانگین رطوبت",
     "date": "تاریخ",
+    "temperature_max_allowance": "حداکثر دمای مجاز",
+    "humidity_max_allowance": "حداکثر رطوبت مجاز",
+    "alarmable_numbers": "شماره تماس ها جهت ارسال پیامک هشدار",
 
     "Arash Pirhadi": "آرش پیرهادی",
     "mohammadzadeh": "مجید محمدزاده",

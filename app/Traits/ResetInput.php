@@ -10,9 +10,13 @@ trait ResetInput
             $this->entity->$header = null;
         }
 
-        if (isset($this->entity->message)) {
-            $this->entity->message = null;
+        foreach ($this->modalFields as $modalField) {
+            $this->entity->$modalField = null;
         }
+
+        // if (isset($this->entity->message)) {
+        //     $this->entity->message = null;
+        // }
 
         if (isset($this->phones)) {
             $this->phones = null;
