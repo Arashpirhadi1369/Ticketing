@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Dashboardlayouts;
 
+use App\Models\User;
 use App\Models\Ticket;
 use Livewire\Component;
-use App\Notifications\TicketNotification;
+use App\Traits\Smsable;
 
 class Dashboard extends Component
 {
+    use Smsable;
+
     public $ticket;
 
     public $showSavedButton = 1;
@@ -39,15 +42,21 @@ class Dashboard extends Component
 
             $userId = $this->ticket->user_id = getUserId();
 
-            $savedTicket = Ticket::create([
+            Ticket::create([
                 'user_id' => $userId,
                 'subject' => $this->ticket->subject,
                 'content' => $this->ticket->content
             ]);
 
-            try {
-                $savedTicket->notify(new TicketNotification);
-            } catch (\Throwable $th) {
+            $users = User::where('ou', '=', 'IT')->get();
+
+            foreach ($users as $user) {
+                if ($user->phone != null) {
+
+                    $message = $this->ticket->subject;
+
+                    $this->sendSms($user->phone, $message);
+                }
             }
 
             $this->dispatchBrowserEvent('closeModal');
