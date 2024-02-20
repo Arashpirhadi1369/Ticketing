@@ -52,8 +52,10 @@ class Dashboard extends Component
 
             foreach ($users as $user) {
                 if ($user->phone != null) {
+                    $demanderUser = User::where('id', '=', $userId)->get();
 
-                    $message = $this->ticket->subject;
+                    $demanderName = $demanderUser[0]->name;
+                    $message = 'درخواست جدید' . "\n" . 'درخواست دهنده : ' . __($demanderName) . "\n" . 'موضوع : ' . $this->ticket->subject;
 
                     $this->sendSms($user->phone, $message);
                 }
