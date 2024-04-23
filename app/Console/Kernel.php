@@ -3,8 +3,9 @@
 namespace App\Console;
 
 use App\Jobs\UpdateGroups;
-use App\Jobs\Hour\CreateTemperature;
 use App\Jobs\Day\CreateDailyAverage;
+use App\Jobs\Hour\CreateTemperature;
+use App\Jobs\FiveMinutes\CameraFails;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -23,6 +24,7 @@ class Kernel extends ConsoleKernel
         $schedule->job(new UpdateGroups)->daily();
         $schedule->job(new CreateTemperature)->hourly();
         $schedule->job(new CreateDailyAverage)->daily();
+        $schedule->job(new CameraFails)->everyFiveMinutes();
     }
 
     /**

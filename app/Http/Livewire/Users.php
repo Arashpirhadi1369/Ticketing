@@ -39,6 +39,8 @@ class Users extends Component
 
     public $headers = ["name", "username", "ou", "phone"];
 
+    public $modalFields = ['name', 'phone'];
+
     public function mount(User $entity)
     {
         $this->entity = $entity;
