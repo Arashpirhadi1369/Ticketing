@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('camera_fails', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('camera_id');
+            $table->string('camera_name');
+            $table->string('location');
+            $table->ipAddress('ip');
             $table->string('jalalian_date');
             $table->timestamps();
 

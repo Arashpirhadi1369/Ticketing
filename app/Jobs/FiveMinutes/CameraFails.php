@@ -51,15 +51,39 @@ class CameraFails implements ShouldQueue
             if (!$health) {
                 DB::table('camera_fails')->insert([
                     'camera_id'             => $camera->id,
+                    'camera_name'           => $camera->camera_name,
+                    'location'              => $camera->location,
+                    'ip'                    => $camera->ip,
                     'jalalian_date'         => Jalalian::now(),
                     'created_at'            => now(),
                     'updated_at'            => now(),
                 ]);
 
-                $fails = DB::table('camera_fails')->where('camera_id', $camera->id)->whereDate('created_at', Carbon::today())->get();
+                $todayFails = DB::table('camera_fails')->where('camera_id', $camera->id)->whereDate('created_at', Carbon::today())->orderByDesc('created_at')->get();
 
-                if (count($fails) > 1 && count($fails) < 4) {
+                //first notify
+                if (
+                    count($todayFails) == 2 &&
+                    ($todayFails[0]->created_at > now()->subMinutes(5)->format('Y-m-d h:i')) &&
+                    (now()->subMinutes(4)->format('Y-m-d h:i') > $todayFails[1]->created_at)
+                ) {
                     $this->sendSms('09382056185', "دستگاه $camera->camera_name در قسمت $camera->location با ip $camera->ip از دسترس خارج شده");
+                }
+
+                //next fail for same day
+                if (count($todayFails) > 2) {
+                    if (now()->subMinutes(20) > $todayFails->skip(1)->first()->created_at) {
+                        $this->sendSms('09382056185', "دستگاه $camera->camera_name در قسمت $camera->location با ip $camera->ip مجدد از دسترس خارج شده");
+                    }
+                }
+            } else {
+                $todayFails = DB::table('camera_fails')->where('camera_id', $camera->id)->whereDate('created_at', Carbon::today())->orderByDesc('created_at')->get();
+
+                //back online
+                if (count($todayFails) >= 2) {
+                    if (now()->subMinutes(6) < $todayFails->first()->created_at) {
+                        $this->sendSms('09382056185', "دستگاه $camera->camera_name در قسمت $camera->location با ip $camera->ip روشن شد");
+                    }
                 }
             }
         }
