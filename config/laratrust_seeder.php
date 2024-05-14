@@ -12,16 +12,29 @@ return [
     'truncate_tables' => true,
 
     'roles_structure' => [
-        'administrator' => [
-            'users' => 'c,r,u,d',
-            'sms' => 'c,r,u,d',
-            'sensors' => 'c,r,u,d'
+        'administrator'  => [
+            'users'              => 'c,r,u,d',
+            'sms'                => 'c,r,u,d',
+            'sensors'            => 'c,r,u,d',
+            'units'              => 'c,r,u,d',
+            'categories'         => 'c,r,u,d',
+            'surveys'            => 'c,r,u,d',
+            'effectivenesses'    => 'c,r,u,d',
+            'courses'            => 'c,r,u,d',
         ],
         'user-manager' => [
             'users' => 'c,r,u,d',
         ],
         'sms-manager' => [
             'sms' => 'c,r,u,d',
+        ],
+
+        'qa-manager' => [
+            'units'              => 'c,r,u,d',
+            'categories'         => 'c,r,u,d',
+            'surveys'            => 'c,r,u,d',
+            'effectivenesses'    => 'c,r,u,d',
+            'courses'            => 'c,r,u,d',
         ],
     ],
 

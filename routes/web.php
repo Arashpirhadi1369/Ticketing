@@ -1,11 +1,16 @@
 <?php
 
+use App\Http\Livewire\Categories;
+use App\Http\Livewire\Courses;
 use App\Http\Livewire\Sms;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboardlayouts\Dashboard;
+use App\Http\Livewire\Effectivenesses;
 use App\Http\Livewire\Phonebooks;
 use App\Http\Livewire\Sensors;
+use App\Http\Livewire\Surveys;
 use App\Http\Livewire\TemperatureMonitoring;
+use App\Http\Livewire\Units;
 use App\Http\Livewire\Users;
 
 /*
@@ -26,6 +31,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/temperature-monitoring', TemperatureMonitoring::class)->name('temperature-monitoring')->middleware('permission:sensors-read');
     Route::get('/sensors', Sensors::class)->name('sensors')->middleware('permission:sensors-read');
     Route::get('/users', Users::class)->name('users')->middleware('permission:users-read');
+    Route::get('/units', Units::class)->name('units')->middleware('permission:units-read');
+    Route::get('/categories', Categories::class)->name('categories')->middleware('permission:categories-read');
+    Route::get('/courses', Courses::class)->name('courses')->middleware('permission:courses-read');
+    Route::get('/surveys', Surveys::class)->name('surveys')->middleware('permission:surveys-read');
+    Route::get('/effectivenesses', Effectivenesses::class)->name('effectivenesses')->middleware('permission:effectivenesses-read');
 });
 
 

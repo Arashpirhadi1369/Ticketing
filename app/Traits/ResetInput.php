@@ -22,9 +22,19 @@ trait ResetInput
             $this->phones = null;
         }
 
+        if (count($this->questions) != 0) {
+            $this->questions = [];
+        }
+
+        if (count($this->answers) != 0) {
+            $this->answers = [];
+        }
+
         if (isset($this->editMode)) {
             $this->editMode = false;
         }
+
+        $this->entity->id = null;
 
         $this->resetValidation();
     }
