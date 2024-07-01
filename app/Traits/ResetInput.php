@@ -22,12 +22,16 @@ trait ResetInput
             $this->phones = null;
         }
 
-        if (count($this->questions) != 0) {
-            $this->questions = [];
+        if (isset($this->questions)) {
+            if (count($this->questions) != 0) {
+                $this->questions = [];
+            }
         }
 
-        if (count($this->answers) != 0) {
-            $this->answers = [];
+        if (isset($this->answers)) {
+            if (count($this->answers) != 0) {
+                $this->answers = [];
+            }
         }
 
         if (isset($this->editMode)) {

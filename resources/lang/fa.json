@@ -51,6 +51,11 @@
     "temperature_max_allowance": "حداکثر دمای مجاز",
     "humidity_max_allowance": "حداکثر رطوبت مجاز",
     "alarmable_numbers": "شماره تماس ها جهت ارسال پیامک هشدار",
+    "questions_count": "تعداد سوال",
+    "duration_hour": "مدت زمان به ساعت",
+    "category_id": "دسته بندی",
+    "survey_id": "نظرسنجی",
+    "effectiveness_id": "اثربخشی",
 
     "Arash Pirhadi": "آرش پیرهادی",
     "mohammadzadeh": "مجید محمدزاده",

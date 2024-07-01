@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Unit;
+use App\Models\Category;
 use App\Models\Course;
+use App\Models\Effectiveness;
+use App\Models\Survey;
 use Livewire\Component;
 use App\Traits\Sortable;
 use App\Traits\BulkAction;
@@ -20,33 +22,40 @@ class Courses extends Component
 
     public $entity;
 
-    public $units;
+    public $categories;
 
-    public $selectedUnit;
+    public $surveys;
+
+    public $effectivenesses;
 
     public $componentName = "courses";
 
     protected $rules = [
         'entity.name' => 'required|min:1|max:200',
+        'entity.duration_hour' => 'required|numeric|min:1|max:1000',
         'entity.category_id' => 'required|min:1|max:200000',
-        'entity.duration_hour' => 'required|min:1|max:1000',
+        'entity.survey_id' => 'required|min:1|max:1000',
+        'entity.effectiveness_id' => 'required|min:1|max:200000',
     ];
 
     public $filter  = 'all';
 
     public $filters = [
-        'all'       => null,
-        'name'      => null,
+        'all'                => null,
+        'name'               => null,
+        'duration_hour'      => null,
     ];
 
-    public $headers = ["name", "category_id", "duration_hour"];
+    public $headers = ["name", "duration_hour", "category_id", 'survey_id', 'effectiveness_id'];
 
-    public $modalFields = ['name', "category_id", "duration_hour"];
+    public $modalFields = ['name', "duration_hour",  "category_id", 'survey_id', 'effectiveness_id'];
 
     public function mount(Course $entity)
     {
         $this->entity = $entity;
-        $this->units = Unit::get();
+        $this->categories = Category::get();
+        $this->surveys = Survey::get();
+        $this->effectivenesses = Effectiveness::get();
     }
 
     public function render()
@@ -65,9 +74,11 @@ class Courses extends Component
                 $this->filters['all'],
                 fn ($query, $search) => $query
                     ->where('name', 'like', '%' . $search . '%')
+                    ->orwhere('duration_hour', 'like', '%' . $search . '%')
             )
 
             ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+            ->when($this->filters['duration_hour'], fn ($query, $search) => $query->where('duration_hour', 'like', '%' . $search . '%'))
             ->orderby($this->sortField, $this->sortDirection);
     }
 
@@ -80,11 +91,7 @@ class Courses extends Component
     {
         $this->validate();
 
-        $selectedUnits = Unit::whereIn('id', $this->selectedUnit)->get();
-
         $this->entity->save();
-
-        $this->entity->units()->sync($selectedUnits);
 
         $this->dispatchBrowserEvent('closeModal');
         $this->resetInput();
@@ -93,15 +100,6 @@ class Courses extends Component
     public function edit(Course $entity)
     {
         $this->entity = $entity;
-
-        $selectedUnits = $this->entity->units;
-
-        $Unit = [];
-        foreach ($selectedUnits as $selectedUnit) {
-            $Unit[] = $selectedUnit->id;
-        }
-
-        $this->selectedUnit = $Unit;
     }
 
     public function destroy()

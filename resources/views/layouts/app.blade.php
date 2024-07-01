@@ -8,7 +8,7 @@
 
         <title>{{ config('app.name') }}</title>
         <link rel="icon" href="{!! asset('images/Title.png') !!}" />
-        
+
         <!-- Fonts -->
         <link href="{{asset('css/fontiran.css')}}" rel="stylesheet" type="text/css" />
 

@@ -221,7 +221,7 @@
 
                             @permission("sensors-create")
                             <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button"
-                                data-toggle="modal" data-target="#createModal">
+                                data-toggle="modal" data-target="#createCourseModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi ml-2 bi-plus-lg" viewBox="0 0 16 16">
                                     <path
@@ -359,7 +359,7 @@
                                         @permission("sensors-update")
                                         <button wire:click="edit({{ $entity->id }})"
                                             class="btn text-info bg-transparent border-0" type="button"
-                                            data-toggle="modal" data-target="#createModal">
+                                            data-toggle="modal" data-target="#createCourseModal">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                 <path
@@ -388,9 +388,26 @@
                                 </td>
 
                                 @foreach ($headers as $header)
+                                @if ($header == 'category_id')
+                                <td>
+                                    {{$entity->category->name}}
+                                </td>
+
+                                @elseif($header == 'survey_id')
+                                <td>
+                                    {{$entity->survey->name}}
+                                </td>
+
+                                @elseif($header == 'effectiveness_id')
+                                <td>
+                                    {{$entity->effectiveness->name}}
+                                </td>
+
+                                @else
                                 <td>
                                     {{$entity["$header"]}}
                                 </td>
+                                @endif
                                 @endforeach
                             </tr>
                             @empty
@@ -442,7 +459,7 @@
 
     <script>
         window.addEventListener('closeModal', event => {
-            document.getElementById('sensorModalClose').click();
+            document.getElementById('courseModalClose').click();
     })
     </script>
 </div>
