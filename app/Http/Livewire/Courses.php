@@ -32,7 +32,7 @@ class Courses extends Component
 
     protected $rules = [
         'entity.name' => 'required|min:1|max:200',
-        'entity.duration_hour' => 'required|numeric|min:1|max:1000',
+        'entity.duration_hour' => 'required|integer|min:1|max:1000',
         'entity.category_id' => 'required|min:1|max:200000',
         'entity.survey_id' => 'required|min:1|max:1000',
         'entity.effectiveness_id' => 'required|min:1|max:200000',

@@ -56,6 +56,12 @@
     "category_id": "دسته بندی",
     "survey_id": "نظرسنجی",
     "effectiveness_id": "اثربخشی",
+    "course_id": "نام دوره آموزشی",
+    "user_id": "نام کارمند",
+    "unit_id": "نام واحد",
+    "start_date": "تاریخ شروع",
+    "end_date": "تاریخ پایان",
+    "manager_user_id": "نام مدیر",
 
     "Arash Pirhadi": "آرش پیرهادی",
     "mohammadzadeh": "مجید محمدزاده",

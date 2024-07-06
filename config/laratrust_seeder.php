@@ -21,6 +21,7 @@ return [
             'surveys'            => 'c,r,u,d',
             'effectivenesses'    => 'c,r,u,d',
             'courses'            => 'c,r,u,d',
+            'course-user'        => 'c,r,u,d',
         ],
         'user-manager' => [
             'users' => 'c,r,u,d',
@@ -35,6 +36,7 @@ return [
             'surveys'            => 'c,r,u,d',
             'effectivenesses'    => 'c,r,u,d',
             'courses'            => 'c,r,u,d',
+            'course-user'        => 'c,r,u,d',
         ],
     ],
 

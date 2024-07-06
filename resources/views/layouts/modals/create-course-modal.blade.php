@@ -21,37 +21,49 @@
                                 }}</span>@enderror
                         </div>
 
-                        @if($field == 'category_id')
+                        @if($field == 'course_id')
                         <div wire:ignore class="mb-2">
-                            <select wire:model.debounce.500ms="entity.category_id" class="custom-select form-control"
-                                name="category_id" id="category_id">
-                                <option selected>دسته بندی را انتخاب کنید ...</option>
-                                @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{__($category->name)}}
+                            <select wire:model.debounce.500ms="entity.course_id" class="custom-select form-control"
+                                name="course_id" id="course_id">
+                                <option selected>دوره را انتخاب کنید ...</option>
+                                @foreach($courses as $course)
+                                <option value="{{$course->id}}">{{__($course->name)}}
                                 </option>
                                 @endforeach
                             </select>
                         </div>
 
-                        @elseif($field == 'survey_id')
+                        @elseif($field == 'user_id')
                         <div wire:ignore class="mb-2">
-                            <select wire:model.debounce.500ms="entity.survey_id" class="custom-select form-control"
-                                name="survey_id" id="survey_id">
-                                <option selected>نظرسنجی را انتخاب کنید ...</option>
-                                @foreach($surveys as $survey)
-                                <option value="{{$survey->id}}">{{__($survey->name)}}
+                            <select wire:model.debounce.500ms="entity.user_id" class="custom-select form-control"
+                                name="user_id" id="user_id">
+                                <option selected>کارمند را انتخاب کنید ...</option>
+                                @foreach($users as $user)
+                                <option value="{{$user->id}}">{{__($user->name)}}
                                 </option>
                                 @endforeach
                             </select>
                         </div>
 
-                        @elseif($field == 'effectiveness_id')
+                        @elseif($field == 'unit_id')
                         <div wire:ignore class="mb-2">
-                            <select wire:model.debounce.500ms="entity.effectiveness_id"
-                                class="custom-select form-control" name="effectiveness_id" id="effectiveness_id">
-                                <option selected>اثربخشی را انتخاب کنید ...</option>
-                                @foreach($effectivenesses as $effectiveness)
-                                <option value="{{$effectiveness->id}}">{{__($effectiveness->name)}}
+                            <select wire:model.debounce.500ms="entity.unit_id" class="custom-select form-control"
+                                name="unit_id" id="unit_id">
+                                <option selected>واحد را انتخاب کنید ...</option>
+                                @foreach($units as $unit)
+                                <option value="{{$unit->id}}">{{__($unit->name)}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        @elseif($field == 'manager_user_id')
+                        <div wire:ignore class="mb-2">
+                            <select wire:model.debounce.500ms="entity.manager_user_id"
+                                class="custom-select form-control" name="manager_user_id" id="manager_user_id">
+                                <option selected>مدیر را انتخاب کنید ...</option>
+                                @foreach($users as $user)
+                                <option value="{{$user->id}}">{{__($user->name)}}
                                 </option>
                                 @endforeach
                             </select>

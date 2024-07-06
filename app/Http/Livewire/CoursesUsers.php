@@ -1,0 +1,145 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\Sms;
+use App\Models\Unit;
+use App\Models\User;
+use App\Models\Course;
+use App\Traits\Smsable;
+use Livewire\Component;
+use App\Traits\Sortable;
+use App\Models\CourseUser;
+use App\Traits\BulkAction;
+use App\Traits\ResetInput;
+use Livewire\WithPagination;
+use App\Traits\ConvertNumbers;
+use App\Traits\ResetSearchFilters;
+
+class CoursesUsers extends Component
+{
+    use ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, BulkAction, WithPagination, Smsable;
+
+    protected $paginationTheme = 'bootstrap';
+
+    public $entity;
+
+    public $courses;
+
+    public $users;
+
+    public $units;
+
+    public $componentName = "courses-users";
+
+    protected $rules = [
+        'entity.course_id'          => 'required',
+        'entity.user_id'            => 'required',
+        'entity.unit_id'            => 'required',
+        'entity.start_date'         => 'required|max:16',
+        'entity.end_date'           => 'required|max:16',
+        'entity.manager_user_id'    => 'required',
+    ];
+
+    public $filter  = 'all';
+
+    public $filters = [
+        'all'                => null,
+        'course_id'          => null,
+    ];
+
+    public $headers = ["course_id", "user_id", "unit_id", "start_date", "end_date", "manager_user_id",];
+
+    public $modalFields = ['course_id', "user_id",  "unit_id", "start_date", "end_date", "manager_user_id",];
+
+    public function mount(CourseUser $entity)
+    {
+        $this->entity  = $entity;
+        $this->courses = Course::get();
+        $this->users   = User::where('phone', '!=', null)->get();
+        $this->units   = Unit::get();
+    }
+
+    public function render()
+    {
+        if ($this->selectAll) {
+            $this->selected = $this->coursesQuery->pluck('id')->map(fn ($id) => (string) $id);
+        }
+
+        return view('livewire.courses-users', ['entities' => $this->entities]);
+    }
+
+    public function getentitiesQueryProperty()
+    {
+        return CourseUser::query()
+            ->when(
+                $this->filters['all'],
+                fn ($query, $search) => $query
+                    ->where('course_id', 'like', '%' . $search . '%')
+                // ->orwhere('duration_hour', 'like', '%' . $search . '%')
+            )
+
+            ->when($this->filters['course_id'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+            // ->when($this->filters['duration_hour'], fn ($query, $search) => $query->where('duration_hour', 'like', '%' . $search . '%'))
+            ->orderby($this->sortField, $this->sortDirection);
+    }
+
+    public function getentitiesProperty()
+    {
+        return $this->entitiesQuery->paginate(10);
+    }
+
+    public function store()
+    {
+        $this->validate();
+
+        $this->entity->save();
+
+        $user = $this->entity->user;
+        $course = $this->entity->course;
+        $date = $this->enTofa($this->entity->start_date);
+
+        $message = __($user->name) . ' گرامی
+دوره آموزشی با عنوان : ' . $course->name . '
+در تاریخ : ' . $date . '
+برای شما برگزار خواهد شد.';
+
+        $results = $this->sendSms($user->phone, $message);
+
+        foreach ($results as $result) {
+            Sms::create(
+                [
+                    'sender_user_id'        => auth()->user()->id,
+                    'source_number'         => $result->sender,
+                    'receiver_user_id'      => $user->id,
+                    'destination_number'    => $user->phone,
+                    'subject'               => 'دوره آموزشی',
+                    'receiver_name'         => $user->name,
+                    'message'               => $message,
+                    'status'                => $result->status,
+                    'cost'                  => $result->cost,
+                ]
+            );
+        }
+
+        $this->dispatchBrowserEvent('closeModal');
+        $this->resetInput();
+    }
+
+    public function edit(CourseUser $entity)
+    {
+        $this->entity = $entity;
+    }
+
+    public function destroy()
+    {
+        $CourseUser = CourseUser::find($this->entity->id);
+        $CourseUser->delete();
+        $this->resetInput();
+    }
+
+    // public function exportExcel()
+    // {
+    //     return Excel::download(new CoursesExport(), 'Courses.xlsx');
+    // }
+}
