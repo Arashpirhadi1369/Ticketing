@@ -45,6 +45,42 @@
                             </select>
                         </div>
 
+                        @elseif($field == 'category_id')
+                        <div wire:ignore class="mb-2">
+                            <select wire:model.debounce.500ms="entity.category_id" class="custom-select form-control"
+                                name="category_id" id="category_id">
+                                <option selected>دسته بندی را انتخاب کنید ...</option>
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{__($category->name)}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        @elseif($field == 'survey_id')
+                        <div wire:ignore class="mb-2">
+                            <select wire:model.debounce.500ms="entity.survey_id" class="custom-select form-control"
+                                name="survey_id" id="survey_id">
+                                <option selected>فرم نظرسنجی را انتخاب کنید ...</option>
+                                @foreach($surveys as $survey)
+                                <option value="{{$survey->id}}">{{__($survey->name)}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        @elseif($field == 'effectiveness_id')
+                        <div wire:ignore class="mb-2">
+                            <select wire:model.debounce.500ms="entity.effectiveness_id"
+                                class="custom-select form-control" name="effectiveness_id" id="effectiveness_id">
+                                <option selected>فرم اثربخشی را انتخاب کنید ...</option>
+                                @foreach($effectivenesses as $effectiveness)
+                                <option value="{{$effectiveness->id}}">{{__($effectiveness->name)}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         @elseif($field == 'unit_id')
                         <div wire:ignore class="mb-2">
                             <select wire:model.debounce.500ms="entity.unit_id" class="custom-select form-control"

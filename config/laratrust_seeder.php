@@ -18,10 +18,7 @@ return [
             'sensors'            => 'c,r,u,d',
             'units'              => 'c,r,u,d',
             'categories'         => 'c,r,u,d',
-            'surveys'            => 'c,r,u,d',
-            'effectivenesses'    => 'c,r,u,d',
             'courses'            => 'c,r,u,d',
-            'course-user'        => 'c,r,u,d',
         ],
         'user-manager' => [
             'users' => 'c,r,u,d',
@@ -33,10 +30,7 @@ return [
         'qa-manager' => [
             'units'              => 'c,r,u,d',
             'categories'         => 'c,r,u,d',
-            'surveys'            => 'c,r,u,d',
-            'effectivenesses'    => 'c,r,u,d',
             'courses'            => 'c,r,u,d',
-            'course-user'        => 'c,r,u,d',
         ],
     ],
 

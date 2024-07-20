@@ -7,9 +7,11 @@ use App\Http\Livewire\Sms;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboardlayouts\Dashboard;
 use App\Http\Livewire\Effectivenesses;
+use App\Http\Livewire\EffectivenessesUser;
 use App\Http\Livewire\Phonebooks;
 use App\Http\Livewire\Sensors;
 use App\Http\Livewire\Surveys;
+use App\Http\Livewire\SurveysUser;
 use App\Http\Livewire\TemperatureMonitoring;
 use App\Http\Livewire\Units;
 use App\Http\Livewire\Users;
@@ -34,10 +36,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', Users::class)->name('users')->middleware('permission:users-read');
     Route::get('/units', Units::class)->name('units')->middleware('permission:units-read');
     Route::get('/categories', Categories::class)->name('categories')->middleware('permission:categories-read');
-    Route::get('/surveys', Surveys::class)->name('surveys')->middleware('permission:surveys-read');
-    Route::get('/effectivenesses', Effectivenesses::class)->name('effectivenesses')->middleware('permission:effectivenesses-read');
+    Route::get('/surveys', Surveys::class)->name('surveys')->middleware('permission:courses-read');
+    Route::get('/effectivenesses', Effectivenesses::class)->name('effectivenesses')->middleware('permission:courses-read');
     Route::get('/courses', Courses::class)->name('courses')->middleware('permission:courses-read');
     Route::get('/courses-users', CoursesUsers::class)->name('courses-users')->middleware('permission:courses-read');
+    Route::get('/surveys-user', SurveysUser::class)->name('surveys-user')->middleware('permission:courses-read');
+    Route::get('/effectivenesses-user', EffectivenessesUser::class)->name('effectivenesses-user')->middleware('permission:courses-read');
 });
 
 

@@ -13,11 +13,11 @@ class SurveyQuestion extends Model
 
     public function survey()
     {
-        return $this->belongsTo(Effectiveness::class,  null, 'id');
+        return $this->belongsTo(Survey::class,  null, 'id');
     }
 
     public function answers()
     {
-        return $this->hasMany(EffectivenessQuestionAnswer::class, 'surveyquestion_id', 'id');
+        return $this->hasMany(SurveyQuestionAnswer::class, 'surveyquestion_id', 'id');
     }
 }

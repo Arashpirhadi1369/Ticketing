@@ -10,6 +10,8 @@ use App\Traits\Smsable;
 use Livewire\Component;
 use App\Traits\Sortable;
 use App\Models\CourseUser;
+use App\Models\EffectivenessUser;
+use App\Models\SurveyUser;
 use App\Traits\BulkAction;
 use App\Traits\ResetInput;
 use Livewire\WithPagination;
@@ -29,6 +31,8 @@ class CoursesUsers extends Component
     public $users;
 
     public $units;
+
+    public $editMode;
 
     public $componentName = "courses-users";
 
@@ -99,28 +103,50 @@ class CoursesUsers extends Component
         $course = $this->entity->course;
         $date = $this->enTofa($this->entity->start_date);
 
-        $message = __($user->name) . ' گرامی
+        if ($this->editMode == false) {
+            foreach ($course->survey->questions as $surveyQuestion) {
+                SurveyUser::create([
+                    'courseuser_id' => $this->entity->id,
+                    'user_id'       => $this->entity->user_id,
+                    'question_id'   => $surveyQuestion->id,
+                    'answer_id'     => null,
+                ]);
+            }
+
+            foreach ($course->effectiveness->questions as $effectivenessQuestion) {
+                EffectivenessUser::create([
+                    'courseuser_id' => $this->entity->id,
+                    'user_id'       => $this->entity->manager_user_id,
+                    'question_id'   => $effectivenessQuestion->id,
+                    'answer_id'     => null,
+                ]);
+            }
+
+            $message = __($user->name) . ' گرامی
 دوره آموزشی با عنوان : ' . $course->name . '
 در تاریخ : ' . $date . '
 برای شما برگزار خواهد شد.';
 
-        $results = $this->sendSms($user->phone, $message);
+            $results = $this->sendSms($user->phone, $message);
 
-        foreach ($results as $result) {
-            Sms::create(
-                [
-                    'sender_user_id'        => auth()->user()->id,
-                    'source_number'         => $result->sender,
-                    'receiver_user_id'      => $user->id,
-                    'destination_number'    => $user->phone,
-                    'subject'               => 'دوره آموزشی',
-                    'receiver_name'         => $user->name,
-                    'message'               => $message,
-                    'status'                => $result->status,
-                    'cost'                  => $result->cost,
-                ]
-            );
+            foreach ($results as $result) {
+                Sms::create(
+                    [
+                        'sender_user_id'        => auth()->user()->id,
+                        'source_number'         => $result->sender,
+                        'receiver_user_id'      => $user->id,
+                        'destination_number'    => $user->phone,
+                        'subject'               => 'دوره آموزشی',
+                        'receiver_name'         => $user->name,
+                        'message'               => $message,
+                        'status'                => $result->status,
+                        'cost'                  => $result->cost,
+                    ]
+                );
+            }
         }
+
+        $this->editMode = false;
 
         $this->dispatchBrowserEvent('closeModal');
         $this->resetInput();
@@ -129,6 +155,7 @@ class CoursesUsers extends Component
     public function edit(CourseUser $entity)
     {
         $this->entity = $entity;
+        $this->editMode = true;
     }
 
     public function destroy()

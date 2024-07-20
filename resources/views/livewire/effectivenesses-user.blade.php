@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.modals.create-course-modal')
+    @include('layouts.modals.update-answer-modal')
 
     <div class="d-flex ">
         <div class="col-3 my-4" id="navbar-dashboard">
@@ -82,6 +82,7 @@
                                 </a>
                             </li>
                             @endpermission
+
                             @permission("units-read")
                             <li class="nav-item">
                                 <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/units">
@@ -94,6 +95,7 @@
                                 </a>
                             </li>
                             @endpermission
+
 
                             @permission("categories-read")
                             <li class="nav-item">
@@ -134,31 +136,28 @@
                             </li>
                             @endpermission
 
-                            @permission("courses-read")
                             <li class="nav-item">
-                                <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/courses">
+                                <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/surveys-user">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="balck"
                                         class="ml-3 bi" viewBox="0 0 24 24">
                                         <path
                                             d="M17 10.645v-2.29c-1.17-.417-1.907-.533-2.28-1.431-.373-.9.07-1.512.6-2.625l-1.618-1.619c-1.105.525-1.723.974-2.626.6-.9-.373-1.017-1.116-1.431-2.28h-2.29c-.412 1.158-.53 1.907-1.431 2.28h-.001c-.9.374-1.51-.07-2.625-.6l-1.617 1.619c.527 1.11.973 1.724.6 2.625-.375.901-1.123 1.019-2.281 1.431v2.289c1.155.412 1.907.531 2.28 1.431.376.908-.081 1.534-.6 2.625l1.618 1.619c1.107-.525 1.724-.974 2.625-.6h.001c.9.373 1.018 1.118 1.431 2.28h2.289c.412-1.158.53-1.905 1.437-2.282h.001c.894-.372 1.501.071 2.619.602l1.618-1.619c-.525-1.107-.974-1.723-.601-2.625.374-.899 1.126-1.019 2.282-1.43zm-8.5 1.689c-1.564 0-2.833-1.269-2.833-2.834s1.269-2.834 2.833-2.834 2.833 1.269 2.833 2.834-1.269 2.834-2.833 2.834zm15.5 4.205v-1.077c-.55-.196-.897-.251-1.073-.673-.176-.424.033-.711.282-1.236l-.762-.762c-.52.248-.811.458-1.235.283-.424-.175-.479-.525-.674-1.073h-1.076c-.194.545-.25.897-.674 1.073-.424.176-.711-.033-1.235-.283l-.762.762c.248.523.458.812.282 1.236-.176.424-.528.479-1.073.673v1.077c.544.193.897.25 1.073.673.177.427-.038.722-.282 1.236l.762.762c.521-.248.812-.458 1.235-.283.424.175.479.526.674 1.073h1.076c.194-.545.25-.897.676-1.074h.001c.421-.175.706.034 1.232.284l.762-.762c-.247-.521-.458-.812-.282-1.235s.529-.481 1.073-.674zm-4 .794c-.736 0-1.333-.597-1.333-1.333s.597-1.333 1.333-1.333 1.333.597 1.333 1.333-.597 1.333-1.333 1.333zm-4 3.071v-.808c-.412-.147-.673-.188-.805-.505s.024-.533.212-.927l-.572-.571c-.389.186-.607.344-.926.212s-.359-.394-.506-.805h-.807c-.146.409-.188.673-.506.805-.317.132-.533-.024-.926-.212l-.572.571c.187.393.344.609.212.927-.132.318-.396.359-.805.505v.808c.408.145.673.188.805.505.133.32-.028.542-.212.927l.572.571c.39-.186.608-.344.926-.212.318.132.359.395.506.805h.807c.146-.409.188-.673.507-.805h.001c.315-.131.529.025.924.213l.572-.571c-.186-.391-.344-.609-.212-.927s.397-.361.805-.506zm-3 .596c-.552 0-1-.447-1-1s.448-1 1-1 1 .447 1 1-.448 1-1 1z" />
                                     </svg>
-                                    مدیریت دوره های آموزشی
+                                    تکمیل فرم نظرسنجی
                                 </a>
                             </li>
-                            @endpermission
 
-                            @permission("courses-read")
                             <li class="nav-item">
-                                <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/courses-users">
+                                <a class="nav-link d-flex text-dark align-items-center mt-3 "
+                                    href="/effectivenesses-user">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="balck"
                                         class="ml-3 bi" viewBox="0 0 24 24">
                                         <path
                                             d="M17 10.645v-2.29c-1.17-.417-1.907-.533-2.28-1.431-.373-.9.07-1.512.6-2.625l-1.618-1.619c-1.105.525-1.723.974-2.626.6-.9-.373-1.017-1.116-1.431-2.28h-2.29c-.412 1.158-.53 1.907-1.431 2.28h-.001c-.9.374-1.51-.07-2.625-.6l-1.617 1.619c.527 1.11.973 1.724.6 2.625-.375.901-1.123 1.019-2.281 1.431v2.289c1.155.412 1.907.531 2.28 1.431.376.908-.081 1.534-.6 2.625l1.618 1.619c1.107-.525 1.724-.974 2.625-.6h.001c.9.373 1.018 1.118 1.431 2.28h2.289c.412-1.158.53-1.905 1.437-2.282h.001c.894-.372 1.501.071 2.619.602l1.618-1.619c-.525-1.107-.974-1.723-.601-2.625.374-.899 1.126-1.019 2.282-1.43zm-8.5 1.689c-1.564 0-2.833-1.269-2.833-2.834s1.269-2.834 2.833-2.834 2.833 1.269 2.833 2.834-1.269 2.834-2.833 2.834zm15.5 4.205v-1.077c-.55-.196-.897-.251-1.073-.673-.176-.424.033-.711.282-1.236l-.762-.762c-.52.248-.811.458-1.235.283-.424-.175-.479-.525-.674-1.073h-1.076c-.194.545-.25.897-.674 1.073-.424.176-.711-.033-1.235-.283l-.762.762c.248.523.458.812.282 1.236-.176.424-.528.479-1.073.673v1.077c.544.193.897.25 1.073.673.177.427-.038.722-.282 1.236l.762.762c.521-.248.812-.458 1.235-.283.424.175.479.526.674 1.073h1.076c.194-.545.25-.897.676-1.074h.001c.421-.175.706.034 1.232.284l.762-.762c-.247-.521-.458-.812-.282-1.235s.529-.481 1.073-.674zm-4 .794c-.736 0-1.333-.597-1.333-1.333s.597-1.333 1.333-1.333 1.333.597 1.333 1.333-.597 1.333-1.333 1.333zm-4 3.071v-.808c-.412-.147-.673-.188-.805-.505s.024-.533.212-.927l-.572-.571c-.389.186-.607.344-.926.212s-.359-.394-.506-.805h-.807c-.146.409-.188.673-.506.805-.317.132-.533-.024-.926-.212l-.572.571c.187.393.344.609.212.927-.132.318-.396.359-.805.505v.808c.408.145.673.188.805.505.133.32-.028.542-.212.927l.572.571c.39-.186.608-.344.926-.212.318.132.359.395.506.805h.807c.146-.409.188-.673.507-.805h.001c.315-.131.529.025.924.213l.572-.571c-.186-.391-.344-.609-.212-.927s.397-.361.805-.506zm-3 .596c-.552 0-1-.447-1-1s.448-1 1-1 1 .447 1 1-.448 1-1 1z" />
                                     </svg>
-                                    تخصیص دوره آموزشی
+                                    تکمیل فرم اثربخشی
                                 </a>
                             </li>
-                            @endpermission
 
                             <li class="nav-item my-3">
 
@@ -241,9 +240,9 @@
                 <div class="card-body">
                     <div class="d-flex mb-3 justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
-                            <p class="h5 text-bold mb-0 ml-3">مدیریت دوره های آموزشی</p>
+                            <p class="h5 text-bold mb-0 ml-3">تکمیل فرم اثربخشی</p>
 
-                            @permission("sensors-create")
+                            {{-- @permission("sensors-create")
                             <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button"
                                 data-toggle="modal" data-target="#createCourseModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -251,9 +250,9 @@
                                     <path
                                         d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
                                 </svg>
-                                ایجاد دوره آموزشی جدید
+                                تخصیص دوره جدید
                             </button>
-                            @endpermission
+                            @endpermission --}}
 
                         </div>
                         <div class="d-flex  flex-row align-items-center">
@@ -376,14 +375,12 @@
                                 </td>
 
                                 <td>
-                                    <div>
-                                        {{-- <input wire:model="selected" type="checkbox" class="mycheckbox"
-                                            value="{{ $entity->id }}" /> --}}
 
-                                        @permission("sensors-update")
+                                    <div>
+
                                         <button wire:click="edit({{ $entity->id }})"
                                             class="btn text-info bg-transparent border-0" type="button"
-                                            data-toggle="modal" data-target="#createCourseModal">
+                                            data-toggle="modal" data-target="#updateAnswerModal">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                 <path
@@ -392,9 +389,7 @@
                                                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                             </svg>
                                         </button>
-                                        @endpermission
 
-                                        @permission("sensors-delete")
                                         <button wire:click="edit({{ $entity->id }})"
                                             class="btn bg-transparent text-danger border-0" type="button"
                                             data-toggle="modal" data-target="#deletemodal">
@@ -406,25 +401,29 @@
                                                     d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                                             </svg>
                                         </button>
-                                        @endpermission
 
                                     </div>
                                 </td>
 
                                 @foreach ($headers as $header)
-                                @if ($header == 'category_id')
+                                @if ($header == 'course_id')
                                 <td>
-                                    {{$entity->category->name}}
+                                    {{$entity->course->name}}
                                 </td>
 
-                                @elseif($header == 'survey_id')
+                                @elseif($header == 'user_id')
                                 <td>
-                                    {{$entity->survey->name}}
+                                    {{__($entity->user->name)}}
                                 </td>
 
-                                @elseif($header == 'effectiveness_id')
+                                @elseif($header == 'unit_id')
                                 <td>
-                                    {{$entity->effectiveness->name}}
+                                    {{$entity->unit->name}}
+                                </td>
+
+                                @elseif($header == 'effectiveness_finished_date')
+                                <td>
+                                    {{$entity->effectiveness_finished_date}}
                                 </td>
 
                                 @else

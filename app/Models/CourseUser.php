@@ -9,7 +9,7 @@ class CourseUser extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['course_id', 'user_id', 'unit_id', 'start_date', 'end_date', 'manager_user_id'];
+    protected $fillable = ['course_id', 'user_id', 'unit_id', 'start_date', 'end_date', 'survey_finished', 'effectiveness_finished'];
 
     public function course()
     {
@@ -29,5 +29,15 @@ class CourseUser extends Model
     public function managerUser()
     {
         return $this->belongsTo(User::class, null, 'id');
+    }
+
+    public function effectivenessUser()
+    {
+        return $this->hasMany(EffectivenessUser::class, 'courseuser_id', 'id');
+    }
+
+    public function surveyUser()
+    {
+        return $this->hasMany(SurveyUser::class, 'courseuser_id', 'id');
     }
 }

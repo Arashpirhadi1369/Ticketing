@@ -96,7 +96,7 @@
                             </li>
                             @endpermission
 
-                            @permission("surveys-read")
+                            @permission("courses-read")
                             <li class="nav-item">
                                 <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/surveys">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="balck"
@@ -109,7 +109,7 @@
                             </li>
                             @endpermission
 
-                            @permission("effectivenesses-read")
+                            @permission("courses-read")
                             <li class="nav-item">
                                 <a class="nav-link d-flex text-dark align-items-center mt-3 " href="/effectivenesses">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="balck"

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('start_date');
             $table->string('end_date');
             $table->unsignedBigInteger('manager_user_id');
+            $table->string('survey_finished_date')->nullable();
+            $table->string('effectiveness_finished_date')->nullable();
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('courses');
