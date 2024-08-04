@@ -280,7 +280,7 @@
                         <div class="d-flex align-items-center">
                             <p class="h5 text-bold mb-0 ml-3">مدیریت واحد ها</p>
 
-                            @permission("sensors-create")
+                            @permission("units-create")
                             <button class="btn d-flex align-items-center btn-outline-info ml-2" type="button"
                                 data-toggle="modal" data-target="#createModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
