@@ -40,8 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/effectivenesses', Effectivenesses::class)->name('effectivenesses')->middleware('permission:courses-read');
     Route::get('/courses', Courses::class)->name('courses')->middleware('permission:courses-read');
     Route::get('/courses-users', CoursesUsers::class)->name('courses-users')->middleware('permission:courses-read');
-    Route::get('/surveys-user', SurveysUser::class)->name('surveys-user')->middleware('permission:courses-read');
-    Route::get('/effectivenesses-user', EffectivenessesUser::class)->name('effectivenesses-user')->middleware('permission:courses-read');
+    Route::get('/surveys-user', SurveysUser::class)->name('surveys-user');
+    Route::get('/effectivenesses-user', EffectivenessesUser::class)->name('effectivenesses-user');
 });
 
 

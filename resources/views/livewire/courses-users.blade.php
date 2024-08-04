@@ -417,7 +417,7 @@
                                         {{-- <input wire:model="selected" type="checkbox" class="mycheckbox"
                                             value="{{ $entity->id }}" /> --}}
 
-                                        @permission("sensors-update")
+                                        @permission("courses-update")
                                         <button wire:click="edit({{ $entity->id }})"
                                             class="btn text-info bg-transparent border-0" type="button"
                                             data-toggle="modal" data-target="#createCourseModal">
@@ -431,7 +431,7 @@
                                         </button>
                                         @endpermission
 
-                                        @permission("sensors-delete")
+                                        @permission("courses-delete")
                                         <button wire:click="edit({{ $entity->id }})"
                                             class="btn bg-transparent text-danger border-0" type="button"
                                             data-toggle="modal" data-target="#deletemodal">
