@@ -18,9 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('unit_id');
+            $table->unsignedBigInteger('manager_user_id');
+            $table->string('lecturer');
             $table->string('start_date');
             $table->string('end_date');
-            $table->unsignedBigInteger('manager_user_id');
             $table->string('survey_finished_date')->nullable();
             $table->string('effectiveness_finished_date')->nullable();
             $table->timestamps();

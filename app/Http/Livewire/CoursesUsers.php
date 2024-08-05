@@ -40,9 +40,10 @@ class CoursesUsers extends Component
         'entity.course_id'          => 'required',
         'entity.user_id'            => 'required',
         'entity.unit_id'            => 'required',
+        'entity.manager_user_id'    => 'required',
+        'entity.lecturer'           => 'required',
         'entity.start_date'         => 'required|max:16',
         'entity.end_date'           => 'required|max:16',
-        'entity.manager_user_id'    => 'required',
     ];
 
     public $filter  = 'all';
@@ -52,9 +53,9 @@ class CoursesUsers extends Component
         'course_id'          => null,
     ];
 
-    public $headers = ["course_id", "user_id", "unit_id", "start_date", "end_date", "manager_user_id",];
+    public $headers = ["course_id", "user_id", "unit_id", "manager_user_id", "lecturer", "start_date", "end_date"];
 
-    public $modalFields = ['course_id', "user_id",  "unit_id", "start_date", "end_date", "manager_user_id",];
+    public $modalFields = ['course_id', "user_id",  "unit_id", "manager_user_id", "lecturer", "start_date", "end_date"];
 
     public function mount(CourseUser $entity)
     {
