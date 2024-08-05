@@ -15,4 +15,14 @@ class SurveyUser extends Model
     {
         return $this->belongsTo(CourseUser::class, 'courseuser_id', 'id');
     }
+
+    public function surveyQuestion()
+    {
+        return $this->belongsTo(SurveyQuestion::class, 'question_id', 'id');
+    }
+
+    public function surveyQuestionAnswer()
+    {
+        return $this->belongsTo(SurveyQuestionAnswer::class, 'answer_id', 'id');
+    }
 }

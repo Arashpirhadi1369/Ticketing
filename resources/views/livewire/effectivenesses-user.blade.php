@@ -1,5 +1,6 @@
 <div>
     @include('layouts.modals.update-answer-modal')
+    @include('layouts.modals.info-effectiveness-modal')
 
     <div class="d-flex ">
         <div class="col-3 my-4" id="navbar-dashboard">
@@ -445,27 +446,32 @@
 
                                 @foreach ($headers as $header)
                                 @if ($header == 'course_id')
-                                <td>
+                                <td wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
                                     {{$entity->course->name}}
                                 </td>
 
                                 @elseif($header == 'user_id')
-                                <td>
+                                <td wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
                                     {{__($entity->user->name)}}
                                 </td>
 
                                 @elseif($header == 'unit_id')
-                                <td>
+                                <td wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
                                     {{$entity->unit->name}}
                                 </td>
 
                                 @elseif($header == 'effectiveness_finished_date')
-                                <td>
+                                <td wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
                                     {{$entity->effectiveness_finished_date}}
                                 </td>
 
                                 @else
-                                <td>
+                                <td wire:click="edit({{ $entity->id }})" class="" data-toggle="modal"
+                                    data-target="#infoModal">
                                     {{$entity["$header"]}}
                                 </td>
                                 @endif

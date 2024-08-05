@@ -15,4 +15,14 @@ class EffectivenessUser extends Model
     {
         return $this->belongsTo(CourseUser::class, 'courseuser_id', 'id');
     }
+
+    public function effectivenessQuestion()
+    {
+        return $this->belongsTo(EffectivenessQuestion::class, 'question_id', 'id');
+    }
+
+    public function effectivenessQuestionAnswer()
+    {
+        return $this->belongsTo(EffectivenessQuestionAnswer::class, 'answer_id', 'id');
+    }
 }
