@@ -22,16 +22,18 @@
                     <div class=" p-0">
                         <div class="">
 
-                            @foreach ($this->entity->surveyUser as $survey)
+                            @if ($this->entity->survey_finished_date)
 
+                            @foreach ($this->entity->surveyUser as $survey)
                             <label class="text-bold"> {{__('question')}} :</label>
                             <label>{{$survey->surveyQuestion->question}}</label>
                             <div class="">
                                 <label class="text-bold"> {{__('answer')}} :</label>
                                 <label>{{$survey->surveyQuestionAnswer->answer}}</label>
                             </div>
-
                             @endforeach
+
+                            @endif
 
                         </div>
 

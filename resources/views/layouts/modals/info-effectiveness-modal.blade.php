@@ -22,6 +22,8 @@
                     <div class=" p-0">
                         <div class="">
 
+                            @if ($this->entity->effectiveness_finished_date)
+
                             @foreach ($this->entity->effectivenessUser as $effectiveness)
 
                             <label class="text-bold"> {{__('question')}} :</label>
@@ -32,6 +34,8 @@
                             </div>
 
                             @endforeach
+
+                            @endif
 
                         </div>
 

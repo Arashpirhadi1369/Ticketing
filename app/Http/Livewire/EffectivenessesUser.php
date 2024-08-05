@@ -38,7 +38,7 @@ class EffectivenessesUser extends Component
         'name'      => null,
     ];
 
-    public $headers = ['course_id', 'start_date', 'end_date', 'user_id', 'unit_id', 'effectiveness_finished_date'];
+    public $headers = ['course_id', 'start_date', 'end_date', 'user_id', 'unit_id', 'lecturer', 'effectiveness_finished_date'];
 
     public $modalFields = ['question_id', 'answer_id'];
 
