@@ -10,13 +10,15 @@ use App\Traits\Smsable;
 use Livewire\Component;
 use App\Traits\Sortable;
 use App\Models\CourseUser;
-use App\Models\EffectivenessUser;
 use App\Models\SurveyUser;
 use App\Traits\BulkAction;
 use App\Traits\ResetInput;
 use Livewire\WithPagination;
 use App\Traits\ConvertNumbers;
+use App\Models\EffectivenessUser;
 use App\Traits\ResetSearchFilters;
+use App\Exports\CoursesUsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CoursesUsers extends Component
 {
@@ -68,7 +70,7 @@ class CoursesUsers extends Component
     public function render()
     {
         if ($this->selectAll) {
-            $this->selected = $this->coursesQuery->pluck('id')->map(fn ($id) => (string) $id);
+            $this->selected = $this->coursesQuery->pluck('id')->map(fn($id) => (string) $id);
         }
 
         return view('livewire.courses-users', ['entities' => $this->entities]);
@@ -79,12 +81,12 @@ class CoursesUsers extends Component
         return CourseUser::query()
             ->when(
                 $this->filters['all'],
-                fn ($query, $search) => $query
+                fn($query, $search) => $query
                     ->where('course_id', 'like', '%' . $search . '%')
                 // ->orwhere('duration_hour', 'like', '%' . $search . '%')
             )
 
-            ->when($this->filters['course_id'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+            ->when($this->filters['course_id'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
             // ->when($this->filters['duration_hour'], fn ($query, $search) => $query->where('duration_hour', 'like', '%' . $search . '%'))
             ->orderby($this->sortField, $this->sortDirection);
     }
@@ -166,8 +168,8 @@ class CoursesUsers extends Component
         $this->resetInput();
     }
 
-    // public function exportExcel()
-    // {
-    //     return Excel::download(new CoursesExport(), 'Courses.xlsx');
-    // }
+    public function exportExcel()
+    {
+        return Excel::download(new CoursesUsersExport(), 'Courses.xlsx');
+    }
 }
