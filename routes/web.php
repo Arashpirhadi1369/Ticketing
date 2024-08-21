@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Json;
+use App\Http\Controllers\Sub;
 use App\Http\Livewire\Categories;
 use App\Http\Livewire\Courses;
 use App\Http\Livewire\CoursesUsers;
@@ -44,5 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/effectivenesses-user', EffectivenessesUser::class)->name('effectivenesses-user');
 });
 
+Route::get('/sss/{id}', [Sub::class, 'show'])->name('sub');
+Route::get('/jjj/{id}', [Json::class, 'show'])->name('json');
 
 require __DIR__ . '/auth.php';
