@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\Http;
 
 class Json extends Controller
 {
-    function show($id)
+    function show($domain, $port, $path, $id)
     {
-        $response = Http::get("https://web.ap70.ir:2087/jjj/$id");
+        $response = Http::get("https://$domain:$port/$path/$id");
 
         if ($response->status() == 200) {
             $cleans = json_decode($response);
-            $newAddress = "web.ap70.ir";
+            $newAddress = "$domain";
             $cleans->outbounds[0]->settings->vnext[0]->address = $newAddress;
 
-            return $cleans;
+            return json_encode($cleans, JSON_PRETTY_PRINT);
         } else {
             abort(403);
         }

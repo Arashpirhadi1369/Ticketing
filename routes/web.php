@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/effectivenesses-user', EffectivenessesUser::class)->name('effectivenesses-user');
 });
 
-Route::get('/sss/{id}', [Sub::class, 'show'])->name('sub');
-Route::get('/jjj/{id}', [Json::class, 'show'])->name('json');
+Route::get('/sss/{domain}/{port}/{path}/{id}', [Sub::class, 'show'])->name('sub');
+Route::get('/jjj/{domain}/{port}/{path}/{id}', [Json::class, 'show'])->name('json');
 
 require __DIR__ . '/auth.php';
