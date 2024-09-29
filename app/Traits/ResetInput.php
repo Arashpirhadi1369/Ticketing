@@ -38,6 +38,12 @@ trait ResetInput
             $this->editMode = false;
         }
 
+        if (isset($this->picture)) {
+            $this->picture = null;
+            $this->dispatchBrowserEvent('pondReset');
+        }
+
+
         $this->entity->id = null;
 
         $this->resetValidation();

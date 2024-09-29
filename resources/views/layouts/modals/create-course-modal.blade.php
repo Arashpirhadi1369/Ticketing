@@ -87,7 +87,7 @@
                                 name="unit_id" id="unit_id">
                                 <option selected>واحد را انتخاب کنید ...</option>
                                 @foreach($units as $unit)
-                                <option value="{{$unit->id}}">{{__($unit->name)}}
+                                <option value="{{$unit->id}}">{{$unit->name}}
                                 </option>
                                 @endforeach
                             </select>

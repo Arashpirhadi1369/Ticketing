@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\AssetTurnoversController;
 use App\Http\Controllers\Json;
+use App\Http\Controllers\QRcodeGenerate;
 use App\Http\Controllers\Sub;
+use App\Http\Livewire\Assets;
+use App\Http\Livewire\AssetTurnovers;
 use App\Http\Livewire\Categories;
 use App\Http\Livewire\Courses;
 use App\Http\Livewire\CoursesUsers;
@@ -16,6 +20,7 @@ use App\Http\Livewire\Surveys;
 use App\Http\Livewire\SurveysUser;
 use App\Http\Livewire\TemperatureMonitoring;
 use App\Http\Livewire\Units;
+use App\Http\Livewire\UserLogs;
 use App\Http\Livewire\Users;
 
 /*
@@ -44,9 +49,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/courses-users', CoursesUsers::class)->name('courses-users')->middleware('permission:courses-read');
     Route::get('/surveys-user', SurveysUser::class)->name('surveys-user');
     Route::get('/effectivenesses-user', EffectivenessesUser::class)->name('effectivenesses-user');
+    Route::get('/assets', Assets::class)->name('assets')->middleware('permission:assets-read');
+    Route::get('/asset-turnovers', AssetTurnovers::class)->name('asset-turnovers')->middleware('permission:asset-turnovers-read');
+    Route::get('/turnovers/create/{id}', [AssetTurnoversController::class, 'create'])->middleware('permission:asset-turnovers-create');
+    Route::post('/turnovers/store', [AssetTurnoversController::class, 'store'])->name('turnovers/store')->middleware('permission:asset-turnovers-create');
+    Route::get('/userlogs', UserLogs::class)->name('userlogs')->middleware('permission:userlogs-read');
 });
 
 Route::get('/sss/{domain}/{port}/{path}/{id}', [Sub::class, 'show'])->name('sub');
 Route::get('/jjj/{domain}/{port}/{path}/{id}', [Json::class, 'show'])->name('json');
+
+Route::get('/qrcode', [QRcodeGenerate::class, 'qrcode']);
 
 require __DIR__ . '/auth.php';

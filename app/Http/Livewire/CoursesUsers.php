@@ -63,7 +63,7 @@ class CoursesUsers extends Component
     {
         $this->entity  = $entity;
         $this->courses = Course::get();
-        $this->users   = User::where('phone', '!=', null)->get();
+        $this->users   = User::get();
         $this->units   = Unit::get();
     }
 
@@ -125,28 +125,28 @@ class CoursesUsers extends Component
                 ]);
             }
 
-            $message = __($user->name) . ' گرامی
-دوره آموزشی با عنوان : ' . $course->name . '
-در تاریخ : ' . $date . '
-برای شما برگزار خواهد شد.';
+            //             $message = __($user->name) . ' گرامی
+            // دوره آموزشی با عنوان : ' . $course->name . '
+            // در تاریخ : ' . $date . '
+            // برای شما برگزار خواهد شد.';
 
-            $results = $this->sendSms($user->phone, $message);
+            //             $results = $this->sendSms($user->phone, $message);
 
-            foreach ($results as $result) {
-                Sms::create(
-                    [
-                        'sender_user_id'        => auth()->user()->id,
-                        'source_number'         => $result->sender,
-                        'receiver_user_id'      => $user->id,
-                        'destination_number'    => $user->phone,
-                        'subject'               => 'دوره آموزشی',
-                        'receiver_name'         => $user->name,
-                        'message'               => $message,
-                        'status'                => $result->status,
-                        'cost'                  => $result->cost,
-                    ]
-                );
-            }
+            //             foreach ($results as $result) {
+            //                 Sms::create(
+            //                     [
+            //                         'sender_user_id'        => auth()->user()->id,
+            //                         'source_number'         => $result->sender,
+            //                         'receiver_user_id'      => $user->id,
+            //                         'destination_number'    => $user->phone,
+            //                         'subject'               => 'دوره آموزشی',
+            //                         'receiver_name'         => $user->name,
+            //                         'message'               => $message,
+            //                         'status'                => $result->status,
+            //                         'cost'                  => $result->cost,
+            //                     ]
+            //                 );
+            //             }
         }
 
         $this->editMode = false;

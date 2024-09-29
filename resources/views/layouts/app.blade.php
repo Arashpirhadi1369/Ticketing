@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="{{asset('/css/fontiranstyle.css') }}">
         <link rel="stylesheet" href="{{asset('/css/customstyle.css') }}">
         <link rel="stylesheet" href="{{asset('/css/select2.min.css') }}">
-
+        <link rel="stylesheet" href="{{asset('css/filepond.min.css') }}">
         <!-- Scripts -->
         <script src="{{asset('js/bootstrap.min.js')}}"></script>
         <script src="{{asset('js/jquery.min.js')}}"></script>
@@ -29,7 +29,7 @@
 
 <body style="background-color: #DDDDDD;">
         <!-- Page Content -->
-        <main class="max-height">
+        <main>
                 {{$slot}}
         </main>
         <livewire:scripts />
@@ -41,5 +41,8 @@
                 document.getElementById('referredModalClose').click();
         })
 </script>
+<script src="{{asset('js/ajax-libs.min.js')}}"></script>
+<script src="{{asset('js/filepond.min.js')}}"></script>
+<script src="{{asset('js/alpinejs.min.js')}}"></script>
 
 </html>

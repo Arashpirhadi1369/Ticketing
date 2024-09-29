@@ -19,18 +19,26 @@ return [
             'units'              => 'c,r,u,d',
             'categories'         => 'c,r,u,d',
             'courses'            => 'c,r,u,d',
+            'assets'             => 'c,r,u,d',
+            'asset-turnovers'    => 'c,r,u,d',
+            'userlogs'           => 'r',
         ],
         'user-manager' => [
-            'users' => 'c,r,u,d',
+            'users'              => 'c,r,u,d',
         ],
         'sms-manager' => [
-            'sms' => 'c,r,u,d',
+            'sms'                => 'c,r,u,d',
         ],
 
         'qa-manager' => [
             'units'              => 'c,r,u,d',
             'categories'         => 'c,r,u,d',
             'courses'            => 'c,r,u,d',
+        ],
+
+        'asset-manager' => [
+            'assets'             => 'c,r,u,d',
+            'asset-turnovers'    => 'c,r,u,d',
         ],
     ],
 

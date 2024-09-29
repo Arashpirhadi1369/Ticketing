@@ -12,8 +12,9 @@ class Sub extends Controller
         $response = Http::get("https://$domain:$port/$path/$id");
 
         if ($response->status() == 200) {
+            $currentPublicIp = file_get_contents('https://api.ipify.org');
             $cleans = base64_decode($response->body());
-            $newAddress = preg_replace('/185.221.192.114/', "$domain", $cleans);
+            $newAddress = preg_replace("/$currentPublicIp/", "$domain", $cleans);
             $encoded = base64_encode($newAddress);
 
             return $encoded;
