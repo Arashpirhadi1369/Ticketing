@@ -416,7 +416,7 @@
                                 </td>
 
                                 <td>
-                                    {{__($entity->user->name)}}
+                                    {{__($entity->asset->asset_tag)}}
                                 </td>
 
                                 <td>
@@ -445,6 +445,10 @@
                                     @else
                                     دارد
                                     @endif
+                                </td>
+
+                                <td>
+                                    {{__($entity->user->name)}}
                                 </td>
 
                                 <td>

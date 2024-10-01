@@ -10,11 +10,13 @@ use App\Traits\Sortable;
 use App\Traits\BulkAction;
 use App\Traits\ResetInput;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use App\Traits\ConvertNumbers;
 use App\Traits\ResetSearchFilters;
+use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
-use Livewire\WithFileUploads;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class Assets extends Component
 {
@@ -90,13 +92,16 @@ class Assets extends Component
 
     public function ValidatePicture()
     {
-        $this->validate(['picture' => 'file|mimes:png,jpg,jpeg,svg,heic|max:4096']);
+        $this->validate(['picture' => 'file|mimes:png,jpg,jpeg|max:10240']);
     }
 
     public function storePicture($asset)
     {
-        $fileExtention = $this->picture->getClientOriginalExtension();
-        $picturePath = $this->picture->storeAs('uploads/assets/pictures', "$asset->id.$fileExtention", 'uploads');
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($this->picture);
+        $image->scale(width: 600);
+        $picturePath = "storage/uploads/assets/pictures/$asset->id.png";
+        $image->toPng()->save($picturePath);
 
         $asset->picture = $picturePath;
         $asset->save();
@@ -107,7 +112,7 @@ class Assets extends Component
 
     public function store()
     {
-        // $this->validate();
+        $this->validate();
 
         if (isset($this->picture)) {
             $this->ValidatePicture();
@@ -138,8 +143,8 @@ class Assets extends Component
             $currentPublicIp = file_get_contents('https://api.ipify.org');
             $qrCode = QrCode::size(50)->generate("http://$currentPublicIp:8000/turnovers/create/$asset->id");
             $qrcodePath = "uploads/assets/qrcodes/$asset->id.svg";
-            Storage::disk('uploads')->put($qrcodePath, $qrCode);
-            $asset->qrcode = $qrcodePath;
+            Storage::disk('public')->put($qrcodePath, $qrCode);
+            $asset->qrcode = 'storage/' . $qrcodePath;
             $asset->save();
 
             if (isset($this->picture)) {

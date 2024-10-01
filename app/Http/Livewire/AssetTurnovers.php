@@ -32,7 +32,7 @@ class AssetTurnovers extends Component
         'name'      => null,
     ];
 
-    public $headers = ["user_id", "asset_id", 'unit', 'belong_to_user', 'asset_location', 'delivery_date', "conflict", "description", "created_at"];
+    public $headers = ["asset_tag", "asset_id", 'unit_id', 'belong_to_user', 'asset_location', 'delivery_date', "conflict", "user_id", "description", "created_at"];
 
     public $modalFields = ['asset_id'];
 
