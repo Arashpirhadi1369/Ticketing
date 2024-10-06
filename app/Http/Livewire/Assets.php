@@ -95,7 +95,6 @@ class Assets extends Component
                     ->orwhere('asset_tag', 'like', '%' . $search . '%')
             )
 
-            ->when($this->filters['asset_name'], fn($query, $search) => $query->where('asset_name', 'like', '%' . $search . '%'))
             ->when($this->filters['asset_location'], fn($query, $search) => $query->where('asset_location', 'like', '%' . $search . '%'))
             ->when($this->filters['unit_id'], fn($query) => $query->wherein('asset_unit_id', $unitIds))
             ->when($this->filters['belong_to_user'], fn($query) => $query->wherein('belong_to_user', $userIds))
