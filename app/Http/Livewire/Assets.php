@@ -10,17 +10,20 @@ use App\Traits\Sortable;
 use App\Traits\BulkAction;
 use App\Traits\ResetInput;
 use Livewire\WithPagination;
+use App\Exports\AssetsExport;
+use App\Traits\AdvanceSearch;
 use Livewire\WithFileUploads;
 use App\Traits\ConvertNumbers;
 use App\Traits\ResetSearchFilters;
 use Intervention\Image\ImageManager;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Intervention\Image\Drivers\Gd\Driver;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Assets extends Component
 {
-    use ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, BulkAction, WithFileUploads, WithPagination;
+    use ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, BulkAction, WithFileUploads, WithPagination, AdvanceSearch;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -48,8 +51,10 @@ class Assets extends Component
     public $filter  = 'all';
 
     public $filters = [
-        'all'           => null,
-        'asset_name'    => null,
+        'all'            => null,
+        'unit_id'        => null,
+        'belong_to_user' => null,
+        'asset_location' => null,
     ];
 
     public $headers = ['asset_tag', 'asset_name', 'asset_unit_id', 'belong_to_user', 'asset_location', 'delivery_date', 'qrcode', 'picture'];
@@ -74,14 +79,26 @@ class Assets extends Component
 
     public function getentitiesQueryProperty()
     {
+        if ($this->filters['unit_id']) {
+            $unitIds = $this->relationSearch('App\Models\Unit', 'unit_id', 'name');
+        }
+
+        if ($this->filters['belong_to_user']) {
+            $userIds = $this->relationSearch('App\Models\User', 'belong_to_user', 'name');
+        }
+
         return Asset::query()
             ->when(
                 $this->filters['all'],
                 fn($query, $search) => $query
                     ->where('asset_name', 'like', '%' . $search . '%')
+                    ->orwhere('asset_tag', 'like', '%' . $search . '%')
             )
 
             ->when($this->filters['asset_name'], fn($query, $search) => $query->where('asset_name', 'like', '%' . $search . '%'))
+            ->when($this->filters['asset_location'], fn($query, $search) => $query->where('asset_location', 'like', '%' . $search . '%'))
+            ->when($this->filters['unit_id'], fn($query) => $query->wherein('asset_unit_id', $unitIds))
+            ->when($this->filters['belong_to_user'], fn($query) => $query->wherein('belong_to_user', $userIds))
             ->orderby($this->sortField, $this->sortDirection);
     }
 
@@ -169,8 +186,8 @@ class Assets extends Component
         $this->resetInput();
     }
 
-    // public function exportExcel()
-    // {
-    //     return Excel::download(new AssetsExport(), 'Assets.xlsx');
-    // }
+    public function exportExcel()
+    {
+        return Excel::download(new AssetsExport(), 'Assets.xlsx');
+    }
 }

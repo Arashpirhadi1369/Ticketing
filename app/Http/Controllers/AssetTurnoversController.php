@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Asset;
-use App\Models\AssetTurnover;
 use Illuminate\Http\Request;
+use App\Models\AssetTurnover;
 use Illuminate\Support\Facades\Storage;
+
+use function PHPUnit\Framework\isEmpty;
 
 class AssetTurnoversController extends Controller
 {
@@ -54,18 +57,15 @@ class AssetTurnoversController extends Controller
 
         $asset = Asset::findOrFail($request->id);
 
-        if ($request->conflict) {
-            AssetTurnover::create([
-                'asset_id'          => $request->id,
-                'user_id'           => getUserId(),
-                'unit'              => $asset->unit->name,
-                'belong_to_user'    => $asset->user->name,
-                'asset_location'    => $asset->asset_location,
-                'delivery_date'     => $asset->delivery_date,
-                'conflict'          => $request->conflict,
-                'description'       => $request->description,
-            ]);
+        $todayRecord = AssetTurnover::where('asset_id', $asset->id)->whereDate('created_at', Carbon::today())->get();
+
+        if ($request->conflict == null) {
+            $conflict = 0;
         } else {
+            $conflict = $request->conflict;
+        }
+
+        if (!isEmpty($todayRecord)) {
             AssetTurnover::create([
                 'asset_id'          => $request->id,
                 'user_id'           => getUserId(),
@@ -73,9 +73,16 @@ class AssetTurnoversController extends Controller
                 'belong_to_user'    => $asset->user->name,
                 'asset_location'    => $asset->asset_location,
                 'delivery_date'     => $asset->delivery_date,
-                'conflict'          => 0,
+                'conflict'          => $conflict,
                 'description'       => $request->description,
             ]);
+
+            echo "<p style='font-size:120px'>.با موفقیت ثبت شد</p>";
+        } else {
+            AssetTurnover::where('id', $todayRecord[0]->id)
+                ->update(['conflict' => $conflict, 'description' => $request->description]);
+
+            echo "<p style='font-size:120px'>.با موفقیت آپدیت شد</p>";
         }
     }
 

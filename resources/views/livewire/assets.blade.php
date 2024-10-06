@@ -320,6 +320,34 @@
 
                         </div>
                         <div class="d-flex  flex-row align-items-center">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="dropdown d-flex align-items-center">
+                                    <a class="btn d-flex align-items-center btn-outline-info dropdown-toggle"
+                                        role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-menu-button-wide ml-2" viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v2A1.5 1.5 0 0 1 14.5 5h-13A1.5 1.5 0 0 1 0 3.5v-2zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-13z" />
+                                            <path
+                                                d="M2 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm10.823.323-.396-.396A.25.25 0 0 1 12.604 2h.792a.25.25 0 0 1 .177.427l-.396.396a.25.25 0 0 1-.354 0zM0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2H1zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
+                                        </svg>
+                                        امکانات بیشتر
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                        <button wire:click="exportExcel"
+                                            class="dropdown-item d-flex align-items-center text-success text-small">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green"
+                                                class="bi ml-2 bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
+                                                <path d="M6 12v-2h3v2H6z" />
+                                                <path
+                                                    d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM3 9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2H3V9z" />
+                                            </svg>
+                                            خروجی اکسل
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="d-flex flex-row mr-2">
                                 <div class="form-group  list-group-item list-group-item-action mb-0 p-0">
                                     <div class="input-group">
@@ -477,7 +505,9 @@
                                 @foreach ($headers as $header)
 
                                 @if ($header == 'asset_unit_id')
+                                @isset($entity->unit->name)
                                 <td>{{$entity->unit->name}}</td>
+                                @endisset
 
                                 @elseif($header == 'belong_to_user')
                                 @isset($entity->user->name)

@@ -2,18 +2,21 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AssetTurnover;
 use Livewire\Component;
 use App\Traits\Sortable;
 use App\Traits\BulkAction;
 use App\Traits\ResetInput;
 use Livewire\WithPagination;
+use App\Models\AssetTurnover;
 use App\Traits\ConvertNumbers;
 use App\Traits\ResetSearchFilters;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\AssetTurnoversExport;
+use App\Traits\AdvanceSearch;
 
 class AssetTurnovers extends Component
 {
-    use ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, BulkAction, WithPagination;
+    use ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, BulkAction, WithPagination, AdvanceSearch;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -28,11 +31,11 @@ class AssetTurnovers extends Component
     public $filter  = 'all';
 
     public $filters = [
-        'all'       => null,
-        'name'      => null,
+        'all'           => null,
+        'description'   => null,
     ];
 
-    public $headers = ["asset_tag", "asset_id", 'unit_id', 'belong_to_user', 'asset_location', 'delivery_date', "conflict", "user_id", "description", "created_at"];
+    public $headers = ["asset_tag", "asset_id", 'unit_id', 'belong_to_user', 'asset_location', 'delivery_date', "conflict", "description", "user_id", "created_at"];
 
     public $modalFields = ['asset_id'];
 
@@ -52,10 +55,11 @@ class AssetTurnovers extends Component
             ->when(
                 $this->filters['all'],
                 fn($query, $search) => $query
-                    ->where('name', 'like', '%' . $search . '%')
+                    ->where('belong_to_user', 'like', '%' . $search . '%')
+                    ->orwhere('unit', 'like', '%' . $search . '%')
             )
 
-            ->when($this->filters['name'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+            ->when($this->filters['description'], fn($query, $search) => $query->where('description', 'like', '%' . $search . '%'))
             ->orderby($this->sortField, $this->sortDirection);
     }
 
@@ -84,8 +88,8 @@ class AssetTurnovers extends Component
     //     $this->resetInput();
     // }
 
-    // public function exportExcel()
-    // {
-    //     return Excel::download(new AssetTurnoversExport(), 'AssetTurnovers.xlsx');
-    // }
+    public function exportExcel()
+    {
+        return Excel::download(new AssetTurnoversExport(), 'AssetTurnovers.xlsx');
+    }
 }
