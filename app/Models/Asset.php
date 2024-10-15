@@ -23,6 +23,6 @@ class Asset extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'belong_to_user', 'id');
+        return $this->belongsTo(User::class, 'belong_to_user', 'id')->withTrashed();
     }
 }

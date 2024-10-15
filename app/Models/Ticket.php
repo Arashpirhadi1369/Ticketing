@@ -15,7 +15,7 @@ class Ticket extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, null, 'id');
+        return $this->belongsTo(User::class, null, 'id')->withTrashed();
     }
 
     public function status()
