@@ -63,7 +63,7 @@ class CoursesUsers extends Component
     {
         $this->entity  = $entity;
         $this->courses = Course::get();
-        $this->users   = User::get();
+        $this->users   = User::orderBy('id', 'DESC')->get();
         $this->units   = Unit::get();
     }
 

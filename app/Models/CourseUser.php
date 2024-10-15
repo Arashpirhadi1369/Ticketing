@@ -28,7 +28,7 @@ class CourseUser extends Model
 
     public function managerUser()
     {
-        return $this->belongsTo(User::class, null, 'id');
+        return $this->belongsTo(User::class, null, 'id')->withTrashed();
     }
 
     public function effectivenessUser()

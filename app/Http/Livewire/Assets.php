@@ -64,7 +64,7 @@ class Assets extends Component
     public function mount(Asset $entity)
     {
         $this->entity = $entity;
-        $this->users   = User::get();
+        $this->users   = User::orderBy('id', 'DESC')->get();
         $this->units   = Unit::get();
     }
 
