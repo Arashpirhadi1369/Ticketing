@@ -3,6 +3,7 @@
 use App\Http\Controllers\AssetTurnoversController;
 use App\Http\Controllers\Json;
 use App\Http\Controllers\QRcodeGenerate;
+use App\Http\Controllers\Signals;
 use App\Http\Controllers\Sub;
 use App\Http\Livewire\Assets;
 use App\Http\Livewire\AssetTurnovers;
@@ -58,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/sss/{domain}/{port}/{path}/{id}', [Sub::class, 'show'])->name('sub');
 Route::get('/jjj/{domain}/{port}/{path}/{id}', [Json::class, 'show'])->name('json');
+Route::get('/signals/{status}', [Signals::class, 'index'])->name('signals');
 
 Route::get('/qrcode', [QRcodeGenerate::class, 'qrcode']);
 
