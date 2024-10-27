@@ -60,21 +60,21 @@ class SurveysUser extends Component
         if (Auth::getUser()->hasRole(['administrator', 'qa-manager'])) {
             return CourseUser::query()->when(
                 $this->filters['all'],
-                fn ($query, $search) => $query
+                fn($query, $search) => $query
                     ->where('course_id', 'like', '%' . $search . '%')
             )
 
-                ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+                ->when($this->filters['name'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
                 ->orderby($this->sortField, $this->sortDirection);
         } else {
             return CourseUser::query()->where('user_id', Auth::getUser()->id)
                 ->when(
                     $this->filters['all'],
-                    fn ($query, $search) => $query
+                    fn($query, $search) => $query
                         ->where('course_id', 'like', '%' . $search . '%')
                 )
 
-                ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+                ->when($this->filters['name'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
                 ->orderby($this->sortField, $this->sortDirection);
         }
     }

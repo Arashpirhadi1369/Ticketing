@@ -55,7 +55,7 @@ class Surveys extends Component
     public function render()
     {
         if ($this->selectAll) {
-            $this->selected = $this->effectivenessesQuery->pluck('id')->map(fn ($id) => (string) $id);
+            $this->selected = $this->effectivenessesQuery->pluck('id')->map(fn($id) => (string) $id);
         }
 
         return view('livewire.surveys', [
@@ -70,11 +70,11 @@ class Surveys extends Component
         return Survey::query()
             ->when(
                 $this->filters['all'],
-                fn ($query, $search) => $query
+                fn($query, $search) => $query
                     ->where('name', 'like', '%' . $search . '%')
             )
 
-            ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+            ->when($this->filters['name'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
             ->orderby($this->sortField, $this->sortDirection);
     }
 

@@ -4,8 +4,9 @@ namespace App\Http\Livewire\Dashboardlayouts;
 
 use App\Models\User;
 use App\Models\Ticket;
-use Livewire\Component;
 use App\Traits\Smsable;
+use Livewire\Component;
+use App\Models\CourseUser;
 
 class Dashboard extends Component
 {
@@ -14,6 +15,10 @@ class Dashboard extends Component
     public $ticket;
 
     public $showSavedButton = 1;
+
+    public $unfinishedSurveys;
+
+    public $unfinishedEffectivenesses;
 
     protected $listeners = ['renderDashboard' => '$refresh'];
 
@@ -29,6 +34,16 @@ class Dashboard extends Component
 
     public function render()
     {
+        $surverCount = count(CourseUser::where([['user_id', getUserId()], ['survey_finished_date', null]])->get());
+        if ($surverCount > 0) {
+            $this->unfinishedSurveys = $surverCount;
+        }
+
+        $effectivenessCount = count(CourseUser::where([['manager_user_id', getUserId()], ['effectiveness_finished_date', null]])->get());
+        if ($effectivenessCount > 0) {
+            $this->unfinishedEffectivenesses = $effectivenessCount;
+        }
+
         return view('livewire.dashboardlayouts.dashboard');
     }
 
