@@ -31,7 +31,9 @@
                     <div class="d-flex justify-content-between mt-2">
                         <div class="p-0 btn">
                             <span class="badge badge-pill badge-dark">{{__($referredDemand->user->name)}}</span>
-                            <span class="badge badge-pill badge-warning">{{__($referredDemand->status->status)}}</span>
+                            <span class="badge badge-pill badge-warning">{{__($referredDemand->status->status)}}
+                                توسط</span>
+                            <span class="badge badge-pill badge-primary">{{__($referredDemand->referred->name)}}</span>
                         </div>
                     </div>
                 </div>

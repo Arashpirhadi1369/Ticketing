@@ -23,6 +23,7 @@ use App\Http\Livewire\TemperatureMonitoring;
 use App\Http\Livewire\Units;
 use App\Http\Livewire\UserLogs;
 use App\Http\Livewire\Users;
+use App\Http\Livewire\Webkart;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/turnovers/create/{id}', [AssetTurnoversController::class, 'create'])->middleware('permission:asset-turnovers-create');
     Route::post('/turnovers/store', [AssetTurnoversController::class, 'store'])->name('turnovers/store')->middleware('permission:asset-turnovers-create');
     Route::get('/userlogs', UserLogs::class)->name('userlogs')->middleware('permission:userlogs-read');
+    Route::get('/webkart', Webkart::class)->name('webkart')->middleware('permission:users-read');
 });
 
 Route::get('/sss/{domain}/{port}/{path}/{id}', [Sub::class, 'show'])->name('sub');

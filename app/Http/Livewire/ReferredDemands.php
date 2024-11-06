@@ -46,7 +46,7 @@ class ReferredDemands extends Component
 
         $ticketTypes = TicketType::all();
 
-        $referredDemands = Ticket::orderBy('updated_at', 'desc')->where([['status_id', $statusId], ['referred_id', $userId]])->get();
+        $referredDemands = Ticket::orderBy('updated_at', 'desc')->where('status_id', $statusId)->get();
 
         return view('livewire.referred-demands', compact('referredDemands', 'users', 'ticketStatuses', 'ticketTypes'));
     }

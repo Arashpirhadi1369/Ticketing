@@ -9,7 +9,7 @@ class Sub extends Controller
 {
     function show($domain, $port, $path, $id)
     {
-        $response = Http::get("https://$domain:$port/$path/$id");
+        $response = Http::withoutVerifying()->get("https://$domain:$port/$path/$id");
 
         if ($response->status() == 200) {
             $currentPublicIp = file_get_contents('https://api.ipify.org');

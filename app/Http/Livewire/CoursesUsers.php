@@ -125,27 +125,29 @@ class CoursesUsers extends Component
                 ]);
             }
 
-            $message = __($user->name) . ' گرامی
-            دوره آموزشی با عنوان : ' . $course->name . '
-            در تاریخ : ' . $date . '
-            برای شما برگزار خواهد شد.';
+            if ($user->phone) {
+                $message = __($user->name) . ' گرامی
+                دوره آموزشی با عنوان : ' . $course->name . '
+                در تاریخ : ' . $date . '
+                برای شما برگزار خواهد شد.';
 
-            $results = $this->sendSms($user->phone, $message);
+                $results = $this->sendSms($user->phone, $message);
 
-            foreach ($results as $result) {
-                Sms::create(
-                    [
-                        'sender_user_id'        => auth()->user()->id,
-                        'source_number'         => $result->sender,
-                        'receiver_user_id'      => $user->id,
-                        'destination_number'    => $user->phone,
-                        'subject'               => 'دوره آموزشی',
-                        'receiver_name'         => $user->name,
-                        'message'               => $message,
-                        'status'                => $result->status,
-                        'cost'                  => $result->cost,
-                    ]
-                );
+                foreach ($results as $result) {
+                    Sms::create(
+                        [
+                            'sender_user_id'        => auth()->user()->id,
+                            'source_number'         => $result->sender,
+                            'receiver_user_id'      => $user->id,
+                            'destination_number'    => $user->phone,
+                            'subject'               => 'دوره آموزشی',
+                            'receiver_name'         => $user->name,
+                            'message'               => $message,
+                            'status'                => $result->status,
+                            'cost'                  => $result->cost,
+                        ]
+                    );
+                }
             }
         }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Rawilk\Printing\Facades\Printing;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -61,5 +62,12 @@ class QRcodeGenerate extends Controller
         }
         // echo ($contents);
         // return view('qrcode', $qrCodes);
+
+
+        #for print document
+        Printing::newPrintTask()
+            ->printer(73816603)
+            ->file('C:/Users/administrator/Desktop/Ticketing/storage/app/public/uploads/assets/qrcodes/50.svg')
+            ->send();
     }
 }
