@@ -50,12 +50,12 @@ class Webkart extends Component
                         "UPDATE EOS_1403.dbo.IOInfo SET
                         BEGINTIME    = '$beginTime',
                         BBEGINTIME   = '$beginTime',
-                        ENDTIME      = '$endTime',
-                        BENDTIME     = '$endTime',
+                        -- ENDTIME      = '$endTime',
+                        -- BENDTIME     = '$endTime',
                         ENDDATE      = '$beginDate',
                         BENDDATE     = '$beginDate',
                         LastEditDate = '$beginDate',
-                        DURATION     = '$duration'
+                        -- DURATION     = '$duration'
                         BEGINCLOCK   = 1,
                         ENDCLOCK     = 1,
                         BeginComCode = 1,

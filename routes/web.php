@@ -56,7 +56,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/turnovers/create/{id}', [AssetTurnoversController::class, 'create'])->middleware('permission:asset-turnovers-create');
     Route::post('/turnovers/store', [AssetTurnoversController::class, 'store'])->name('turnovers/store')->middleware('permission:asset-turnovers-create');
     Route::get('/userlogs', UserLogs::class)->name('userlogs')->middleware('permission:userlogs-read');
-    Route::get('/webkart', Webkart::class)->name('webkart')->middleware('permission:users-read');
 });
 
 Route::get('/sss/{domain}/{port}/{path}/{id}', [Sub::class, 'show'])->name('sub');
@@ -64,5 +63,7 @@ Route::get('/jjj/{domain}/{port}/{path}/{id}', [Json::class, 'show'])->name('jso
 Route::get('/signals/{status}', [Signals::class, 'index'])->name('signals');
 
 Route::get('/qrcode', [QRcodeGenerate::class, 'qrcode']);
+
+Route::get('/webkart', Webkart::class)->name('webkart');
 
 require __DIR__ . '/auth.php';
