@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form onkeydown="return event.key != 'Enter';">
                     @csrf
                     <div class="form-group">
 
