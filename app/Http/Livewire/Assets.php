@@ -144,6 +144,15 @@ class Assets extends Component
                 $this->storePicture($asset);
             }
 
+            if (!isset($this->qrcode)) {
+                $currentPublicIp = file_get_contents('https://api.ipify.org');
+                $qrCode = QrCode::size(50)->generate("http://$currentPublicIp:8000/turnovers/create/$asset->id");
+                $qrcodePath = "uploads/assets/qrcodes/$asset->id.svg";
+                Storage::disk('public')->put($qrcodePath, $qrCode);
+                $asset->qrcode = 'storage/' . $qrcodePath;
+                $asset->save();
+            }
+
             $this->dispatchBrowserEvent('closeModal');
             $this->resetInput();
         } else {
