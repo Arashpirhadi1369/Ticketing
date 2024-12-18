@@ -65,7 +65,7 @@ class AssetTurnoversController extends Controller
             $conflict = $request->conflict;
         }
 
-        if (!isEmpty($todayRecord)) {
+        if (isEmpty($todayRecord)) {
             AssetTurnover::create([
                 'asset_id'          => $request->id,
                 'user_id'           => getUserId(),

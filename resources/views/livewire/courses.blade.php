@@ -209,6 +209,7 @@
         <div class="col-9 mt-4 pr-0">
             <div class="card border-0 bg-light shadow " style="height: 70px;border-radius: 10px">
                 <div class="card-body d-flex flex-row py-3 justify-content-between align-items-center">
+                    <div></div>
                     <div wire:ignore.self class="modal fade" id="deletemodal" data-backdrop="static"
                         data-keyboard="false" tabindex="-1" aria-labelledby="deletemodal" aria-hidden="true">
                         <div class="modal-dialog">

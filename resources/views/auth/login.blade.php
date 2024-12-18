@@ -23,7 +23,7 @@
                 <div class="card-body shadow">
                     <div class="my-4 mr-3">
                         <h3 class="text-black">خوش آمدید</h3>
-                        <h6 class="">سامانه درخواست های واحد فناوری اطلاعات</h6>
+                        <h6 class="">جهت ورود از نام کاربری و کلمه عبور ویندوز کامپیوتر خود استفاده کنید.</h6>
                     </div>
                     <div class="dropdown-divider"></div>
                     <form method="POST" action="{{route('login')}}">
