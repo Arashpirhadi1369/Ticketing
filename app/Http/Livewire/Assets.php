@@ -11,6 +11,7 @@ use App\Traits\BulkAction;
 use App\Traits\ResetInput;
 use Livewire\WithPagination;
 use App\Exports\AssetsExport;
+use App\Imports\AssetsImport;
 use App\Traits\AdvanceSearch;
 use Livewire\WithFileUploads;
 use App\Traits\ConvertNumbers;
@@ -34,6 +35,8 @@ class Assets extends Component
     public $units;
 
     public $picture;
+
+    public $importExcel;
 
     public $editMode;
 
@@ -124,6 +127,15 @@ class Assets extends Component
 
         $this->picture = null;
         $this->dispatchBrowserEvent('pondReset');
+    }
+
+    public function storeExcel()
+    {
+        $this->validate(['importExcel' => 'file|mimes:xls,xlsx,csv|max:10240']);
+
+        $this->dispatchBrowserEvent('closeModal');
+
+        return Excel::import(new AssetsImport, $this->importExcel);
     }
 
     public function store()

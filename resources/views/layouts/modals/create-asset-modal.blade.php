@@ -85,9 +85,40 @@
                             <input x-ref="input" type="file">
                         </div>
 
+                        @role("administrator")
+                        <div>
+                            <label>بارگذاری اکسل</label>
+                        </div>
+                        <div>
+                            <label class="mr-2" for="importExcel"></label>
+                            @error("importExcel")<span class="mr-2  text-danger">{{ $message
+                                }}</span>@enderror
+                        </div>
+                        <div wire:ignore x-data x-init="FilePond.setOptions({
+                            server:{
+                                process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) =>{
+                                    @this.upload('importExcel', file, load, error, progress)
+                                },
+                                revert: (filename, load) => {@this.removeUpload('importExcel', filename, load)},
+                            },
+                        }); 
+                        var Pond = FilePond.create($refs.input); 
+
+                        this.addEventListener('pondReset', e => {
+                            Pond.removeFiles();
+                        });">
+                            <input x-ref="input" type="file">
+                        </div>
+                        @endrole
+
                         <div class="mt-4 modal-footer">
                             <button wire:click.prevent="store" type="submit" class="btn btn-info mt-2">ذخیره
                             </button>
+                            @role('administrator')
+                            <button wire:click.prevent="storeExcel" type="submit" class="btn btn-danger mt-2">ذخیره فایل
+                                اکسل
+                            </button>
+                            @endrole
                             <button wire:click="resetInput" id="dashboardModalClose" class="btn btn-secondary mt-2"
                                 data-dismiss="modal">انصراف
                             </button>
