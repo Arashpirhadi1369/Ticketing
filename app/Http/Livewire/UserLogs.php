@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\UserLog;
+use App\Traits\AdvanceSearch;
 use Livewire\Component;
 use App\Traits\Sortable;
 use App\Traits\BulkAction;
@@ -13,7 +14,7 @@ use App\Traits\ResetSearchFilters;
 
 class UserLogs extends Component
 {
-    use ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, BulkAction, WithPagination;
+    use ConvertNumbers, ResetInput, ResetSearchFilters, Sortable, BulkAction, WithPagination, AdvanceSearch;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -29,7 +30,7 @@ class UserLogs extends Component
 
     public $filters = [
         'all'       => null,
-        'name'      => null,
+        'user_id'   => null,
     ];
 
     public $headers = ["user_id", "ip", "action_id", "table_name", "record_id", "attribute", "old", "new", "created_at"];
@@ -48,14 +49,18 @@ class UserLogs extends Component
 
     public function getentitiesQueryProperty()
     {
+        if ($this->filters['user_id']) {
+            $userIds = $this->relationSearch('App\Models\User', 'user_id', 'name');
+        }
+
         return UserLog::query()
             ->when(
                 $this->filters['all'],
                 fn($query, $search) => $query
-                    ->where('name', 'like', '%' . $search . '%')
+                    ->where('record_id', $search)
             )
 
-            ->when($this->filters['name'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+            ->when($this->filters['user_id'], fn($query) => $query->wherein('user_id', $userIds))
             ->orderby($this->sortField, $this->sortDirection);
     }
 
