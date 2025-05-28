@@ -47,7 +47,7 @@ class Webkart extends Component
             if (count($selected) == 1) {
                 DB::connection('webkart')->update(
                     DB::raw(
-                        "UPDATE EOS_1403.dbo.IOInfo SET
+                        "UPDATE EOS_$year.dbo.IOInfo SET
                         BEGINTIME    = '$beginTime',
                         BBEGINTIME   = '$beginTime',
                         -- ENDTIME      = '$endTime',
