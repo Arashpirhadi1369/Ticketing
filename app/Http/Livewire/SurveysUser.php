@@ -11,8 +11,10 @@ use App\Traits\ResetInput;
 use Livewire\WithPagination;
 use Morilog\Jalali\Jalalian;
 use App\Traits\ConvertNumbers;
+use App\Exports\SurveysUserExport;
 use App\Traits\ResetSearchFilters;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SurveysUser extends Component
 {
@@ -136,8 +138,8 @@ class SurveysUser extends Component
         }
     }
 
-    // public function exportExcel()
-    // {
-    //     return Excel::download(new surveysExport(), 'surveys.xlsx');
-    // }
+    public function exportExcel()
+    {
+        return Excel::download(new SurveysUserExport(), 'surveys.xlsx');
+    }
 }

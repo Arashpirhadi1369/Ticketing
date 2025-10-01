@@ -13,6 +13,8 @@ use App\Traits\ConvertNumbers;
 use App\Models\EffectivenessUser;
 use App\Traits\ResetSearchFilters;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\EffectivenessesUserExport;
 
 class EffectivenessesUser extends Component
 {
@@ -50,7 +52,7 @@ class EffectivenessesUser extends Component
     public function render()
     {
         if ($this->selectAll) {
-            $this->selected = $this->effectivenessesQuery->pluck('id')->map(fn ($id) => (string) $id);
+            $this->selected = $this->effectivenessesQuery->pluck('id')->map(fn($id) => (string) $id);
         }
 
         return view('livewire.effectivenesses-user', [
@@ -64,21 +66,21 @@ class EffectivenessesUser extends Component
         if (Auth::getUser()->hasRole(['administrator', 'qa-manager'])) {
             return CourseUser::query()->when(
                 $this->filters['all'],
-                fn ($query, $search) => $query
+                fn($query, $search) => $query
                     ->where('course_id', 'like', '%' . $search . '%')
             )
 
-                ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+                ->when($this->filters['name'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
                 ->orderby($this->sortField, $this->sortDirection);
         } else {
             return CourseUser::query()->where('manager_user_id', Auth::getUser()->id)
                 ->when(
                     $this->filters['all'],
-                    fn ($query, $search) => $query
+                    fn($query, $search) => $query
                         ->where('course_id', 'like', '%' . $search . '%')
                 )
 
-                ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+                ->when($this->filters['name'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
                 ->orderby($this->sortField, $this->sortDirection);
         }
     }
@@ -140,8 +142,8 @@ class EffectivenessesUser extends Component
         }
     }
 
-    // public function exportExcel()
-    // {
-    //     return Excel::download(new EffectivenesssExport(), 'Effectivenesss.xlsx');
-    // }
+    public function exportExcel()
+    {
+        return Excel::download(new EffectivenessesUserExport(), 'Effectivenesss.xlsx');
+    }
 }
