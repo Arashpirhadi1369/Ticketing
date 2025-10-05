@@ -25,6 +25,7 @@ class Users extends Component
 
     protected $rules = [
         'entity.name' => 'required|min:3|max:200',
+        'entity.persian_name' => 'required|min:3|max:200',
         'entity.phone' => '',
     ];
 
@@ -37,9 +38,9 @@ class Users extends Component
         'phone'     => null,
     ];
 
-    public $headers = ["name", "username", "ou", "phone"];
+    public $headers = ["persian_name", "name", "username", "ou", "phone"];
 
-    public $modalFields = ['name', 'phone'];
+    public $modalFields = ['persian_name', 'name', 'phone'];
 
     public function mount(User $entity)
     {
@@ -49,7 +50,7 @@ class Users extends Component
     public function render()
     {
         if ($this->selectAll) {
-            $this->selected = $this->usersQuery->pluck('id')->map(fn ($id) => (string) $id);
+            $this->selected = $this->usersQuery->pluck('id')->map(fn($id) => (string) $id);
         }
 
         return view('livewire.users', ['entities' => $this->entities]);
@@ -58,14 +59,14 @@ class Users extends Component
     public function getentitiesQueryProperty()
     {
         return User::query()
-            ->when($this->filters['all'], fn ($query, $search) => $query
+            ->when($this->filters['all'], fn($query, $search) => $query
                 ->where('name', 'like', '%' . $search . '%')
                 ->orwhere('username', 'like', '%' . $search . '%')
                 ->orwhere('phone', 'like', '%' . $search . '%'))
 
-            ->when($this->filters['name'], fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
-            ->when($this->filters['username'], fn ($query, $search) => $query->where('username', 'like', '%' . $search . '%'))
-            ->when($this->filters['phone'], fn ($query, $search) => $query->where('phone', 'like', '%' . $search . '%'))
+            ->when($this->filters['name'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
+            ->when($this->filters['username'], fn($query, $search) => $query->where('username', 'like', '%' . $search . '%'))
+            ->when($this->filters['phone'], fn($query, $search) => $query->where('phone', 'like', '%' . $search . '%'))
             ->orderby($this->sortField, $this->sortDirection);
     }
 

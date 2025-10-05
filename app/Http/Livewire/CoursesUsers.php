@@ -53,6 +53,7 @@ class CoursesUsers extends Component
     public $filters = [
         'all'                => null,
         'course_id'          => null,
+        'user_id'            => null,
     ];
 
     public $headers = ["course_id", "user_id", "unit_id", "manager_user_id", "lecturer", "start_date", "end_date"];
@@ -78,17 +79,24 @@ class CoursesUsers extends Component
 
     public function getentitiesQueryProperty()
     {
-        return CourseUser::query()
+        return CourseUser::with('course')
             ->when(
                 $this->filters['all'],
                 fn($query, $search) => $query
-                    ->where('course_id', 'like', '%' . $search . '%')
-                // ->orwhere('duration_hour', 'like', '%' . $search . '%')
+                    ->join('courses', 'course_id', 'courses.id')
+                    ->where('name', 'like', '%' . $search . '%')
             )
 
-            ->when($this->filters['course_id'], fn($query, $search) => $query->where('name', 'like', '%' . $search . '%'))
-            // ->when($this->filters['duration_hour'], fn ($query, $search) => $query->where('duration_hour', 'like', '%' . $search . '%'))
-            ->orderby($this->sortField, $this->sortDirection);
+            ->when($this->filters['course_id'], fn($query, $search) => $query
+                ->join('courses', 'course_id', 'courses.id')
+                ->where('name', 'like', '%' . $search . '%'))
+
+            ->when($this->filters['user_id'], fn($query, $search) => $query
+                ->join('users', 'user_id', 'users.id')
+                ->where('persian_name', 'like', '%' . $search . '%')
+                ->orWhere('name', 'like', '%' . $search . '%'))
+
+            ->orderby('course_users' . '.' . $this->sortField, $this->sortDirection);
     }
 
     public function getentitiesProperty()

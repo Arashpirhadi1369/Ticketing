@@ -39,7 +39,8 @@
                                 name="user_id" id="user_id">
                                 <option selected>کارمند را انتخاب کنید ...</option>
                                 @foreach($users as $user)
-                                <option value="{{$user->id}}">{{__($user->name)}}
+                                <option value="{{$user->id}}">{{$user->persian_name ?$user->persian_name
+                                    :__($user->name)}}
                                 </option>
                                 @endforeach
                             </select>
@@ -99,7 +100,8 @@
                                 class="custom-select form-control" name="manager_user_id" id="manager_user_id">
                                 <option selected>مدیر را انتخاب کنید ...</option>
                                 @foreach($users as $user)
-                                <option value="{{$user->id}}">{{__($user->name)}}
+                                <option value="{{$user->id}}">{{$user->persian_name ?$user->persian_name
+                                    :__($user->name)}}
                                 </option>
                                 @endforeach
                             </select>

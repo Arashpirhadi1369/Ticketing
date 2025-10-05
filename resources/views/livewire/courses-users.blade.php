@@ -485,7 +485,11 @@
 
                                 @elseif($header == 'user_id')
                                 <td>
-                                    {{__($entity->user->name)}}
+                                    {{
+                                    $entity->user->persian_name ?
+                                    $entity->user->persian_name :
+                                    __($entity->user->name)
+                                    }}
                                 </td>
 
                                 @elseif($header == 'unit_id')
@@ -495,7 +499,11 @@
 
                                 @elseif($header == 'manager_user_id')
                                 <td>
-                                    {{__($entity->managerUser->name)}}
+                                    {{
+                                    $entity->managerUser->persian_name ?
+                                    $entity->managerUser->persian_name :
+                                    __($entity->managerUser->name)
+                                    }}
                                 </td>
 
                                 @else

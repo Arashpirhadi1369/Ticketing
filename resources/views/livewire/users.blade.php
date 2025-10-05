@@ -279,6 +279,13 @@
                                     <form method="POST" class="m-4">
                                         @csrf
                                         <div class="form-group col-md-8 p-0">
+                                            <label class="text-bold"> نام فارسی :</label>
+                                            @error('user.persian_name') <span class="mr-2 text-danger">{{ $message
+                                                }}</span>@enderror
+                                            <input wire:model.debounce.500ms='entity.persian_name' class="form-control">
+                                        </div>
+                                        <hr>
+                                        <div class="form-group col-md-8 p-0">
                                             <label class="text-bold"> نام کاربر :</label>
                                             @error('user.name') <span class="mr-2 text-danger">{{ $message
                                                 }}</span>@enderror

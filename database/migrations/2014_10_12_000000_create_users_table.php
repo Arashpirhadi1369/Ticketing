@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('objectguid')->nullable();
             $table->string('name')->nullable();
+            $table->string('persian_name')->nullable();
             $table->string('username')->unique();
             $table->string('password')->nullable();
             $table->string('ou')->nullable();
